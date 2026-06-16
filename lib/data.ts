@@ -20,10 +20,10 @@ When I'm not designing, I'm traveling, photographing spaces that inspire me, or 
 }
 
 export const stats = [
-  { value: 30, suffix: '+', label: 'Projects Completed' },
-  { value: 25, suffix: '+', label: 'Happy Clients' },
-  { value: 3, suffix: '', label: 'Years of Experience' },
-  { value: 80, suffix: '+', label: 'Design Concepts Created' },
+  { value: 20, suffix: '+', label: 'Projects Completed' },
+  { value: 20, suffix: '+', label: 'Happy Clients' },
+  { value: 2, suffix: '', label: 'Years of Experience' },
+  { value: 50, suffix: '+', label: 'Design Concepts Created' },
 ]
 
 export const skills = {
@@ -42,13 +42,10 @@ export const skills = {
   ],
   software: [
     { name: 'AutoCAD', level: 92 },
-    { name: 'SketchUp', level: 88 },
     { name: '3ds Max', level: 85 },
     { name: 'V-Ray', level: 82 },
-    { name: 'Lumion', level: 80 },
     { name: 'Adobe Photoshop', level: 90 },
     { name: 'Adobe Illustrator', level: 85 },
-    { name: 'Adobe InDesign', level: 82 },
   ],
   business: [
     { name: 'Project Management', level: 88 },
@@ -70,31 +67,26 @@ export const experience = [
     type: 'Full-time',
     description: 'Joined a boutique design studio known for its refined approach to residential and hospitality interiors. Contributed to projects ranging from private villas to boutique guest houses across the West Bank.',
     achievements: [
-      'Contributed design concepts for 8 residential projects, with 6 receiving client approval on first presentation',
-      'Produced over 120 detailed technical drawings using AutoCAD, reducing revision cycles by 30%',
-      'Led material research for 3 major projects, sourcing sustainable materials that reduced costs by 15%',
-      'Coordinated with 12+ vendors and suppliers, ensuring on-time material delivery for all projects',
-      'Assisted senior designers in developing 3D visualizations that secured 2 high-value client contracts',
+      'Designed an original furniture piece inspired by a creative concept — demonstrating a rare ability to translate references and ideas into fully realized, buildable furniture',
+      'Participated in the An-Najah National University Exhibition in Nablus (2026), where the furniture piece was publicly displayed and sold at the exhibition',
     ],
-    skills: ['AutoCAD', 'SketchUp', 'Material Research', 'Technical Drawing', 'Vendor Coordination'],
+    skills: ['AutoCAD', 'Furniture Design', 'Concept Development', 'Technical Drawing', '3ds Max'],
   },
   {
     id: 2,
     role: 'Interior Designer',
-    company: 'Vision Design Studio',
-    location: 'Ramallah, Palestine',
-    period: '2024 — 2025',
+    company: 'Abwab',
+    location: 'Nablus, Palestine',
+    period: 'Early 2025 — 2026',
     type: 'Full-time',
-    description: 'Promoted to a full designer role at a leading design firm handling diverse residential and commercial projects. Took ownership of complete project cycles from initial consultation to final handover.',
+    description: 'Worked at Abwab, a doors and joinery company based in Nablus, designing custom doors tailored to each client\'s requirements. Developed a strong understanding of material properties, manufacturing constraints, and client-centered design in a production environment.',
     achievements: [
-      'Led design development for 14 projects totaling over 4,200 m² of designed space',
-      'Delivered all assigned projects within budget, achieving an average client satisfaction score of 4.9/5',
-      'Developed comprehensive 3D visualization packages using 3ds Max and V-Ray that reduced client approval time by 40%',
-      'Managed client presentations independently, achieving a 92% first-presentation approval rate',
-      'Introduced a material sample cataloging system adopted studio-wide, saving 5+ hours per project',
-      'Mentored 2 junior team members in AutoCAD workflows and presentation techniques',
+      'Designed bespoke door solutions for a diverse client base, translating individual preferences and architectural contexts into detailed specifications',
+      'Collaborated directly with clients from brief to final design, managing expectations and refining concepts through iterative feedback',
+      'Developed technical drawings for manufacturing, ensuring designs were both aesthetically refined and production-ready',
+      'Built expertise in wood species, hardware systems, and finishing techniques through hands-on project work',
     ],
-    skills: ['3ds Max', 'V-Ray', 'Space Planning', 'Client Management', 'Project Leadership'],
+    skills: ['Custom Design', 'Client Consultation', 'Technical Drawing', 'AutoCAD', 'Material Specification'],
   },
   {
     id: 3,
