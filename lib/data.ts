@@ -360,7 +360,7 @@ export const projects = [
     ],
     overview: 'A complete interior design of a 420 m² luxury villa for a private family in Nablus. The brief called for a home that felt grand yet deeply personal — sophisticated without formality, modern without coldness. The design language draws on the warm neutrals of Palestinian stone and the clean lines of contemporary architecture, creating a synthesis that feels rooted yet forward-looking.',
     clientGoals: [
-      "Create a space that reflects the family's status while remaining genuinely livable",
+      'Create a space that reflects the family\'s status while remaining genuinely livable',
       'Integrate traditional Palestinian design elements in a contemporary way',
       'Maximize natural light throughout all principal rooms',
       'Design a master suite that feels like a five-star retreat',
@@ -376,7 +376,7 @@ export const projects = [
       { name: 'Venetian Plaster', use: 'Accent walls', note: 'Applied by specialist craftsman' },
     ],
     challenges: [
-      "Balancing the client's desire for grandeur with a genuine warmth that makes the space livable for children",
+      'Balancing the client\'s desire for grandeur with a genuine warmth that makes the space livable for children',
       'Working with structural columns that interrupted ideal furniture placement in the main living area',
       'Sourcing high-quality materials locally under supply constraints',
       'Managing extended construction period due to material import delays',
@@ -429,7 +429,7 @@ export const projects = [
     ],
     overview: 'A 95 m² apartment redesign for a young professional who wanted a space that balanced the demands of remote work with the comfort of genuine home life. The design focuses on spatial efficiency, material quality, and a restrained palette that creates calm.',
     clientGoals: [
-      "Create a dedicated home office that doesn't feel like an office",
+      'Create a dedicated home office that doesn\'t feel like an office',
       'Make the space feel larger than its actual footprint',
       'Choose materials and colors that age beautifully over time',
       'Design a kitchen-dining zone optimized for hosting small dinner parties',
@@ -464,7 +464,7 @@ export const projects = [
       'Generated 2 referrals within first month of completion',
     ],
     testimonial: {
-      text: "Working with Hidaya was refreshingly different. She asked questions that made me think about how I actually live, not just what looked good on Pinterest. The result is an apartment that is genuinely comfortable for my lifestyle.",
+      text: 'Working with Hidaya was refreshingly different. She asked questions that made me think about how I actually live, not just what looked good on Pinterest. The result is an apartment that is genuinely comfortable for my lifestyle.',
       author: 'Lara Salameh',
       role: 'Apartment Owner',
     },
@@ -489,14 +489,14 @@ export const projects = [
       'https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?w=1200&q=80',
       'https://images.unsplash.com/photo-1533090368676-1fd25485db88?w=1200&q=80',
     ],
-    overview: 'Complete interior design of a boutique specialty coffee shop in Ramallah. The client wanted a space that could become a neighborhood institution — somewhere people come for the coffee but stay for the atmosphere. The 65 m² footprint demanded intelligent planning to accommodate counter service, seating for 32, and a private table area without feeling cramped.',
+    overview: 'Complete interior design of a boutique specialty coffee shop in Ramallah. The client wanted a space that could become a neighborhood institution — somewhere people come for the coffee but stay for the atmosphere.',
     clientGoals: [
       'Create an atmosphere that encourages customers to stay and return',
       'Accommodate maximum seating within a compact footprint',
       'Design a visually distinct counter and bar area for social media appeal',
       'Achieve a warm, independent feel that differentiates from chain coffee brands',
     ],
-    research: 'Analysis of successful specialty coffee shops across Beirut, Amman, and London revealed that the most enduring spaces prioritize acoustic comfort, varied seating typologies, and a strong material narrative. Customer dwell time correlates directly with acoustic quality and seating variety.',
+    research: 'Analysis of successful specialty coffee shops across Beirut, Amman, and London revealed that the most enduring spaces prioritize acoustic comfort, varied seating typologies, and a strong material narrative.',
     concept: '"The Ritual" — coffee as a ceremony, the shop as a stage for daily rituals. Warm materials, curved elements, and layered lighting create a space that feels welcoming at 7am and sophisticated at 7pm.',
     materials: [
       { name: 'Rammed Earth', use: 'Feature back wall', note: 'Natural pigments' },
@@ -523,7 +523,7 @@ export const projects = [
       { phase: 'Styling & Opening', duration: '1 week', description: 'Final styling and photography' },
     ],
     results: [
-      "Space became one of Ramallah's most photographed coffee venues within 3 months",
+      'Space became one of Ramallah\'s most photographed coffee venues within 3 months',
       'Reservation system introduced in first month due to demand',
       'Client reported 60% revenue increase month-on-month after opening',
       'Featured in regional lifestyle magazine',
@@ -560,7 +560,7 @@ export const projects = [
       'Design a space that attracts and retains young talent',
       'Improve natural light distribution across the floor plate',
     ],
-    research: 'Evidence-based workplace design research guided the approach. Studies consistently show that the highest performing offices offer worker choice: the ability to self-select work settings based on task type. This formed the conceptual backbone of the redesign.',
+    research: 'Evidence-based workplace design research guided the approach. Studies consistently show that the highest performing offices offer worker choice: the ability to self-select work settings based on task type.',
     concept: '"Focused Freedom" — a workplace where the architecture supports how people actually work, not how management imagines they work.',
     materials: [
       { name: 'Polished Concrete', use: 'Flooring in open zones', note: 'Sealed with matte finish' },
@@ -591,7 +591,7 @@ export const projects = [
       'Company was able to attract 4 senior hires partly citing the office environment',
     ],
     testimonial: {
-      text: "Our productivity has genuinely increased since the redesign. Hidaya's space planning expertise transformed what was a chaotic open-plan floor into a thoughtful work environment with the right balance of collaboration and focus spaces.",
+      text: 'Our productivity has genuinely increased since the redesign. Hidaya\'s space planning expertise transformed what was a chaotic open-plan floor into a thoughtful work environment.',
       author: 'Omar Haddad',
       role: 'Office Director',
     },
@@ -615,14 +615,14 @@ export const projects = [
       'https://images.unsplash.com/photo-1567401893414-76b7b1e5a7a5?w=1200&q=80',
       'https://images.unsplash.com/photo-1490481651871-ab68de25d43d?w=1200&q=80',
     ],
-    overview: 'Interior design for a local fashion boutique launching its first standalone retail space. The brand positions itself at the intersection of contemporary Palestinian craft and modern fashion. The interior needed to embody this identity without overshadowing the product.',
+    overview: 'Interior design for a local fashion boutique launching its first standalone retail space. The brand positions itself at the intersection of contemporary Palestinian craft and modern fashion.',
     clientGoals: [
       'Create a retail environment that elevates product perception and justifies premium pricing',
       'Design flexible fixture systems that can be reconfigured for seasonal collections',
       'Incorporate a fitting room experience that feels like a luxury brand',
       'Tell the brand story through spatial design without explicit signage',
     ],
-    research: 'Analysis of luxury retail environments revealed that the most effective stores reduce visual complexity around the product. Less on the walls means more attention to each garment. The concept of retail theater — where the customer is the protagonist — guided the approach.',
+    research: 'Analysis of luxury retail environments revealed that the most effective stores reduce visual complexity around the product. Less on the walls means more attention to each garment.',
     concept: '"The Gallery Effect" — treating each garment as an artwork deserving careful display, curation, and appropriate negative space.',
     materials: [
       { name: 'Limewash Paint', use: 'All walls', note: 'Warm white, textured finish' },
@@ -633,7 +633,7 @@ export const projects = [
     challenges: [
       'Designing flexible but premium-feeling fixtures on a boutique budget',
       'Achieving fitting room luxury without significant space allocation',
-      "Ensuring the design doesn't date quickly as fashion trends shift",
+      'Ensuring the design doesn\'t date quickly as fashion trends shift',
     ],
     solutions: [
       'Developed a modular rail system in aged bronze that can reconfigure without tools',
@@ -648,7 +648,7 @@ export const projects = [
     ],
     results: [
       'Average transaction value increased 35% in first 3 months vs online store',
-      'Store became a destination rather than a stop, with customers spending average 22 minutes per visit',
+      'Store became a destination with customers spending average 22 minutes per visit',
       'Brand press coverage increased significantly citing the store environment',
       'Fitting room experience described as "the best in the city" in customer reviews',
     ],
@@ -677,14 +677,14 @@ export const projects = [
       'https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?w=1200&q=80',
       'https://images.unsplash.com/photo-1571896349842-33c89424de2d?w=1200&q=80',
     ],
-    overview: 'A complete redesign of the lobby, reception, and lounge areas for a boutique heritage hotel in Bethlehem. The property occupies a historic Ottoman-era building, and the brief called for a design that honored this history while creating a contemporary luxury experience for international guests.',
+    overview: 'A complete redesign of the lobby, reception, and lounge areas for a boutique heritage hotel in Bethlehem. The property occupies a historic Ottoman-era building, and the brief called for a design that honored this history while creating a contemporary luxury experience.',
     clientGoals: [
       'Create a lobby that reflects the historical significance of the building',
       'Improve wayfinding and guest flow through the arrival sequence',
       'Increase dwell time in the lounge area to drive F&B revenue',
       'Achieve an aesthetic that photographs well for international travel press',
     ],
-    research: 'Study of heritage hospitality projects across the Middle East and Mediterranean revealed a strong preference for "authentic contemporary" — spaces that reference history through material and craft rather than reproduction or pastiche.',
+    research: 'Study of heritage hospitality projects across the Middle East and Mediterranean revealed a strong preference for "authentic contemporary" — spaces that reference history through material and craft rather than reproduction.',
     concept: '"Memory and Now" — a lobby where ancient stone walls and contemporary furnishings exist in dialogue, creating a space that is unmistakably Palestinian and unmistakably of today.',
     materials: [
       { name: 'Original Jerusalem Stone', use: 'Structural walls (restored)', note: 'Conservation specialist engaged' },
@@ -696,12 +696,12 @@ export const projects = [
     challenges: [
       'Working within heritage conservation constraints that limited structural interventions',
       'Balancing cultural authenticity with international luxury standards',
-      'Integrating modern service infrastructure (power, data, lighting control) invisibly',
+      'Integrating modern service infrastructure invisibly',
     ],
     solutions: [
       'Worked closely with heritage consultant to identify compliant intervention zones',
       'Used contemporary craft to reference tradition rather than replicate it',
-      'Ran all infrastructure within purpose-built plinths and joinery concealing cables and equipment',
+      'Ran all infrastructure within purpose-built plinths and joinery',
     ],
     timeline: [
       { phase: 'Heritage Survey', duration: '3 weeks', description: 'Conservation assessment, measured survey' },
@@ -748,7 +748,7 @@ export const projects = [
       'Incorporate natural materials and biophilic elements',
       'Design storage that eliminates visual clutter without sacrificing accessibility',
     ],
-    research: 'Deep immersion in Danish and Swedish residential design principles, particularly the concept of "hygge" and the functional beauty philosophy of Danish furniture makers. Adaptation of these principles to the Palestinian climate and material context was the central design challenge.',
+    research: 'Deep immersion in Danish and Swedish residential design principles, particularly the concept of "hygge" and the functional beauty philosophy of Danish furniture makers.',
     concept: '"Borrowed Light" — a home designed to capture and amplify the qualities of Mediterranean light through Scandinavian restraint.',
     materials: [
       { name: 'Whitened Oak', use: 'Flooring throughout', note: 'Scandinavian brushed finish' },
@@ -760,12 +760,12 @@ export const projects = [
     challenges: [
       'Adapting Scandinavian design to a warmer climate with different light quality',
       'Finding authentic Scandinavian materials locally at reasonable cost',
-      "Meeting the couple's very specific aesthetic references while maintaining budget",
+      'Meeting very specific aesthetic references while maintaining budget',
     ],
     solutions: [
       'Selected materials with higher thermal mass and designed for natural ventilation flow',
-      'Developed a hybrid sourcing strategy mixing locally available materials with carefully selected imports',
-      'Prioritized investment in flooring and key furniture pieces, achieved budget goals in ancillary items',
+      'Developed a hybrid sourcing strategy mixing local materials with carefully selected imports',
+      'Prioritized investment in flooring and key furniture pieces',
     ],
     timeline: [
       { phase: 'Discovery', duration: '1 week', description: 'Reference gathering, lifestyle discussion' },
@@ -776,10 +776,10 @@ export const projects = [
     results: [
       'Clients described the result as "exactly what we didn\'t know how to ask for"',
       'Project photography shared widely on design social channels',
-      "Generated direct referrals from the couple's social network",
+      'Generated direct referrals from the couple\'s social network',
     ],
     testimonial: {
-      text: "We showed Hidaya our Copenhagen apartment in photographs and explained what we loved about living there. She somehow translated that feeling entirely into our Nablus home. It's remarkable.",
+      text: 'We showed Hidaya our Copenhagen apartment in photographs and explained what we loved about living there. She somehow translated that feeling entirely into our Nablus home. It\'s remarkable.',
       author: 'Yasmin & Tariq Abu-Samra',
       role: 'Homeowners',
     },
@@ -803,31 +803,31 @@ export const projects = [
       'https://images.unsplash.com/photo-1559329007-40df8a9345d8?w=1200&q=80',
       'https://images.unsplash.com/photo-1537047902294-62a40c20a6ae?w=1200&q=80',
     ],
-    overview: "Complete interior design for Ramallah's first dedicated fine dining restaurant — a project that required designing not just a space but a complete sensory experience to support a 12-course tasting menu concept.",
+    overview: 'Complete interior design for Ramallah\'s first dedicated fine dining restaurant — a project that required designing not just a space but a complete sensory experience to support a 12-course tasting menu concept.',
     clientGoals: [
       'Create an environment where the design enhances the food experience without competing with it',
       'Achieve 48-seat capacity while maintaining intimate dining atmosphere',
-      "Design a chef's table experience as a premium product within the restaurant",
+      'Design a chef\'s table experience as a premium product within the restaurant',
       'Ensure acoustic quality that allows conversation without shouting',
     ],
-    research: "Extended research into Michelin-starred restaurant environments revealed consistent principles: acoustic comfort, appropriate lighting levels at different service phases, table spacing psychology, and the importance of the arrival sequence in setting the evening's emotional tone.",
-    concept: '"The Performance" — dining as theater, where kitchen, service, and environment are choreographed to create a complete experience. The design supports this by creating distinct acts: arrival, seating, the meal, the departure.',
+    research: 'Extended research into Michelin-starred restaurant environments revealed consistent principles: acoustic comfort, appropriate lighting levels at different service phases, table spacing psychology, and the importance of the arrival sequence.',
+    concept: '"The Performance" — dining as theater, where kitchen, service, and environment are choreographed to create a complete experience.',
     materials: [
       { name: 'Dark Walnut', use: 'Paneling, tables, millwork', note: 'Book-matched veneer' },
       { name: 'Burnished Bronze', use: 'All metalwork', note: 'Custom patina' },
       { name: 'Velvet', use: 'All seating', note: 'Deep charcoal and forest green' },
       { name: 'Smoked Mirror', use: 'Feature ceiling panels', note: 'Antiqued effect' },
-      { name: 'Italian Marble', use: "Chef's table surface", note: 'Nero Marquina' },
+      { name: 'Italian Marble', use: 'Chef\'s table surface', note: 'Nero Marquina' },
     ],
     challenges: [
       'Achieving 48 covers without losing the intimacy required for fine dining',
       'Designing acoustic comfort in a space with hard luxury surfaces',
-      "Creating a chef's table experience that is premium but not alienating for guests",
+      'Creating a chef\'s table experience that is premium but not alienating',
     ],
     solutions: [
-      'Used a combination of banquette seating, intimate booth configuration, and table spacing exceeding standard minimums',
+      'Used banquette seating, intimate booth configuration, and table spacing exceeding standard minimums',
       'Integrated acoustic treatment within the dark walnut paneling system — invisible but effective',
-      "Positioned chef's table with full kitchen visibility but screened from main dining area, making it feel exclusive rather than exposed",
+      'Positioned chef\'s table with full kitchen visibility but screened from main dining area',
     ],
     timeline: [
       { phase: 'Concept', duration: '4 weeks', description: 'Concept development, reference research, presentations' },
