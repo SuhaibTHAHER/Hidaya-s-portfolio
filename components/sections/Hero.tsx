@@ -111,7 +111,7 @@ export default function Hero() {
               <div className="absolute -inset-6 border border-gold-500/10 z-10 pointer-events-none" />
 
               <Image
-                src="https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?w=800&q=80"
+                src="/images/hero.jpg"
                 alt="Luxury interior design by Hidaya Thaher"
                 fill
                 className="object-cover"

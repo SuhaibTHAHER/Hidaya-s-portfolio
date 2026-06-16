@@ -17,7 +17,7 @@ export default function About() {
             <div className="relative">
               <div className="relative aspect-[3/4] overflow-hidden">
                 <Image
-                  src="https://images.unsplash.com/photo-1600210492493-0946911123ea?w=800&q=80"
+                  src="/images/about.jpg"
                   alt="Hidaya Thaher - Interior Designer"
                   fill
                   className="object-cover"
