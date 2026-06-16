@@ -10,8 +10,6 @@ import Experience from '@/components/sections/Experience'
 import Projects from '@/components/sections/Projects'
 import Services from '@/components/sections/Services'
 import Stats from '@/components/sections/Stats'
-import Testimonials from '@/components/sections/Testimonials'
-import Awards from '@/components/sections/Awards'
 import Contact from '@/components/sections/Contact'
 
 export default function HomePage() {
@@ -28,8 +26,6 @@ export default function HomePage() {
         <Skills />
         <Education />
         <Experience />
-        <Testimonials />
-        <Awards />
         <Contact />
       </main>
       <Footer />

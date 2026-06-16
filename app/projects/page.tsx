@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 import Image from 'next/image'
 import Link from 'next/link'
-import { ArrowUpRight, MapPin, Clock, Ruler } from 'lucide-react'
+import { ArrowUpRight, MapPin, Clock } from 'lucide-react'
 import Navbar from '@/components/layout/Navbar'
 import Footer from '@/components/layout/Footer'
 import ScrollProgress from '@/components/ui/ScrollProgress'
@@ -67,10 +67,6 @@ export default function ProjectsPage() {
                     <span className="flex items-center gap-1">
                       <MapPin size={11} className="text-gold-500" />
                       {project.location}
-                    </span>
-                    <span className="flex items-center gap-1">
-                      <Ruler size={11} className="text-gold-500" />
-                      {project.area}
                     </span>
                     <span className="flex items-center gap-1">
                       <Clock size={11} className="text-gold-500" />

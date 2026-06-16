@@ -3,7 +3,7 @@ import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import Image from 'next/image'
 import Link from 'next/link'
-import { ArrowUpRight, MapPin, Clock, Ruler } from 'lucide-react'
+import { ArrowUpRight, MapPin, Clock } from 'lucide-react'
 import AnimateIn from '@/components/ui/AnimateIn'
 import SectionHeader from '@/components/ui/SectionHeader'
 import { projects } from '@/lib/data'
@@ -107,10 +107,6 @@ export default function Projects() {
                       <span className="flex items-center gap-1">
                         <MapPin size={11} className="text-gold-500" />
                         {project.location}
-                      </span>
-                      <span className="flex items-center gap-1">
-                        <Ruler size={11} className="text-gold-500" />
-                        {project.area}
                       </span>
                       <span className="flex items-center gap-1">
                         <Clock size={11} className="text-gold-500" />
