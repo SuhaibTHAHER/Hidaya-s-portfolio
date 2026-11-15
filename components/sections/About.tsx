@@ -17,25 +17,25 @@ export default function About() {
             <div className="relative">
               <div className="relative aspect-[3/4] overflow-hidden">
                 <Image
-                  src="/images/hidaya.jpg"
-                  alt="Hidaya Thaher - Interior Designer"
+                  src={personalInfo.portrait.src}
+                  alt={personalInfo.portrait.altAbout}
                   fill
-                  className="object-cover"
+                  className="object-cover object-top"
                   sizes="(max-width: 1024px) 100vw, 50vw"
                 />
               </div>
               {/* Decorative elements */}
-              <div className="absolute -bottom-4 -right-4 w-32 h-32 border border-gold-500/30" />
-              <div className="absolute -top-4 -left-4 w-20 h-20 border border-gold-500/20" />
+              <div aria-hidden="true" className="absolute -bottom-4 -right-4 w-32 h-32 border border-gold-500/30" />
+              <div aria-hidden="true" className="absolute -top-4 -left-4 w-20 h-20 border border-gold-500/20" />
 
               {/* Languages card */}
               <div className="absolute top-6 -right-6 glass p-5 shadow-lg min-w-[160px]">
-                <div className="text-xs tracking-[0.15em] uppercase text-gold-600 mb-3">Languages</div>
+                <p className="text-xs tracking-[0.15em] uppercase text-gold-700 mb-3">Languages</p>
                 {personalInfo.languages.map((lang) => (
                   <div key={lang.name} className="mb-3 last:mb-0">
                     <div className="flex justify-between items-center mb-1">
                       <span className="text-xs font-medium text-charcoal-700 dark:text-cream-200">{lang.name}</span>
-                      <span className="text-xs text-charcoal-400">{lang.level === 'Native' ? 'Native' : 'Pro'}</span>
+                      <span className="text-xs text-charcoal-500 dark:text-charcoal-400">{lang.level === 'Native' ? 'Native' : 'Professional'}</span>
                     </div>
                     <div className="h-0.5 bg-cream-300 dark:bg-charcoal-700 rounded-full overflow-hidden">
                       <motion.div
@@ -72,7 +72,7 @@ export default function About() {
             {/* Expertise Tags */}
             <AnimateIn delay={0.5}>
               <div className="mt-10">
-                <h4 className="text-xs tracking-[0.2em] uppercase text-gold-600 mb-4 font-medium">Areas of Expertise</h4>
+                <h3 className="text-xs tracking-[0.2em] uppercase text-gold-700 dark:text-gold-500 mb-4 font-medium">Areas of Expertise</h3>
                 <div className="flex flex-wrap gap-2">
                   {[
                     'Residential Design', 'Commercial Design', 'Space Planning',
@@ -93,7 +93,7 @@ export default function About() {
             {/* Interests */}
             <AnimateIn delay={0.6}>
               <div className="mt-8">
-                <h4 className="text-xs tracking-[0.2em] uppercase text-gold-600 mb-4 font-medium">Interests</h4>
+                <h3 className="text-xs tracking-[0.2em] uppercase text-gold-700 dark:text-gold-500 mb-4 font-medium">Interests</h3>
                 <div className="flex flex-wrap gap-2">
                   {interests.map((interest) => (
                     <span
@@ -109,16 +109,18 @@ export default function About() {
 
             {/* CTA */}
             <AnimateIn delay={0.7}>
-              <div className="mt-10 flex gap-4">
-                <a href="/cv.pdf" download className="btn-gold rounded-none text-xs tracking-[0.15em] uppercase">
-                  <span>Download CV</span>
-                </a>
-                <button
-                  onClick={() => document.querySelector('#contact')?.scrollIntoView({ behavior: 'smooth' })}
-                  className="btn-outline-gold rounded-none text-xs tracking-[0.15em] uppercase"
-                >
+              <div className="mt-10 flex flex-wrap gap-4">
+                {personalInfo.cvUrl && (
+                  <a href={personalInfo.cvUrl} download className="btn-gold rounded-none text-xs tracking-[0.15em] uppercase">
+                    <span>Download CV</span>
+                  </a>
+                )}
+                <a href="#contact" className="btn-outline-gold rounded-none text-xs tracking-[0.15em] uppercase">
                   Get in Touch
-                </button>
+                </a>
+                <a href="/projects" className="btn-gold rounded-none text-xs tracking-[0.15em] uppercase">
+                  <span>View Projects</span>
+                </a>
               </div>
             </AnimateIn>
           </div>

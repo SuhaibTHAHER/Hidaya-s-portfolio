@@ -1,88 +1,98 @@
 import type { Metadata } from 'next'
 import Image from 'next/image'
 import Link from 'next/link'
-import { ArrowUpRight, MapPin, Clock } from 'lucide-react'
+import { ArrowUpRight } from 'lucide-react'
 import Navbar from '@/components/layout/Navbar'
 import Footer from '@/components/layout/Footer'
 import ScrollProgress from '@/components/ui/ScrollProgress'
 import BackToTop from '@/components/ui/BackToTop'
-import { projects } from '@/lib/data'
+import Breadcrumbs from '@/components/seo/Breadcrumbs'
+import JsonLd from '@/components/seo/JsonLd'
+import { projects } from '@/lib/projects'
+import { pageMetadata, projectsIndexGraph } from '@/lib/site'
 
-export const metadata: Metadata = {
-  title: 'Projects',
-  description: 'Complete portfolio of interior design projects — residential, commercial, and hospitality spaces.',
-}
+export const metadata: Metadata = pageMetadata({
+  title: 'Interior Design Projects',
+  description:
+    'Interior design projects by Hidaya Thaher — homes, bedrooms, kitchens, offices, retail stores, a bank and a restaurant — presented as 3D visualizations.',
+  path: '/projects',
+})
 
 export default function ProjectsPage() {
   return (
     <>
+      <JsonLd data={projectsIndexGraph(projects)} />
       <ScrollProgress />
       <Navbar />
-      <main className="min-h-screen bg-cream-50 dark:bg-charcoal-950">
+      <main id="main" className="min-h-screen bg-cream-50 dark:bg-charcoal-950">
         {/* Hero */}
         <div className="pt-32 pb-20 bg-charcoal-950 text-cream-50">
           <div className="container-luxury">
-            <span className="section-label mb-4 block">Portfolio</span>
-            <h1 className="font-serif text-5xl md:text-6xl font-medium mb-6">All Projects</h1>
-            <p className="text-charcoal-400 max-w-xl leading-relaxed">
-              Eight projects across residential, commercial, hospitality, and retail — each one a story of transformation.
+            <Breadcrumbs
+              items={[{ name: 'Home', href: '/' }, { name: 'Projects' }]}
+              className="mb-8 text-charcoal-400"
+            />
+            <span className="section-label on-dark mb-4 block">Portfolio</span>
+            <h1 className="font-serif text-5xl md:text-6xl font-medium mb-6">Interior Design Projects</h1>
+            <p className="text-charcoal-300 max-w-xl leading-relaxed">
+              {projects.length} interior design projects across residential, commercial, retail and hospitality spaces,
+              each presented through 3D visualization.
             </p>
           </div>
         </div>
 
         {/* Grid */}
         <div className="container-luxury py-20">
-          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8">
-            {projects.map((project) => (
-              <Link key={project.slug} href={`/projects/${project.slug}`} className="group block">
-                <div className="relative overflow-hidden aspect-[4/3]">
-                  <Image
-                    src={project.coverImage}
-                    alt={project.title}
-                    fill
-                    className="object-cover transition-transform duration-700 group-hover:scale-105"
-                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                  />
-                  <div className="absolute inset-0 bg-charcoal-950/0 group-hover:bg-charcoal-950/50 transition-all duration-500" />
-                  <div className="absolute top-4 right-4 px-2 py-1 bg-charcoal-950/70 text-cream-200 text-xs tracking-widest">
-                    {project.year}
-                  </div>
-                  {project.featured && (
-                    <div className="absolute top-4 left-4 px-2 py-1 bg-gold-600 text-white text-xs tracking-wider">
-                      Featured
+          <ul className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8">
+            {projects.map((project, i) => (
+              <li key={project.slug}>
+                <Link href={`/projects/${project.slug}`} className="group block">
+                  <div className="relative overflow-hidden aspect-[4/3] bg-cream-200 dark:bg-charcoal-900">
+                    <Image
+                      src={project.cover.src}
+                      alt={project.cover.alt}
+                      fill
+                      className="object-cover transition-transform duration-700 group-hover:scale-105"
+                      sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 33vw"
+                      priority={i < 3}
+                    />
+                    <div className="absolute inset-0 bg-charcoal-950/0 group-hover:bg-charcoal-950/50 transition-all duration-500" />
+                    <div className="absolute top-4 right-4 px-2 py-1 bg-charcoal-950/70 text-cream-200 text-xs tracking-widest">
+                      {project.category}
                     </div>
-                  )}
-                </div>
-                <div className="py-5 border-b border-cream-300 dark:border-charcoal-800">
-                  <div className="flex items-start justify-between gap-4">
-                    <div>
-                      <h2 className="font-serif text-xl text-charcoal-900 dark:text-cream-100 group-hover:text-gold-600 transition-colors">
-                        {project.title}
-                      </h2>
-                      <p className="text-sm text-charcoal-500 dark:text-charcoal-400 mt-1">{project.subtitle}</p>
+                    {project.featured && (
+                      <div className="absolute top-4 left-4 px-2 py-1 bg-gold-700 text-white text-xs tracking-wider">
+                        Featured
+                      </div>
+                    )}
+                  </div>
+                  <div className="py-5 border-b border-cream-300 dark:border-charcoal-800">
+                    <div className="flex items-start justify-between gap-4">
+                      <div>
+                        <h2 className="font-serif text-xl text-charcoal-900 dark:text-cream-100 group-hover:text-gold-700 transition-colors">
+                          {project.title}
+                        </h2>
+                        <p className="text-sm text-charcoal-500 dark:text-charcoal-400 mt-1">{project.subtitle}</p>
+                      </div>
+                      <ArrowUpRight size={18} aria-hidden="true" className="text-charcoal-300 group-hover:text-gold-600 transition-colors mt-1 flex-shrink-0" />
                     </div>
-                    <ArrowUpRight size={18} className="text-charcoal-300 group-hover:text-gold-600 transition-colors mt-1 flex-shrink-0" />
+                    <div className="flex flex-wrap gap-2 mt-3">
+                      {project.tags.map((tag) => (
+                        <span key={tag} className="px-2 py-0.5 text-xs border border-charcoal-200 dark:border-charcoal-700 text-charcoal-500 dark:text-charcoal-400">
+                          {tag}
+                        </span>
+                      ))}
+                    </div>
                   </div>
-                  <div className="flex flex-wrap gap-4 mt-3 text-xs text-charcoal-400">
-                    <span className="flex items-center gap-1">
-                      <MapPin size={11} className="text-gold-500" />
-                      {project.location}
-                    </span>
-                    <span className="flex items-center gap-1">
-                      <Clock size={11} className="text-gold-500" />
-                      {project.duration}
-                    </span>
-                  </div>
-                  <div className="flex flex-wrap gap-2 mt-3">
-                    {project.tags.map((tag) => (
-                      <span key={tag} className="px-2 py-0.5 text-xs border border-charcoal-200 dark:border-charcoal-700 text-charcoal-500 dark:text-charcoal-400">
-                        {tag}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-              </Link>
+                </Link>
+              </li>
             ))}
+          </ul>
+
+          <div className="text-center mt-16">
+            <Link href="/#contact" className="btn-gold rounded-none text-xs tracking-[0.2em] uppercase inline-block">
+              <span>Discuss your project with Hidaya</span>
+            </Link>
           </div>
         </div>
       </main>

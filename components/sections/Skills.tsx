@@ -58,7 +58,7 @@ export default function Skills() {
           <AnimateIn delay={0.1}>
             <div className="glass p-8 rounded-none">
               <div className="flex items-center gap-3 mb-8">
-                <span className="text-2xl">🏠</span>
+                <span aria-hidden="true" className="text-2xl">🏠</span>
                 <div>
                   <h3 className="font-serif text-lg text-charcoal-800 dark:text-cream-100">Interior Design</h3>
                   <p className="text-xs text-charcoal-400 mt-0.5">Core Competencies</p>
@@ -76,7 +76,7 @@ export default function Skills() {
           <AnimateIn delay={0.2}>
             <div className="glass p-8 rounded-none">
               <div className="flex items-center gap-3 mb-8">
-                <span className="text-2xl">💻</span>
+                <span aria-hidden="true" className="text-2xl">💻</span>
                 <div>
                   <h3 className="font-serif text-lg text-charcoal-800 dark:text-cream-100">Software</h3>
                   <p className="text-xs text-charcoal-400 mt-0.5">Digital Toolset</p>
@@ -94,7 +94,7 @@ export default function Skills() {
           <AnimateIn delay={0.3}>
             <div className="glass p-8 rounded-none">
               <div className="flex items-center gap-3 mb-8">
-                <span className="text-2xl">💼</span>
+                <span aria-hidden="true" className="text-2xl">💼</span>
                 <div>
                   <h3 className="font-serif text-lg text-charcoal-800 dark:text-cream-100">Business</h3>
                   <p className="text-xs text-charcoal-400 mt-0.5">Professional Skills</p>
@@ -114,6 +114,8 @@ export default function Skills() {
                     <div
                       key={skill.name}
                       title={skill.name}
+                      role="img"
+                      aria-label={skill.name}
                       className="aspect-square flex items-center justify-center text-xl bg-cream-100 dark:bg-charcoal-800 hover:bg-gold-100 dark:hover:bg-charcoal-700 transition-colors cursor-default"
                     >
                       {softwareIcons[skill.name] || '🔧'}

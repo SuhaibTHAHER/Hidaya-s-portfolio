@@ -2,310 +2,252 @@ import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 import Image from 'next/image'
 import Link from 'next/link'
-import { ArrowLeft, MapPin, Clock, Ruler, Calendar, Star, CheckCircle, AlertCircle, Lightbulb } from 'lucide-react'
+import { ArrowLeft, Layers, Box, Images, Tag, CheckCircle } from 'lucide-react'
 import Navbar from '@/components/layout/Navbar'
 import Footer from '@/components/layout/Footer'
 import ScrollProgress from '@/components/ui/ScrollProgress'
 import BackToTop from '@/components/ui/BackToTop'
-import { projects } from '@/lib/data'
+import Breadcrumbs from '@/components/seo/Breadcrumbs'
+import JsonLd from '@/components/seo/JsonLd'
+import { projects } from '@/lib/projects'
+import { pageMetadata, projectGraph, truncate } from '@/lib/site'
 
 interface Props {
   params: { slug: string }
 }
 
-export async function generateStaticParams() {
+export const dynamicParams = false
+
+export function generateStaticParams() {
   return projects.map((p) => ({ slug: p.slug }))
 }
 
-export async function generateMetadata({ params }: Props): Promise<Metadata> {
+export function generateMetadata({ params }: Props): Metadata {
   const project = projects.find((p) => p.slug === params.slug)
-  if (!project) return { title: 'Project Not Found' }
-  return {
-    title: project.title,
-    description: project.overview.substring(0, 160),
-    openGraph: {
-      title: project.title,
-      description: project.subtitle,
-      images: [{ url: project.coverImage }],
+  if (!project) return { title: 'Project Not Found', robots: { index: false } }
+  const long = `${project.title} — Interior Design Project`
+  return pageMetadata({
+    title: long.length + ' | Hidaya Thaher'.length <= 60 ? long : project.title,
+    description: truncate(project.overview, 155),
+    path: `/projects/${project.slug}`,
+    type: 'article',
+    image: {
+      url: project.cover.src,
+      width: project.cover.width,
+      height: project.cover.height,
+      alt: project.cover.alt,
     },
-  }
+  })
 }
 
 export default function ProjectPage({ params }: Props) {
   const project = projects.find((p) => p.slug === params.slug)
   if (!project) notFound()
 
-  const related = projects.filter((p) => p.slug !== project.slug && p.category === project.category).slice(0, 3)
-  const otherRelated = projects.filter((p) => p.slug !== project.slug && p.category !== project.category).slice(0, 3 - related.length)
-  const relatedProjects = [...related, ...otherRelated].slice(0, 3)
+  const sameCategory = projects.filter((p) => p.slug !== project.slug && p.category === project.category)
+  const others = projects.filter((p) => p.slug !== project.slug && p.category !== project.category)
+  const relatedProjects = [...sameCategory, ...others].slice(0, 3)
+  const gallery = project.images.filter((img) => img.src !== project.cover.src)
 
   return (
     <>
+      <JsonLd data={projectGraph(project)} />
       <ScrollProgress />
       <Navbar />
-      <main className="min-h-screen bg-cream-50 dark:bg-charcoal-950">
-        {/* Hero */}
-        <div className="relative h-[70vh] min-h-[500px] overflow-hidden">
-          <Image
-            src={project.coverImage}
-            alt={project.title}
-            fill
-            className="object-cover"
-            priority
-            sizes="100vw"
-          />
-          <div className="absolute inset-0 bg-gradient-to-t from-charcoal-950/90 via-charcoal-950/30 to-transparent" />
-          <div className="absolute inset-0 flex flex-col justify-end pb-16">
-            <div className="container-luxury">
-              <Link
-                href="/projects"
-                className="inline-flex items-center gap-2 text-cream-300 hover:text-cream-100 transition-colors mb-8 text-sm"
-              >
-                <ArrowLeft size={16} />
-                All Projects
-              </Link>
-              <div className="flex flex-wrap gap-2 mb-4">
-                {project.tags.map((tag) => (
-                  <span key={tag} className="px-3 py-1 text-xs bg-gold-600/90 text-white tracking-wide">
-                    {tag}
-                  </span>
-                ))}
+      <main id="main" className="min-h-screen bg-cream-50 dark:bg-charcoal-950">
+        <article>
+          {/* Hero */}
+          <header className="relative h-[70vh] min-h-[500px] overflow-hidden bg-charcoal-900">
+            <Image
+              src={project.cover.src}
+              alt={project.cover.alt}
+              fill
+              className="object-cover"
+              priority
+              sizes="100vw"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-charcoal-950/90 via-charcoal-950/30 to-transparent" />
+            <div className="absolute inset-0 flex flex-col justify-end pb-16">
+              <div className="container-luxury">
+                <Breadcrumbs
+                  items={[{ name: 'Home', href: '/' }, { name: 'Projects', href: '/projects' }, { name: project.title }]}
+                  className="mb-6 text-cream-300"
+                />
+                <div className="flex flex-wrap gap-2 mb-4">
+                  {project.tags.map((tag) => (
+                    <span key={tag} className="px-3 py-1 text-xs bg-gold-700/90 text-white tracking-wide">
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+                <h1 className="font-serif text-4xl md:text-5xl lg:text-6xl text-cream-50 mb-3">{project.title}</h1>
+                <p lang="ar" dir="rtl" className="text-cream-200 text-xl mb-3 text-left">
+                  {project.titleAr}
+                </p>
+                <p className="text-cream-300 text-lg">{project.subtitle}</p>
               </div>
-              <h1 className="font-serif text-4xl md:text-5xl lg:text-6xl text-cream-50 mb-3">{project.title}</h1>
-              <p className="text-cream-300 text-lg">{project.subtitle}</p>
             </div>
-          </div>
-        </div>
+          </header>
 
-        {/* Project Meta */}
-        <div className="bg-charcoal-900 border-b border-charcoal-800">
-          <div className="container-luxury py-6">
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+          {/* Project facts */}
+          <div className="bg-charcoal-900 border-b border-charcoal-800">
+            <dl className="container-luxury py-6 grid grid-cols-2 md:grid-cols-4 gap-6">
               {[
-                { icon: MapPin, label: 'Location', value: project.location },
-                { icon: Ruler, label: 'Area', value: project.area },
-                { icon: Clock, label: 'Duration', value: project.duration },
-                { icon: Calendar, label: 'Year', value: project.year },
+                { icon: Tag, label: 'Category', value: project.category },
+                { icon: Layers, label: 'Project Type', value: project.projectType },
+                { icon: Box, label: 'Presentation', value: project.medium },
+                { icon: Images, label: 'Views', value: `${project.images.length} renderings` },
               ].map(({ icon: Icon, label, value }) => (
                 <div key={label} className="flex items-center gap-3">
-                  <Icon size={16} className="text-gold-500 flex-shrink-0" />
+                  <Icon size={16} aria-hidden="true" className="text-gold-500 flex-shrink-0" />
                   <div>
-                    <div className="text-xs text-charcoal-400 tracking-wide uppercase">{label}</div>
-                    <div className="text-sm text-cream-200 font-medium">{value}</div>
+                    <dt className="text-xs text-charcoal-300 tracking-wide uppercase">{label}</dt>
+                    <dd className="text-sm text-cream-200 font-medium">{value}</dd>
                   </div>
                 </div>
               ))}
-            </div>
+            </dl>
           </div>
-        </div>
 
-        <div className="container-luxury py-20">
-          <div className="max-w-4xl mx-auto">
-            {/* Overview */}
-            <section className="mb-16">
-              <span className="section-label mb-3 block">Overview</span>
-              <p className="text-charcoal-600 dark:text-charcoal-300 leading-[1.9] text-lg">{project.overview}</p>
-            </section>
+          <div className="container-luxury py-20">
+            <div className="max-w-4xl mx-auto">
+              {/* Overview */}
+              <section className="mb-16" aria-labelledby="overview">
+                <h2 id="overview" className="section-label mb-3 block">Overview</h2>
+                <p className="text-charcoal-600 dark:text-charcoal-300 leading-[1.9] text-lg">{project.overview}</p>
+              </section>
 
-            <div className="divider-gold mb-16" />
+              <div className="divider-gold mb-16" />
 
-            {/* Client Goals */}
-            <section className="mb-16">
-              <span className="section-label mb-3 block">Client Goals</span>
-              <h2 className="font-serif text-3xl text-charcoal-900 dark:text-cream-100 mb-6">What the Client Needed</h2>
-              <ul className="space-y-3">
-                {project.clientGoals.map((goal, i) => (
-                  <li key={i} className="flex gap-3 items-start">
-                    <CheckCircle size={18} className="text-gold-600 mt-0.5 flex-shrink-0" />
-                    <span className="text-charcoal-600 dark:text-charcoal-300">{goal}</span>
-                  </li>
-                ))}
-              </ul>
-            </section>
+              {/* Design highlights */}
+              <section className="mb-16" aria-labelledby="highlights">
+                <span className="section-label mb-3 block">Design</span>
+                <h2 id="highlights" className="font-serif text-3xl text-charcoal-900 dark:text-cream-100 mb-6">
+                  Design Highlights
+                </h2>
+                <ul className="space-y-3">
+                  {project.highlights.map((h) => (
+                    <li key={h} className="flex gap-3 items-start">
+                      <CheckCircle size={18} aria-hidden="true" className="text-gold-600 mt-0.5 flex-shrink-0" />
+                      <span className="text-charcoal-600 dark:text-charcoal-300">{h}</span>
+                    </li>
+                  ))}
+                </ul>
+              </section>
 
-            <div className="divider-gold mb-16" />
+              <div className="divider-gold mb-16" />
 
-            {/* Research & Concept */}
-            <section className="mb-16 grid grid-cols-1 md:grid-cols-2 gap-10">
-              <div>
-                <span className="section-label mb-3 block">Research</span>
-                <h2 className="font-serif text-2xl text-charcoal-900 dark:text-cream-100 mb-4">The Groundwork</h2>
-                <p className="text-charcoal-600 dark:text-charcoal-300 leading-relaxed">{project.research}</p>
-              </div>
-              <div>
-                <span className="section-label mb-3 block">Design Concept</span>
-                <h2 className="font-serif text-2xl text-charcoal-900 dark:text-cream-100 mb-4">The Idea</h2>
-                <p className="text-charcoal-600 dark:text-charcoal-300 leading-relaxed">{project.concept}</p>
-              </div>
-            </section>
-
-            <div className="divider-gold mb-16" />
-
-            {/* Materials */}
-            <section className="mb-16">
-              <span className="section-label mb-3 block">Material Selection</span>
-              <h2 className="font-serif text-3xl text-charcoal-900 dark:text-cream-100 mb-8">Palette & Materials</h2>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                {project.materials.map((mat, i) => (
-                  <div key={i} className="p-5 border border-cream-300 dark:border-charcoal-700 hover:border-gold-400 transition-colors">
-                    <div className="flex items-start gap-3">
-                      <div className="w-8 h-8 bg-gold-100 dark:bg-charcoal-800 flex items-center justify-center text-gold-600 flex-shrink-0 text-sm font-medium">
-                        {String(i + 1).padStart(2, '0')}
-                      </div>
-                      <div>
-                        <h4 className="font-medium text-charcoal-800 dark:text-cream-100">{mat.name}</h4>
-                        <p className="text-sm text-charcoal-500 dark:text-charcoal-400 mt-0.5">{mat.use}</p>
-                        <span className="text-xs text-gold-600 mt-1 block">{mat.note}</span>
-                      </div>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </section>
-
-            <div className="divider-gold mb-16" />
-
-            {/* Challenges & Solutions */}
-            <section className="mb-16">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
-                <div>
-                  <span className="section-label mb-3 block">Challenges</span>
-                  <h2 className="font-serif text-2xl text-charcoal-900 dark:text-cream-100 mb-6">What We Faced</h2>
-                  <ul className="space-y-4">
-                    {project.challenges.map((c, i) => (
-                      <li key={i} className="flex gap-3 items-start">
-                        <AlertCircle size={16} className="text-charcoal-400 mt-0.5 flex-shrink-0" />
-                        <span className="text-sm text-charcoal-600 dark:text-charcoal-300">{c}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-                <div>
-                  <span className="section-label mb-3 block">Solutions</span>
-                  <h2 className="font-serif text-2xl text-charcoal-900 dark:text-cream-100 mb-6">How We Solved It</h2>
-                  <ul className="space-y-4">
-                    {project.solutions.map((s, i) => (
-                      <li key={i} className="flex gap-3 items-start">
-                        <Lightbulb size={16} className="text-gold-600 mt-0.5 flex-shrink-0" />
-                        <span className="text-sm text-charcoal-600 dark:text-charcoal-300">{s}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              </div>
-            </section>
-
-            <div className="divider-gold mb-16" />
-
-            {/* Timeline */}
-            <section className="mb-16">
-              <span className="section-label mb-3 block">Project Timeline</span>
-              <h2 className="font-serif text-3xl text-charcoal-900 dark:text-cream-100 mb-10">Design Process</h2>
-              <div className="relative">
-                <div className="absolute left-4 top-2 bottom-2 w-px bg-gradient-to-b from-gold-500 to-transparent" />
-                <div className="space-y-6">
-                  {project.timeline.map((phase, i) => (
-                    <div key={i} className="flex gap-6 pl-12 relative">
-                      <div className="absolute left-0 top-1 w-8 h-8 rounded-full border-2 border-gold-500 bg-cream-50 dark:bg-charcoal-950 flex items-center justify-center text-xs font-medium text-gold-600">
-                        {i + 1}
-                      </div>
-                      <div className="flex-1 pb-2">
-                        <div className="flex flex-wrap items-center gap-3 mb-1">
-                          <h4 className="font-medium text-charcoal-800 dark:text-cream-100">{phase.phase}</h4>
-                          <span className="text-xs px-2 py-0.5 bg-gold-100 dark:bg-charcoal-800 text-gold-700 dark:text-gold-400 border border-gold-200 dark:border-gold-800">
-                            {phase.duration}
-                          </span>
+              {/* Materials & palette */}
+              <section className="mb-16" aria-labelledby="materials">
+                <span className="section-label mb-3 block">Material Selection</span>
+                <h2 id="materials" className="font-serif text-3xl text-charcoal-900 dark:text-cream-100 mb-8">
+                  Palette &amp; Materials
+                </h2>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  {project.materials.map((mat, i) => (
+                    <div key={mat.name} className="p-5 border border-cream-300 dark:border-charcoal-700 hover:border-gold-400 transition-colors">
+                      <div className="flex items-start gap-3">
+                        <div aria-hidden="true" className="w-8 h-8 bg-gold-100 dark:bg-charcoal-800 flex items-center justify-center text-gold-700 flex-shrink-0 text-sm font-medium">
+                          {String(i + 1).padStart(2, '0')}
                         </div>
-                        <p className="text-sm text-charcoal-500 dark:text-charcoal-400">{phase.description}</p>
+                        <div>
+                          <h3 className="font-medium text-charcoal-800 dark:text-cream-100">{mat.name}</h3>
+                          <p className="text-sm text-charcoal-500 dark:text-charcoal-400 mt-0.5">{mat.use}</p>
+                        </div>
                       </div>
                     </div>
                   ))}
                 </div>
-              </div>
-            </section>
+                {project.palette.length > 0 && (
+                  <p className="mt-6 text-sm text-charcoal-500 dark:text-charcoal-400">
+                    <span className="font-medium text-charcoal-700 dark:text-cream-200">Colour palette: </span>
+                    {project.palette.join(', ')}
+                  </p>
+                )}
+              </section>
 
-            <div className="divider-gold mb-16" />
-
-            {/* Results */}
-            <section className="mb-16">
-              <span className="section-label mb-3 block">Results</span>
-              <h2 className="font-serif text-3xl text-charcoal-900 dark:text-cream-100 mb-6">The Outcome</h2>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                {project.results.map((result, i) => (
-                  <div key={i} className="flex gap-3 p-4 bg-cream-100 dark:bg-charcoal-900 border border-cream-300 dark:border-charcoal-800">
-                    <span className="text-gold-600 font-serif text-lg flex-shrink-0">✓</span>
-                    <span className="text-sm text-charcoal-700 dark:text-charcoal-200">{result}</span>
+              {/* Gallery */}
+              {gallery.length > 0 && (
+                <section className="mb-16" aria-labelledby="gallery">
+                  <span className="section-label mb-3 block">Gallery</span>
+                  <h2 id="gallery" className="font-serif text-3xl text-charcoal-900 dark:text-cream-100 mb-8">
+                    {project.title} Renderings
+                  </h2>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    {gallery.map((img, i) => (
+                      <figure key={img.src} className={i === 0 && gallery.length % 2 === 1 ? 'md:col-span-2' : ''}>
+                        <div className="relative overflow-hidden bg-cream-200 dark:bg-charcoal-900">
+                          <Image
+                            src={img.src}
+                            alt={img.alt}
+                            width={img.width}
+                            height={img.height}
+                            className="w-full h-auto hover:scale-105 transition-transform duration-700"
+                            sizes={i === 0 && gallery.length % 2 === 1 ? '(max-width: 896px) 100vw, 896px' : '(max-width: 768px) 100vw, 448px'}
+                          />
+                        </div>
+                        <figcaption className="mt-2 text-xs text-charcoal-500 dark:text-charcoal-400 tracking-wide">
+                          {img.caption}
+                        </figcaption>
+                      </figure>
+                    ))}
                   </div>
-                ))}
-              </div>
-            </section>
+                </section>
+              )}
 
-            {/* Testimonial */}
-            <section className="mb-16 p-10 bg-charcoal-900 dark:bg-charcoal-900">
-              <div className="text-gold-500 font-serif text-6xl leading-none mb-4">&ldquo;</div>
-              <div className="flex justify-center gap-1 mb-4">
-                {Array(5).fill(0).map((_, i) => (
-                  <Star key={i} size={14} className="text-gold-500 fill-gold-500" />
-                ))}
-              </div>
-              <blockquote className="font-serif text-xl text-cream-100 italic leading-relaxed mb-6 text-center">
-                {project.testimonial.text}
-              </blockquote>
-              <div className="text-center">
-                <div className="font-medium text-cream-100">{project.testimonial.author}</div>
-                <div className="text-sm text-charcoal-400 mt-1">{project.testimonial.role}</div>
-              </div>
-            </section>
+              {/* Call to action */}
+              <section className="mb-4 p-10 bg-charcoal-900 text-center">
+                <h2 className="font-serif text-2xl text-cream-100 mb-3">Planning a similar space?</h2>
+                <p className="text-charcoal-300 mb-6 max-w-lg mx-auto">
+                  Hidaya designs residential and commercial interiors in Nablus and remotely, from space planning to
+                  photorealistic 3D visualization.
+                </p>
+                <Link href="/#contact" className="btn-gold rounded-none text-xs tracking-[0.2em] uppercase inline-block">
+                  <span>Contact Hidaya</span>
+                </Link>
+              </section>
+            </div>
 
-            {/* Gallery */}
-            <section className="mb-16">
-              <span className="section-label mb-3 block">Gallery</span>
-              <h2 className="font-serif text-3xl text-charcoal-900 dark:text-cream-100 mb-8">Project Photography</h2>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                {project.images.slice(1).map((img, i) => (
-                  <div key={i} className={`relative overflow-hidden ${i === 0 ? 'md:col-span-2 aspect-video' : 'aspect-[4/3]'}`}>
-                    <Image
-                      src={img}
-                      alt={`${project.title} — view ${i + 2}`}
-                      fill
-                      className="object-cover hover:scale-105 transition-transform duration-700"
-                      sizes="(max-width: 768px) 100vw, 50vw"
-                    />
-                  </div>
-                ))}
-              </div>
-            </section>
-          </div>
-
-          {/* Related Projects */}
-          {relatedProjects.length > 0 && (
-            <section className="mt-20 pt-16 border-t border-cream-300 dark:border-charcoal-800">
-              <span className="section-label mb-3 block">More Work</span>
-              <h2 className="font-serif text-3xl text-charcoal-900 dark:text-cream-100 mb-10">Related Projects</h2>
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                {relatedProjects.map((p) => (
-                  <Link key={p.slug} href={`/projects/${p.slug}`} className="group block">
-                    <div className="relative overflow-hidden aspect-[4/3]">
-                      <Image
-                        src={p.coverImage}
-                        alt={p.title}
-                        fill
-                        className="object-cover group-hover:scale-105 transition-transform duration-600"
-                        sizes="(max-width: 768px) 100vw, 33vw"
-                      />
-                    </div>
-                    <div className="py-3 border-b border-cream-300 dark:border-charcoal-800">
-                      <h3 className="font-serif text-lg text-charcoal-800 dark:text-cream-100 group-hover:text-gold-600 transition-colors">
-                        {p.title}
-                      </h3>
-                      <p className="text-xs text-charcoal-400 mt-1">{p.category} · {p.year}</p>
-                    </div>
+            {/* Related Projects */}
+            {relatedProjects.length > 0 && (
+              <section className="mt-20 pt-16 border-t border-cream-300 dark:border-charcoal-800" aria-labelledby="related">
+                <span className="section-label mb-3 block">More Work</span>
+                <h2 id="related" className="font-serif text-3xl text-charcoal-900 dark:text-cream-100 mb-10">
+                  Related Projects
+                </h2>
+                <ul className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                  {relatedProjects.map((p) => (
+                    <li key={p.slug}>
+                      <Link href={`/projects/${p.slug}`} className="group block">
+                        <div className="relative overflow-hidden aspect-[4/3] bg-cream-200 dark:bg-charcoal-900">
+                          <Image
+                            src={p.cover.src}
+                            alt={p.cover.alt}
+                            fill
+                            className="object-cover group-hover:scale-105 transition-transform duration-700"
+                            sizes="(max-width: 768px) 100vw, 33vw"
+                          />
+                        </div>
+                        <div className="py-3 border-b border-cream-300 dark:border-charcoal-800">
+                          <h3 className="font-serif text-lg text-charcoal-800 dark:text-cream-100 group-hover:text-gold-700 transition-colors">
+                            {p.title}
+                          </h3>
+                          <p className="text-xs text-charcoal-500 mt-1">{p.category} · {p.projectType}</p>
+                        </div>
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+                <div className="mt-10">
+                  <Link href="/projects" className="inline-flex items-center gap-2 text-sm text-gold-700 dark:text-gold-400 hover:underline">
+                    <ArrowLeft size={14} aria-hidden="true" />
+                    All interior design projects
                   </Link>
-                ))}
-              </div>
-            </section>
-          )}
-        </div>
+                </div>
+              </section>
+            )}
+          </div>
+        </article>
       </main>
       <Footer />
       <BackToTop />

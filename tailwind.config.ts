@@ -21,8 +21,14 @@ const config: Config = {
         'fade-in': 'fadeIn 0.6s ease-out forwards',
         'slide-up': 'slideUp 0.6s ease-out forwards',
         'shimmer': 'shimmer 2s infinite',
+        // CSS (not JS) entrance animations for above-the-fold hero content, so the LCP
+        // image and heading paint before hydration instead of waiting for framer-motion.
+        'hero-up': 'heroUp 0.8s cubic-bezier(0.22, 1, 0.36, 1) both',
+        'hero-in': 'heroIn 1s cubic-bezier(0.22, 1, 0.36, 1) both',
       },
       keyframes: {
+        heroUp: { '0%': { opacity: '0', transform: 'translateY(24px)' }, '100%': { opacity: '1', transform: 'translateY(0)' } },
+        heroIn: { '0%': { opacity: '0', transform: 'scale(0.97)' }, '100%': { opacity: '1', transform: 'scale(1)' } },
         fadeIn: { '0%': { opacity: '0' }, '100%': { opacity: '1' } },
         slideUp: { '0%': { transform: 'translateY(30px)', opacity: '0' }, '100%': { transform: 'translateY(0)', opacity: '1' } },
         shimmer: { '0%': { backgroundPosition: '-200% 0' }, '100%': { backgroundPosition: '200% 0' } },

@@ -1,3 +1,4 @@
+import type { Metadata } from 'next'
 import Navbar from '@/components/layout/Navbar'
 import Footer from '@/components/layout/Footer'
 import ScrollProgress from '@/components/ui/ScrollProgress'
@@ -11,13 +12,23 @@ import Projects from '@/components/sections/Projects'
 import Services from '@/components/sections/Services'
 import Stats from '@/components/sections/Stats'
 import Contact from '@/components/sections/Contact'
+import JsonLd from '@/components/seo/JsonLd'
+import { homePageGraph, pageMetadata, DEFAULT_DESCRIPTION } from '@/lib/site'
+
+export const metadata: Metadata = pageMetadata({
+  title: 'Hidaya Thaher — Interior Designer in Nablus, Palestine',
+  absoluteTitle: true,
+  description: DEFAULT_DESCRIPTION,
+  path: '/',
+})
 
 export default function HomePage() {
   return (
     <>
+      <JsonLd data={homePageGraph()} />
       <ScrollProgress />
       <Navbar />
-      <main>
+      <main id="main">
         <Hero />
         <Stats />
         <About />

@@ -31,7 +31,7 @@ export default function Services() {
                   transition={{ duration: 0.3 }}
                 >
                   <div className="w-10 h-10 flex items-center justify-center bg-gold-100 dark:bg-charcoal-800 text-gold-600 mb-5 group-hover:bg-gold-600 group-hover:text-white transition-all duration-300">
-                    <Icon size={18} />
+                    <Icon size={18} aria-hidden="true" />
                   </div>
                   <h3 className="font-serif text-base text-charcoal-800 dark:text-cream-100 mb-3 leading-snug">
                     {service.title}
@@ -60,12 +60,9 @@ export default function Services() {
             <p className="text-charcoal-500 dark:text-charcoal-400 mb-6">
               Ready to transform your space?
             </p>
-            <button
-              onClick={() => document.querySelector('#contact')?.scrollIntoView({ behavior: 'smooth' })}
-              className="btn-gold rounded-none text-xs tracking-[0.2em] uppercase"
-            >
+            <a href="#contact" className="btn-gold rounded-none text-xs tracking-[0.2em] uppercase inline-block">
               <span>Start a Project</span>
-            </button>
+            </a>
           </div>
         </AnimateIn>
       </div>

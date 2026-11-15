@@ -15,7 +15,7 @@ export default function Experience() {
         <SectionHeader
           label="Experience"
           title="Professional Journey"
-          subtitle="From studio apprenticeship to independent practice — a track record of delivering beautiful, functional spaces."
+          subtitle="From a design studio and a custom doors company in Nablus to independent practice."
         />
 
         <div className="mt-16 space-y-4">
@@ -78,9 +78,10 @@ export default function Experience() {
 
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                           {/* Achievements */}
+                          {job.achievements.length > 0 && (
                           <div>
                             <h4 className="text-xs tracking-[0.2em] uppercase text-gold-600 mb-4 flex items-center gap-2">
-                              <Award size={13} />
+                              <Award size={13} aria-hidden="true" />
                               Key Achievements
                             </h4>
                             <ul className="space-y-3">
@@ -92,6 +93,7 @@ export default function Experience() {
                               ))}
                             </ul>
                           </div>
+                          )}
 
                           {/* Skills Used */}
                           <div>

@@ -5,13 +5,15 @@ import { useTheme } from 'next-themes'
 import { Sun, Moon, Menu, X, Download } from 'lucide-react'
 import Link from 'next/link'
 import { cn } from '@/lib/utils'
+import { personalInfo } from '@/lib/data'
 
+// Real hrefs (not JS-only buttons): crawlable, work from every page, and open in new tabs.
 const navLinks = [
-  { label: 'About', href: '#about' },
-  { label: 'Projects', href: '#projects' },
-  { label: 'Services', href: '#services' },
-  { label: 'Experience', href: '#experience' },
-  { label: 'Contact', href: '#contact' },
+  { label: 'About', href: '/#about' },
+  { label: 'Projects', href: '/#projects' },
+  { label: 'Services', href: '/#services' },
+  { label: 'Experience', href: '/#experience' },
+  { label: 'Contact', href: '/#contact' },
 ]
 
 export default function Navbar() {
@@ -26,14 +28,6 @@ export default function Navbar() {
     window.addEventListener('scroll', handleScroll, { passive: true })
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
-
-  const scrollTo = (href: string) => {
-    setMobileOpen(false)
-    if (href.startsWith('#')) {
-      const el = document.querySelector(href)
-      if (el) el.scrollIntoView({ behavior: 'smooth' })
-    }
-  }
 
   return (
     <>
@@ -50,11 +44,11 @@ export default function Navbar() {
       >
         <div className="container-luxury flex items-center justify-between">
           {/* Logo */}
-          <Link href="/" className="group flex flex-col">
+          <Link href="/" className="group flex flex-col" aria-label="Hidaya Thaher, Interior Designer — home">
             <span className="font-serif text-xl font-semibold tracking-tight text-charcoal-800 dark:text-cream-100 group-hover:text-gold-600 transition-colors">
               Hidaya Thaher
             </span>
-            <span className="text-xs tracking-[0.2em] uppercase text-gold-600 font-sans font-medium">
+            <span className="text-xs tracking-[0.2em] uppercase text-gold-700 dark:text-gold-500 font-sans font-medium">
               Interior Designer
             </span>
           </Link>
@@ -62,13 +56,13 @@ export default function Navbar() {
           {/* Desktop Nav */}
           <nav className="hidden lg:flex items-center gap-8" aria-label="Main navigation">
             {navLinks.map((link) => (
-              <button
+              <Link
                 key={link.label}
-                onClick={() => scrollTo(link.href)}
+                href={link.href}
                 className="hover-line text-sm tracking-wider uppercase font-medium text-charcoal-600 dark:text-cream-300 hover:text-charcoal-900 dark:hover:text-cream-100 transition-colors"
               >
                 {link.label}
-              </button>
+              </Link>
             ))}
           </nav>
 
@@ -79,22 +73,23 @@ export default function Navbar() {
               <button
                 onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
                 className="w-9 h-9 rounded-full flex items-center justify-center text-charcoal-600 dark:text-cream-300 hover:text-gold-600 dark:hover:text-gold-400 hover:bg-cream-200 dark:hover:bg-charcoal-800 transition-all"
-                aria-label="Toggle theme"
+                aria-label={theme === 'dark' ? 'Switch to light theme' : 'Switch to dark theme'}
               >
-                {theme === 'dark' ? <Sun size={18} /> : <Moon size={18} />}
+                {theme === 'dark' ? <Sun size={18} aria-hidden="true" /> : <Moon size={18} aria-hidden="true" />}
               </button>
             )}
 
-            {/* CV Download */}
-            <a
-              href="/cv.pdf"
-              download
-              className="hidden md:flex items-center gap-2 btn-outline-gold text-xs tracking-wider uppercase rounded-none"
-              aria-label="Download CV"
-            >
-              <Download size={13} />
-              <span>CV</span>
-            </a>
+            {/* CV Download (shown only once a real CV file is configured) */}
+            {personalInfo.cvUrl && (
+              <a
+                href={personalInfo.cvUrl}
+                download
+                className="hidden md:flex items-center gap-2 btn-outline-gold text-xs tracking-wider uppercase rounded-none"
+              >
+                <Download size={13} aria-hidden="true" />
+                <span>Download CV</span>
+              </a>
+            )}
 
             {/* Mobile Menu Toggle */}
             <button
@@ -102,8 +97,9 @@ export default function Navbar() {
               className="lg:hidden w-9 h-9 rounded-full flex items-center justify-center text-charcoal-700 dark:text-cream-200 hover:text-gold-600 transition-colors"
               aria-label={mobileOpen ? 'Close menu' : 'Open menu'}
               aria-expanded={mobileOpen}
+              aria-controls="mobile-menu"
             >
-              {mobileOpen ? <X size={20} /> : <Menu size={20} />}
+              {mobileOpen ? <X size={20} aria-hidden="true" /> : <Menu size={20} aria-hidden="true" />}
             </button>
           </div>
         </div>
@@ -112,7 +108,9 @@ export default function Navbar() {
       {/* Mobile Menu */}
       <AnimatePresence>
         {mobileOpen && (
-          <motion.div
+          <motion.nav
+            id="mobile-menu"
+            aria-label="Mobile navigation"
             initial={{ opacity: 0, x: '100%' }}
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: '100%' }}
@@ -120,28 +118,34 @@ export default function Navbar() {
             className="fixed inset-0 z-40 glass flex flex-col justify-center items-center gap-8 lg:hidden"
           >
             {navLinks.map((link, i) => (
-              <motion.button
+              <motion.div
                 key={link.label}
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: i * 0.08 }}
-                onClick={() => scrollTo(link.href)}
-                className="font-serif text-3xl text-charcoal-800 dark:text-cream-100 hover:text-gold-600 dark:hover:text-gold-400 transition-colors"
               >
-                {link.label}
-              </motion.button>
+                <Link
+                  href={link.href}
+                  onClick={() => setMobileOpen(false)}
+                  className="font-serif text-3xl text-charcoal-800 dark:text-cream-100 hover:text-gold-600 dark:hover:text-gold-400 transition-colors"
+                >
+                  {link.label}
+                </Link>
+              </motion.div>
             ))}
-            <motion.a
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: navLinks.length * 0.08 }}
-              href="/cv.pdf"
-              download
-              className="btn-gold rounded-none text-xs tracking-[0.2em] uppercase mt-4"
-            >
-              <span>Download CV</span>
-            </motion.a>
-          </motion.div>
+            {personalInfo.cvUrl && (
+              <motion.a
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: navLinks.length * 0.08 }}
+                href={personalInfo.cvUrl}
+                download
+                className="btn-gold rounded-none text-xs tracking-[0.2em] uppercase mt-4"
+              >
+                <span>Download CV</span>
+              </motion.a>
+            )}
+          </motion.nav>
         )}
       </AnimatePresence>
     </>
