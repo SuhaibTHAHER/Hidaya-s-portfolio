@@ -28,7 +28,7 @@ export default function ProjectsGrid({ projects }: { projects: ProjectCard[] }) 
         <SectionHeader
           label="Portfolio"
           title="Selected Works"
-          subtitle="A selection of interior design projects across residential, commercial, retail and hospitality spaces, presented as 3D visualizations."
+          subtitle="Interior design projects across residential, commercial, retail and hospitality spaces, presented as 3D visualizations."
         />
 
         {/* Category Filter */}
