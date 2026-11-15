@@ -74,7 +74,7 @@ export default function Footer() {
           </p>
           <p className="flex items-center gap-1 text-xs text-charcoal-400">
             <span>Designed &amp; Built with</span>
-            <span className="text-gold-600" aria-label="love">♥</span>
+            <span role="img" aria-label="love" className="text-gold-500">♥</span>
             <span>in Palestine</span>
           </p>
         </div>

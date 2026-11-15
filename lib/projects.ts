@@ -29,8 +29,6 @@ export type Project = {
 
 // Real projects from Hidaya Thaher's portfolio (3D visualizations). Text describes only what the
 // renderings show: no clients, dates, locations or results are claimed.
-// Real projects from Hidaya Thaher's portfolio (3D visualizations). Text describes only what the
-// renderings show: no clients, dates, locations or results are claimed.
 export const projects: Project[] = [
   {
     "slug": "restaurant-interior",
@@ -42,7 +40,7 @@ export const projects: Project[] = [
     "medium": "3D Visualization",
     "overview": "A restaurant interior design concept presented in 3D renderings, combining a main dining hall, a bar with cashier counter, a pastry and coffee counter, and a glass-roofed lounge. The dining hall is framed by fluted columns, gilded lunettes and crystal chandeliers, with burgundy velvet chairs around cream tables trimmed in gold. Dark-framed glass partitions link the dining hall to the lounge, where white sofas and burgundy armchairs sit beneath a glazed roof.",
     "highlights": [
-      "Fluted columns, gilded lunettes and crown mouldings framing the main dining hall",
+      "Fluted columns, gilded lunettes and crown moldings framing the main dining hall",
       "Crystal and gold chandeliers above burgundy velvet chairs and cream tables",
       "Bar with three arched, backlit bottle displays against a geometric patterned wall",
       "Veined marble cladding on the bar, cashier and pastry counters",

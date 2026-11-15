@@ -25,10 +25,13 @@ export const OG_IMAGE = {
   alt: 'Hidaya Thaher, interior designer in Nablus, Palestine',
 }
 
-export const absoluteUrl = (path = '/') => `${SITE_URL}${path.startsWith('/') ? path : `/${path}`}`
+/** Absolute URL; the home page is written without a trailing slash, matching its canonical. */
+export const absoluteUrl = (path = '/') =>
+  path === '/' || path === '' ? SITE_URL : `${SITE_URL}${path.startsWith('/') ? path : `/${path}`}`
 
 export const ids = {
   person: `${SITE_URL}/#person`,
+  portrait: `${SITE_URL}/#portrait`,
   website: `${SITE_URL}/#website`,
   homePage: `${SITE_URL}/#webpage`,
 }
@@ -94,6 +97,8 @@ const personNode = () => ({
   url: SITE_URL,
   image: {
     '@type': 'ImageObject',
+    '@id': ids.portrait,
+    contentUrl: absoluteUrl(personalInfo.portrait.src),
     url: absoluteUrl(personalInfo.portrait.src),
     width: personalInfo.portrait.width,
     height: personalInfo.portrait.height,
@@ -140,7 +145,8 @@ const websiteNode = () => ({
   '@type': 'WebSite',
   '@id': ids.website,
   url: SITE_URL,
-  name: SITE_NAME,
+  name: personalInfo.name,
+  alternateName: SITE_NAME,
   description: DEFAULT_DESCRIPTION,
   inLanguage: 'en',
   publisher: { '@id': ids.person },
@@ -166,7 +172,7 @@ export function homePageGraph() {
         isPartOf: { '@id': ids.website },
         mainEntity: { '@id': ids.person },
         about: { '@id': ids.person },
-        primaryImageOfPage: { '@type': 'ImageObject', url: absoluteUrl(personalInfo.portrait.src) },
+        primaryImageOfPage: { '@id': ids.portrait },
         dateModified: CONTENT_UPDATED,
       },
     ],
@@ -239,7 +245,6 @@ export function projectGraph(project: Project) {
         description: project.overview,
         genre: 'Interior design',
         about: project.projectType,
-        artMedium: project.medium,
         keywords: project.tags.join(', '),
         inLanguage: 'en',
         url,
@@ -253,7 +258,8 @@ export function projectGraph(project: Project) {
           url: absoluteUrl(img.src),
           width: img.width,
           height: img.height,
-          caption: img.caption,
+          // The cover is shown without a caption on the page, so its schema carries none either.
+          ...(img.src === project.cover.src ? {} : { caption: img.caption }),
           description: img.alt,
           creator: { '@id': ids.person },
           creditText: personalInfo.name,

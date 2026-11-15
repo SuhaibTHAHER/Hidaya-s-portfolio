@@ -53,8 +53,9 @@ export default function ProjectsPage() {
                       alt={project.cover.alt}
                       fill
                       className="object-cover transition-transform duration-700 group-hover:scale-105"
-                      sizes="(max-width: 768px) 100vw, (max-width: 1280px) 50vw, 33vw"
-                      priority={i < 3}
+                      sizes="(max-width: 768px) calc(100vw - 3rem), (max-width: 1280px) 50vw, 384px"
+                      priority={i === 0}
+                      loading={i === 0 ? undefined : i < 3 ? 'eager' : 'lazy'}
                     />
                     <div className="absolute inset-0 bg-charcoal-950/0 group-hover:bg-charcoal-950/50 transition-all duration-500" />
                     <div className="absolute top-4 right-4 px-2 py-1 bg-charcoal-950/70 text-cream-200 text-xs tracking-widest">

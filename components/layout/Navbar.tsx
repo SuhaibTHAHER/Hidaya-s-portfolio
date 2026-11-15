@@ -1,6 +1,6 @@
 'use client'
 import { useState, useEffect } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
+import { usePathname } from 'next/navigation'
 import { useTheme } from 'next-themes'
 import { Sun, Moon, Menu, X, Download } from 'lucide-react'
 import Link from 'next/link'
@@ -16,39 +16,56 @@ const navLinks = [
   { label: 'Contact', href: '/#contact' },
 ]
 
+// CSS transitions only (no framer-motion): /projects pages ship no animation library.
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false)
   const [mobileOpen, setMobileOpen] = useState(false)
   const [mounted, setMounted] = useState(false)
   const { theme, setTheme } = useTheme()
+  const pathname = usePathname()
+  // Inner pages open on a dark hero: keep the header solid there so it stays readable.
+  const solid = scrolled || pathname !== '/'
 
   useEffect(() => {
     setMounted(true)
     const handleScroll = () => setScrolled(window.scrollY > 50)
+    handleScroll()
     window.addEventListener('scroll', handleScroll, { passive: true })
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
+  // Mobile menu: close on Escape, lock background scroll, keep focus out of the page behind.
+  useEffect(() => {
+    if (!mobileOpen) return
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') setMobileOpen(false)
+    }
+    const background = Array.from(document.querySelectorAll('main, footer'))
+    document.addEventListener('keydown', onKey)
+    document.body.style.overflow = 'hidden'
+    background.forEach((el) => el.setAttribute('inert', ''))
+    return () => {
+      document.removeEventListener('keydown', onKey)
+      document.body.style.overflow = ''
+      background.forEach((el) => el.removeAttribute('inert'))
+    }
+  }, [mobileOpen])
+
   return (
     <>
-      <motion.header
-        initial={{ y: -100, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
-        transition={{ duration: 0.6, ease: 'easeOut' }}
+      <header
         className={cn(
-          'fixed top-0 left-0 right-0 z-50 transition-all duration-500',
-          scrolled
-            ? 'glass shadow-sm py-3'
-            : 'bg-transparent py-5'
+          'fixed top-0 left-0 right-0 z-50 transition-all duration-500 motion-safe:animate-nav-in',
+          solid ? 'glass glass-solid shadow-sm py-3' : 'bg-transparent py-5'
         )}
       >
         <div className="container-luxury flex items-center justify-between">
           {/* Logo */}
-          <Link href="/" className="group flex flex-col" aria-label="Hidaya Thaher, Interior Designer — home">
+          <Link href="/" className="group flex flex-col">
             <span className="font-serif text-xl font-semibold tracking-tight text-charcoal-800 dark:text-cream-100 group-hover:text-gold-600 transition-colors">
               Hidaya Thaher
             </span>
-            <span className="text-xs tracking-[0.2em] uppercase text-gold-700 dark:text-gold-500 font-sans font-medium">
+            <span className="text-xs tracking-[0.2em] uppercase text-gold-800 dark:text-gold-500 font-sans font-medium">
               Interior Designer
             </span>
           </Link>
@@ -71,6 +88,7 @@ export default function Navbar() {
             {/* Theme Toggle */}
             {mounted && (
               <button
+                type="button"
                 onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
                 className="w-9 h-9 rounded-full flex items-center justify-center text-charcoal-600 dark:text-cream-300 hover:text-gold-600 dark:hover:text-gold-400 hover:bg-cream-200 dark:hover:bg-charcoal-800 transition-all"
                 aria-label={theme === 'dark' ? 'Switch to light theme' : 'Switch to dark theme'}
@@ -93,8 +111,9 @@ export default function Navbar() {
 
             {/* Mobile Menu Toggle */}
             <button
+              type="button"
               onClick={() => setMobileOpen(!mobileOpen)}
-              className="lg:hidden w-9 h-9 rounded-full flex items-center justify-center text-charcoal-700 dark:text-cream-200 hover:text-gold-600 transition-colors"
+              className="relative z-[60] lg:hidden w-9 h-9 rounded-full flex items-center justify-center text-charcoal-700 dark:text-cream-200 hover:text-gold-600 transition-colors"
               aria-label={mobileOpen ? 'Close menu' : 'Open menu'}
               aria-expanded={mobileOpen}
               aria-controls="mobile-menu"
@@ -103,51 +122,43 @@ export default function Navbar() {
             </button>
           </div>
         </div>
-      </motion.header>
+      </header>
 
-      {/* Mobile Menu */}
-      <AnimatePresence>
-        {mobileOpen && (
-          <motion.nav
-            id="mobile-menu"
-            aria-label="Mobile navigation"
-            initial={{ opacity: 0, x: '100%' }}
-            animate={{ opacity: 1, x: 0 }}
-            exit={{ opacity: 0, x: '100%' }}
-            transition={{ type: 'tween', duration: 0.35 }}
-            className="fixed inset-0 z-40 glass flex flex-col justify-center items-center gap-8 lg:hidden"
-          >
-            {navLinks.map((link, i) => (
-              <motion.div
-                key={link.label}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: i * 0.08 }}
-              >
-                <Link
-                  href={link.href}
-                  onClick={() => setMobileOpen(false)}
-                  className="font-serif text-3xl text-charcoal-800 dark:text-cream-100 hover:text-gold-600 dark:hover:text-gold-400 transition-colors"
-                >
-                  {link.label}
-                </Link>
-              </motion.div>
-            ))}
-            {personalInfo.cvUrl && (
-              <motion.a
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: navLinks.length * 0.08 }}
-                href={personalInfo.cvUrl}
-                download
-                className="btn-gold rounded-none text-xs tracking-[0.2em] uppercase mt-4"
-              >
-                <span>Download CV</span>
-              </motion.a>
-            )}
-          </motion.nav>
+      {/* Mobile Menu: always mounted and slid off-screen, so it can animate in and out with CSS. */}
+      <nav
+        id="mobile-menu"
+        aria-label="Mobile navigation"
+        aria-hidden={!mobileOpen}
+        {...(!mobileOpen ? { inert: '' as unknown as boolean } : {})}
+        className={cn(
+          'fixed inset-0 z-40 glass flex flex-col justify-center items-center gap-8 lg:hidden transition-all duration-300 ease-out',
+          mobileOpen ? 'translate-x-0 opacity-100' : 'translate-x-full opacity-0 pointer-events-none'
         )}
-      </AnimatePresence>
+      >
+        {navLinks.map((link, i) => (
+          <Link
+            key={link.label}
+            href={link.href}
+            onClick={() => setMobileOpen(false)}
+            style={{ transitionDelay: mobileOpen ? `${i * 60}ms` : '0ms' }}
+            className={cn(
+              'font-serif text-3xl text-charcoal-800 dark:text-cream-100 hover:text-gold-600 dark:hover:text-gold-400 transition-all duration-300',
+              mobileOpen ? 'translate-y-0 opacity-100' : 'translate-y-5 opacity-0'
+            )}
+          >
+            {link.label}
+          </Link>
+        ))}
+        {personalInfo.cvUrl && (
+          <a
+            href={personalInfo.cvUrl}
+            download
+            className="btn-gold rounded-none text-xs tracking-[0.2em] uppercase mt-4"
+          >
+            <span>Download CV</span>
+          </a>
+        )}
+      </nav>
     </>
   )
 }

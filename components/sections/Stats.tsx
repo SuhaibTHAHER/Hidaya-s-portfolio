@@ -10,7 +10,7 @@ export default function Stats() {
   return (
     <section className="py-20 bg-charcoal-900 dark:bg-charcoal-950">
       <div className="container-luxury" ref={ref}>
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 md:gap-12">
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 md:gap-12">
           {stats.map((stat, i) => (
             <AnimateIn key={stat.label} delay={i * 0.1}>
               <div className="text-center group">

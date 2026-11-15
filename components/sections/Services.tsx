@@ -41,8 +41,8 @@ export default function Services() {
                   </p>
                   <ul className="mt-4 space-y-1.5">
                     {service.features.slice(0, 3).map((f) => (
-                      <li key={f} className="flex items-center gap-2 text-xs text-charcoal-400 dark:text-charcoal-500">
-                        <span className="w-1 h-1 rounded-full bg-gold-500 flex-shrink-0" />
+                      <li key={f} className="flex items-center gap-2 text-xs text-charcoal-500 dark:text-charcoal-400">
+                        <span aria-hidden="true" className="w-1 h-1 rounded-full bg-gold-500 flex-shrink-0" />
                         {f}
                       </li>
                     ))}

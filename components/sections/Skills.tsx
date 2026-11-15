@@ -18,7 +18,7 @@ function SkillBar({ name, level, delay }: SkillBarProps) {
     <div ref={ref} className="group">
       <div className="flex justify-between items-center mb-2">
         <span className="text-sm font-medium text-charcoal-700 dark:text-cream-200">{name}</span>
-        <span className="text-xs text-gold-600 font-medium">{level}%</span>
+        <span className="text-xs text-gold-800 dark:text-gold-500 font-medium">{level}%</span>
       </div>
       <div className="h-0.5 bg-cream-300 dark:bg-charcoal-700 overflow-hidden">
         <motion.div
@@ -61,7 +61,7 @@ export default function Skills() {
                 <span aria-hidden="true" className="text-2xl">🏠</span>
                 <div>
                   <h3 className="font-serif text-lg text-charcoal-800 dark:text-cream-100">Interior Design</h3>
-                  <p className="text-xs text-charcoal-400 mt-0.5">Core Competencies</p>
+                  <p className="text-xs text-charcoal-500 dark:text-charcoal-400 mt-0.5">Core Competencies</p>
                 </div>
               </div>
               <div className="space-y-5">
@@ -79,7 +79,7 @@ export default function Skills() {
                 <span aria-hidden="true" className="text-2xl">💻</span>
                 <div>
                   <h3 className="font-serif text-lg text-charcoal-800 dark:text-cream-100">Software</h3>
-                  <p className="text-xs text-charcoal-400 mt-0.5">Digital Toolset</p>
+                  <p className="text-xs text-charcoal-500 dark:text-charcoal-400 mt-0.5">Digital Toolset</p>
                 </div>
               </div>
               <div className="space-y-5">
@@ -97,7 +97,7 @@ export default function Skills() {
                 <span aria-hidden="true" className="text-2xl">💼</span>
                 <div>
                   <h3 className="font-serif text-lg text-charcoal-800 dark:text-cream-100">Business</h3>
-                  <p className="text-xs text-charcoal-400 mt-0.5">Professional Skills</p>
+                  <p className="text-xs text-charcoal-500 dark:text-charcoal-400 mt-0.5">Professional Skills</p>
                 </div>
               </div>
               <div className="space-y-5">
@@ -108,7 +108,7 @@ export default function Skills() {
 
               {/* Software icons grid */}
               <div className="mt-10 pt-8 border-t border-cream-300 dark:border-charcoal-700">
-                <p className="text-xs tracking-[0.2em] uppercase text-gold-600 mb-5">Design Software</p>
+                <p className="text-xs tracking-[0.2em] uppercase text-gold-800 dark:text-gold-500 mb-5">Design Software</p>
                 <div className="grid grid-cols-4 gap-3">
                   {skills.software.map((skill) => (
                     <div

@@ -30,7 +30,7 @@ export default function About() {
 
               {/* Languages card */}
               <div className="absolute top-6 -right-6 glass p-5 shadow-lg min-w-[160px]">
-                <p className="text-xs tracking-[0.15em] uppercase text-gold-700 mb-3">Languages</p>
+                <p className="text-xs tracking-[0.15em] uppercase text-gold-800 dark:text-gold-500 mb-3">Languages</p>
                 {personalInfo.languages.map((lang) => (
                   <div key={lang.name} className="mb-3 last:mb-0">
                     <div className="flex justify-between items-center mb-1">
@@ -72,7 +72,7 @@ export default function About() {
             {/* Expertise Tags */}
             <AnimateIn delay={0.5}>
               <div className="mt-10">
-                <h3 className="text-xs tracking-[0.2em] uppercase text-gold-700 dark:text-gold-500 mb-4 font-medium">Areas of Expertise</h3>
+                <h3 className="text-xs tracking-[0.2em] uppercase text-gold-800 dark:text-gold-500 mb-4 font-medium">Areas of Expertise</h3>
                 <div className="flex flex-wrap gap-2">
                   {[
                     'Residential Design', 'Commercial Design', 'Space Planning',
@@ -93,7 +93,7 @@ export default function About() {
             {/* Interests */}
             <AnimateIn delay={0.6}>
               <div className="mt-8">
-                <h3 className="text-xs tracking-[0.2em] uppercase text-gold-700 dark:text-gold-500 mb-4 font-medium">Interests</h3>
+                <h3 className="text-xs tracking-[0.2em] uppercase text-gold-800 dark:text-gold-500 mb-4 font-medium">Interests</h3>
                 <div className="flex flex-wrap gap-2">
                   {interests.map((interest) => (
                     <span

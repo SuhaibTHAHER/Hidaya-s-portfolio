@@ -59,10 +59,16 @@ body {
 .font-sans { font-family: var(--font-inter), system-ui, sans-serif; }
 
 /* Gold gradient text */
+/* Light theme uses deeper golds so the large heading text keeps ≥3:1 contrast on cream. */
 .text-gold-gradient {
-  background: linear-gradient(135deg, #D4A017 0%, #EFC84A 50%, #B8860B 100%);
+  background: linear-gradient(135deg, #9A6F08 0%, #B8860B 50%, #7A5506 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.dark .text-gold-gradient {
+  background: linear-gradient(135deg, #D4A017 0%, #EFC84A 50%, #B8860B 100%);
+  -webkit-background-clip: text;
   background-clip: text;
 }
 
@@ -147,6 +153,9 @@ body {
   background: rgba(26, 23, 20, 0.8);
   border: 1px solid rgba(212, 160, 23, 0.2);
 }
+/* Near-opaque variant for the fixed header, so its text stays readable over dark heroes. */
+.glass.glass-solid { background: rgba(253, 251, 247, 0.96); }
+.dark .glass.glass-solid { background: rgba(13, 11, 9, 0.94); }
 
 /* Scroll progress bar */
 .scroll-progress {
@@ -257,9 +266,10 @@ body {
 
 /* Focus styles */
 *:focus-visible {
-  outline: 2px solid #D4A017;
+  outline: 2px solid #8A6407;
   outline-offset: 4px;
 }
+.dark *:focus-visible { outline-color: #D4A017; }
 
 /* Print styles */
 @media print {

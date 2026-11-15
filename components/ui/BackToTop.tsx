@@ -1,33 +1,32 @@
 'use client'
 import { useState, useEffect } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
 import { ChevronUp } from 'lucide-react'
 
+// CSS-only transitions (no framer-motion), so pages without other animations ship less JS.
 export default function BackToTop() {
   const [visible, setVisible] = useState(false)
 
   useEffect(() => {
     const handleScroll = () => setVisible(window.scrollY > 400)
+    handleScroll()
     window.addEventListener('scroll', handleScroll, { passive: true })
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
   return (
-    <AnimatePresence>
-      {visible && (
-        <motion.button
-          initial={{ opacity: 0, scale: 0.8 }}
-          animate={{ opacity: 1, scale: 1 }}
-          exit={{ opacity: 0, scale: 0.8 }}
-          onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-          className="fixed bottom-8 right-8 z-40 w-11 h-11 rounded-full btn-gold flex items-center justify-center shadow-lg"
-          aria-label="Back to top"
-          whileHover={{ scale: 1.1 }}
-          whileTap={{ scale: 0.9 }}
-        >
-          <span><ChevronUp size={20} /></span>
-        </motion.button>
-      )}
-    </AnimatePresence>
+    <button
+      type="button"
+      onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+      aria-label="Back to top"
+      tabIndex={visible ? 0 : -1}
+      aria-hidden={!visible}
+      // `!` modifiers: .btn-gold (declared after the Tailwind utilities) would otherwise
+      // override position and padding and drop the button into the page flow.
+      className={`!fixed bottom-8 right-8 z-40 w-11 h-11 !p-0 rounded-full btn-gold flex items-center justify-center shadow-lg transition-all duration-300 motion-safe:hover:scale-110 motion-safe:active:scale-90 ${
+        visible ? 'opacity-100 scale-100' : 'opacity-0 scale-75 pointer-events-none'
+      }`}
+    >
+      <span><ChevronUp size={20} aria-hidden="true" /></span>
+    </button>
   )
 }

@@ -15,7 +15,9 @@ export const personalInfo = {
     alt: 'Portrait of Hidaya Thaher, interior designer based in Nablus, Palestine',
     altAbout: 'Hidaya Thaher in a burgundy blazer and beige hijab, photographed outdoors',
   },
-  bio: `I believe that every space carries the potential to tell a story — one that resonates with the people who inhabit it. My approach to design begins long before the first sketch: it starts with listening, observing, and understanding the lives that will unfold within the walls I shape.
+  bio: `I'm Hidaya Thaher, an interior designer based in Nablus, Palestine. I hold a Bachelor of Interior Design from An-Najah National University (2022–2025), completed in three years, and work in AutoCAD, 3ds Max, V-Ray, Photoshop and Illustrator — from space planning to photorealistic 3D visualization.
+
+I believe that every space carries the potential to tell a story — one that resonates with the people who inhabit it. My approach to design begins long before the first sketch: it starts with listening, observing, and understanding the lives that will unfold within the walls I shape.
 
 Born and raised in Nablus, Palestine, I developed an early fascination with how architecture and interiors influence the way we feel, move, and connect. This curiosity led me to pursue a Bachelor of Interior Design at An-Najah National University, which I completed in just three years — driven by an intensity of passion that made every studio late-night feel purposeful rather than exhausting.
 
@@ -32,7 +34,6 @@ export const stats = [
   { value: 20, suffix: '+', label: 'Projects Completed', short: 'Projects' },
   { value: 20, suffix: '+', label: 'Happy Clients', short: 'Clients' },
   { value: 2, suffix: '', label: 'Years of Experience', short: 'Years Experience' },
-  { value: 50, suffix: '+', label: 'Design Concepts Created', short: 'Concepts' },
 ]
 
 export const skills = {

@@ -11,7 +11,7 @@ export default function Education() {
         <SectionHeader
           label="Education"
           title="Academic Foundation"
-          subtitle="A formal education completed with distinction — and the determination to finish in three years."
+          subtitle="A Bachelor of Interior Design from An-Najah National University, completed in three years."
         />
 
         <div className="mt-16 max-w-3xl mx-auto">
@@ -36,7 +36,7 @@ export default function Education() {
                           <p className="text-charcoal-500 dark:text-charcoal-400 mt-1">{item.degree}</p>
                         </div>
                         <div className="text-right flex-shrink-0">
-                          <span className="inline-block px-3 py-1 text-xs tracking-wider bg-gold-100 dark:bg-charcoal-800 text-gold-700 dark:text-gold-400 border border-gold-300 dark:border-gold-800">
+                          <span className="inline-block px-3 py-1 text-xs tracking-wider bg-gold-100 dark:bg-charcoal-800 text-gold-800 dark:text-gold-400 border border-gold-300 dark:border-gold-800">
                             {item.period}
                           </span>
                           {item.distinction && (
@@ -66,7 +66,7 @@ export default function Education() {
                         </div>
                       )}
 
-                      <div className="flex items-center gap-2 mt-4 text-xs text-charcoal-400">
+                      <div className="flex items-center gap-2 mt-4 text-xs text-charcoal-500 dark:text-charcoal-400">
                         <span aria-hidden="true">📍</span>
                         <span>{item.location}</span>
                       </div>

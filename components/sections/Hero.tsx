@@ -21,7 +21,7 @@ export default function Hero() {
         initial={{ scaleY: 0 }}
         animate={{ scaleY: 1 }}
         transition={{ duration: 1.2, delay: 0.5, ease: [0.22, 1, 0.36, 1] }}
-        className="absolute left-8 md:left-16 top-1/4 bottom-1/4 w-px bg-gradient-to-b from-transparent via-gold-500 to-transparent origin-top"
+        className="absolute left-2 md:left-4 top-1/4 bottom-1/4 w-px bg-gradient-to-b from-transparent via-gold-500 to-transparent origin-top"
       />
 
       <div className="container-luxury w-full pt-28 pb-20">
@@ -33,8 +33,8 @@ export default function Hero() {
                 className="section-label mb-4 block font-sans leading-normal motion-safe:animate-hero-up"
                 style={{ animationDelay: '0.05s' }}
               >
-                {personalInfo.title} · {personalInfo.location}
-              </span>
+                {personalInfo.name} · {personalInfo.title} · {personalInfo.location}
+              </span>{' '}
               <span className="block motion-safe:animate-hero-up" style={{ animationDelay: '0.12s' }}>
                 Crafting Spaces <br />
                 <span className="italic text-gold-gradient">That Breathe</span>
@@ -67,11 +67,11 @@ export default function Hero() {
               style={{ animationDelay: '0.55s' }}
             >
               {stats.slice(0, 3).map((stat) => (
-                <div key={stat.label}>
+                <div key={stat.label} className="flex flex-col-reverse">
+                  <dt className="text-xs tracking-widest uppercase text-charcoal-500 dark:text-charcoal-400 mt-1">{stat.short}</dt>
                   <dd className="font-serif text-2xl font-medium text-charcoal-900 dark:text-cream-100">
                     {stat.value}{stat.suffix}
                   </dd>
-                  <dt className="text-xs tracking-widest uppercase text-charcoal-500 dark:text-charcoal-400 mt-1">{stat.short}</dt>
                 </div>
               ))}
             </dl>
@@ -79,28 +79,30 @@ export default function Hero() {
 
           {/* Portrait */}
           <div className="order-1 lg:order-2 relative motion-safe:animate-hero-in">
-            <div className="relative aspect-[4/5] max-w-md mx-auto lg:max-w-full overflow-hidden">
+            <div className="relative aspect-[4/5] max-w-md mx-auto lg:max-w-full">
               {/* Gold border frame */}
               <div aria-hidden="true" className="absolute -inset-3 border border-gold-500/30 z-10 pointer-events-none" />
               <div aria-hidden="true" className="absolute -inset-6 border border-gold-500/10 z-10 pointer-events-none" />
 
-              <Image
-                src={personalInfo.portrait.src}
-                alt={personalInfo.portrait.alt}
-                fill
-                className="object-cover object-top"
-                priority
-                sizes="(max-width: 1024px) 448px, 50vw"
-              />
+              <div className="absolute inset-0 overflow-hidden">
+                <Image
+                  src={personalInfo.portrait.src}
+                  alt={personalInfo.portrait.alt}
+                  fill
+                  className="object-cover object-top"
+                  priority
+                  sizes="(max-width: 1024px) 100vw, 50vw"
+                />
+              </div>
 
               {/* Overlay card */}
               <motion.div
                 initial={{ opacity: 0, x: 30 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.7, delay: 0.9 }}
-                className="absolute bottom-6 -left-6 glass p-4 shadow-xl"
+                className="absolute z-20 bottom-6 left-3 sm:-left-6 glass p-4 shadow-xl"
               >
-                <p className="text-xs tracking-[0.15em] uppercase text-gold-700 mb-1">Currently</p>
+                <p className="text-xs tracking-[0.15em] uppercase text-gold-800 dark:text-gold-500 mb-1">Currently</p>
                 <p className="font-serif text-sm text-charcoal-800 dark:text-cream-100">Available for Projects</p>
                 <p className="flex items-center gap-2 mt-2">
                   <span aria-hidden="true" className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />

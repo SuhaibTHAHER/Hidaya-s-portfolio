@@ -10,7 +10,7 @@ import BackToTop from '@/components/ui/BackToTop'
 import Breadcrumbs from '@/components/seo/Breadcrumbs'
 import JsonLd from '@/components/seo/JsonLd'
 import { projects } from '@/lib/projects'
-import { pageMetadata, projectGraph, truncate } from '@/lib/site'
+import { pageMetadata, projectGraph } from '@/lib/site'
 
 interface Props {
   params: { slug: string }
@@ -25,10 +25,13 @@ export function generateStaticParams() {
 export function generateMetadata({ params }: Props): Metadata {
   const project = projects.find((p) => p.slug === params.slug)
   if (!project) return { title: 'Project Not Found', robots: { index: false } }
-  const long = `${project.title} — Interior Design Project`
+  // Add "Interior Design" to the title when the project name lacks it and it still fits in ~60 chars.
+  const long = `${project.title} – Interior Design`
+  const useLong = !/interior|design/i.test(project.title) && long.length + ' | Hidaya Thaher'.length <= 60
   return pageMetadata({
-    title: long.length + ' | Hidaya Thaher'.length <= 60 ? long : project.title,
-    description: truncate(project.overview, 155),
+    title: useLong ? long : project.title,
+    // A complete sentence (never a truncated overview) that names the designer.
+    description: `${project.subtitle}. 3D-rendered interior design concept by Hidaya Thaher.`,
     path: `/projects/${project.slug}`,
     type: 'article',
     image: {
@@ -98,12 +101,12 @@ export default function ProjectPage({ params }: Props) {
                 { icon: Box, label: 'Presentation', value: project.medium },
                 { icon: Images, label: 'Views', value: `${project.images.length} renderings` },
               ].map(({ icon: Icon, label, value }) => (
-                <div key={label} className="flex items-center gap-3">
-                  <Icon size={16} aria-hidden="true" className="text-gold-500 flex-shrink-0" />
-                  <div>
-                    <dt className="text-xs text-charcoal-300 tracking-wide uppercase">{label}</dt>
-                    <dd className="text-sm text-cream-200 font-medium">{value}</dd>
-                  </div>
+                <div key={label}>
+                  <dt className="flex items-center gap-3 text-xs text-charcoal-300 tracking-wide uppercase">
+                    <Icon size={16} aria-hidden="true" className="text-gold-500 flex-shrink-0" />
+                    {label}
+                  </dt>
+                  <dd className="pl-7 text-sm text-cream-200 font-medium">{value}</dd>
                 </div>
               ))}
             </dl>
@@ -147,7 +150,7 @@ export default function ProjectPage({ params }: Props) {
                   {project.materials.map((mat, i) => (
                     <div key={mat.name} className="p-5 border border-cream-300 dark:border-charcoal-700 hover:border-gold-400 transition-colors">
                       <div className="flex items-start gap-3">
-                        <div aria-hidden="true" className="w-8 h-8 bg-gold-100 dark:bg-charcoal-800 flex items-center justify-center text-gold-700 flex-shrink-0 text-sm font-medium">
+                        <div aria-hidden="true" className="w-8 h-8 bg-gold-100 dark:bg-charcoal-800 flex items-center justify-center text-gold-800 dark:text-gold-400 flex-shrink-0 text-sm font-medium">
                           {String(i + 1).padStart(2, '0')}
                         </div>
                         <div>
@@ -160,7 +163,7 @@ export default function ProjectPage({ params }: Props) {
                 </div>
                 {project.palette.length > 0 && (
                   <p className="mt-6 text-sm text-charcoal-500 dark:text-charcoal-400">
-                    <span className="font-medium text-charcoal-700 dark:text-cream-200">Colour palette: </span>
+                    <span className="font-medium text-charcoal-700 dark:text-cream-200">Color palette: </span>
                     {project.palette.join(', ')}
                   </p>
                 )}
@@ -183,7 +186,7 @@ export default function ProjectPage({ params }: Props) {
                             width={img.width}
                             height={img.height}
                             className="w-full h-auto hover:scale-105 transition-transform duration-700"
-                            sizes={i === 0 && gallery.length % 2 === 1 ? '(max-width: 896px) 100vw, 896px' : '(max-width: 768px) 100vw, 448px'}
+                            sizes={i === 0 && gallery.length % 2 === 1 ? '(max-width: 960px) calc(100vw - 3rem), 896px' : '(max-width: 768px) calc(100vw - 3rem), 448px'}
                           />
                         </div>
                         <figcaption className="mt-2 text-xs text-charcoal-500 dark:text-charcoal-400 tracking-wide">
@@ -225,21 +228,21 @@ export default function ProjectPage({ params }: Props) {
                             alt={p.cover.alt}
                             fill
                             className="object-cover group-hover:scale-105 transition-transform duration-700"
-                            sizes="(max-width: 768px) 100vw, 33vw"
+                            sizes="(max-width: 768px) calc(100vw - 3rem), 384px"
                           />
                         </div>
                         <div className="py-3 border-b border-cream-300 dark:border-charcoal-800">
                           <h3 className="font-serif text-lg text-charcoal-800 dark:text-cream-100 group-hover:text-gold-700 transition-colors">
                             {p.title}
                           </h3>
-                          <p className="text-xs text-charcoal-500 mt-1">{p.category} · {p.projectType}</p>
+                          <p className="text-xs text-charcoal-500 dark:text-charcoal-400 mt-1">{p.category} · {p.projectType}</p>
                         </div>
                       </Link>
                     </li>
                   ))}
                 </ul>
                 <div className="mt-10">
-                  <Link href="/projects" className="inline-flex items-center gap-2 text-sm text-gold-700 dark:text-gold-400 hover:underline">
+                  <Link href="/projects" className="inline-flex items-center gap-2 text-sm text-gold-800 dark:text-gold-400 hover:underline">
                     <ArrowLeft size={14} aria-hidden="true" />
                     All interior design projects
                   </Link>

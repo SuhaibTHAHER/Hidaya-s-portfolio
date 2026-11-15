@@ -21,14 +21,16 @@ const config: Config = {
         'fade-in': 'fadeIn 0.6s ease-out forwards',
         'slide-up': 'slideUp 0.6s ease-out forwards',
         'shimmer': 'shimmer 2s infinite',
-        // CSS (not JS) entrance animations for above-the-fold hero content, so the LCP
-        // image and heading paint before hydration instead of waiting for framer-motion.
+        // CSS (not JS) entrance motion for above-the-fold hero content. Transform only, never
+        // opacity: the LCP image and heading are fully visible from the first paint.
         'hero-up': 'heroUp 0.8s cubic-bezier(0.22, 1, 0.36, 1) both',
         'hero-in': 'heroIn 1s cubic-bezier(0.22, 1, 0.36, 1) both',
+        'nav-in': 'navIn 0.6s ease-out both',
       },
       keyframes: {
-        heroUp: { '0%': { opacity: '0', transform: 'translateY(24px)' }, '100%': { opacity: '1', transform: 'translateY(0)' } },
-        heroIn: { '0%': { opacity: '0', transform: 'scale(0.97)' }, '100%': { opacity: '1', transform: 'scale(1)' } },
+        heroUp: { '0%': { transform: 'translateY(16px)' }, '100%': { transform: 'translateY(0)' } },
+        heroIn: { '0%': { transform: 'scale(0.97)' }, '100%': { transform: 'scale(1)' } },
+        navIn: { '0%': { transform: 'translateY(-100%)', opacity: '0' }, '100%': { transform: 'translateY(0)', opacity: '1' } },
         fadeIn: { '0%': { opacity: '0' }, '100%': { opacity: '1' } },
         slideUp: { '0%': { transform: 'translateY(30px)', opacity: '0' }, '100%': { transform: 'translateY(0)', opacity: '1' } },
         shimmer: { '0%': { backgroundPosition: '-200% 0' }, '100%': { backgroundPosition: '200% 0' } },
