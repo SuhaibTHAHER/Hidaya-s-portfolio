@@ -22,7 +22,7 @@ export default function BackToTop() {
       aria-hidden={!visible}
       // `!` modifiers: .btn-gold (declared after the Tailwind utilities) would otherwise
       // override position and padding and drop the button into the page flow.
-      className={`!fixed bottom-8 right-8 z-40 w-11 h-11 !p-0 rounded-full btn-gold flex items-center justify-center shadow-lg transition-all duration-300 motion-safe:hover:scale-110 motion-safe:active:scale-90 ${
+      className={`!fixed bottom-4 right-4 sm:bottom-8 sm:right-8 z-40 w-11 h-11 !p-0 rounded-full btn-gold flex items-center justify-center shadow-lg transition-all duration-300 motion-safe:hover:scale-110 motion-safe:active:scale-90 ${
         visible ? 'opacity-100 scale-100' : 'opacity-0 scale-75 pointer-events-none'
       }`}
     >

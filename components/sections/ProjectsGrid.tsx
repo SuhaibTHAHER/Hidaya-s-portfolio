@@ -70,7 +70,7 @@ export default function ProjectsGrid({ projects }: { projects: ProjectCard[] }) 
                       alt={project.cover.alt}
                       fill
                       className="object-cover project-img-zoom"
-                      sizes="(max-width: 768px) calc(100vw - 3rem), (max-width: 1280px) 50vw, 384px"
+                      sizes="(max-width: 768px) calc((100vw - 3rem) * 1.34), (max-width: 1280px) 67vw, 512px"
                     />
                     {/* Overlay */}
                     <div className="absolute inset-0 bg-charcoal-950/0 group-hover:bg-charcoal-950/60 transition-all duration-500" />

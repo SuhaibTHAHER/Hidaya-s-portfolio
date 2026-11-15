@@ -21,6 +21,7 @@ const nextConfig = {
     formats: ['image/avif', 'image/webp'],
     // Extra small widths so cards (≈384px) and gallery tiles (≈448px) get a close srcset candidate.
     imageSizes: [16, 32, 48, 64, 96, 128, 256, 384, 448],
+    deviceSizes: [640, 750, 828, 896, 1080, 1200, 1440, 1920, 2048, 3840],
     minimumCacheTTL: 60 * 60 * 24 * 365,
   },
   async redirects() {

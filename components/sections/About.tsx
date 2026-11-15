@@ -29,7 +29,7 @@ export default function About() {
               <div aria-hidden="true" className="absolute -top-4 -left-4 w-20 h-20 border border-gold-500/20" />
 
               {/* Languages card */}
-              <div className="absolute top-6 -right-6 glass p-5 shadow-lg min-w-[160px]">
+              <div className="absolute top-6 right-3 sm:-right-6 glass glass-solid p-5 shadow-lg min-w-[160px]">
                 <p className="text-xs tracking-[0.15em] uppercase text-gold-800 dark:text-gold-500 mb-3">Languages</p>
                 {personalInfo.languages.map((lang) => (
                   <div key={lang.name} className="mb-3 last:mb-0">

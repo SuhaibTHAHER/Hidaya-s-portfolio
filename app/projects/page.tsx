@@ -53,7 +53,7 @@ export default function ProjectsPage() {
                       alt={project.cover.alt}
                       fill
                       className="object-cover transition-transform duration-700 group-hover:scale-105"
-                      sizes="(max-width: 768px) calc(100vw - 3rem), (max-width: 1280px) 50vw, 384px"
+                      sizes="(max-width: 768px) calc((100vw - 3rem) * 1.34), (max-width: 1280px) 67vw, 512px"
                       priority={i === 0}
                       loading={i === 0 ? undefined : i < 3 ? 'eager' : 'lazy'}
                     />

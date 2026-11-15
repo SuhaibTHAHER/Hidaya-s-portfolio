@@ -1,5 +1,5 @@
 'use client'
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { usePathname } from 'next/navigation'
 import { useTheme } from 'next-themes'
 import { Sun, Moon, Menu, X, Download } from 'lucide-react'
@@ -23,6 +23,7 @@ export default function Navbar() {
   const [mounted, setMounted] = useState(false)
   const { theme, setTheme } = useTheme()
   const pathname = usePathname()
+  const menuButtonRef = useRef<HTMLButtonElement>(null)
   // Inner pages open on a dark hero: keep the header solid there so it stays readable.
   const solid = scrolled || pathname !== '/'
 
@@ -38,7 +39,10 @@ export default function Navbar() {
   useEffect(() => {
     if (!mobileOpen) return
     const onKey = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') setMobileOpen(false)
+      if (e.key === 'Escape') {
+        setMobileOpen(false)
+        menuButtonRef.current?.focus()
+      }
     }
     const background = Array.from(document.querySelectorAll('main, footer'))
     document.addEventListener('keydown', onKey)
@@ -111,6 +115,7 @@ export default function Navbar() {
 
             {/* Mobile Menu Toggle */}
             <button
+              ref={menuButtonRef}
               type="button"
               onClick={() => setMobileOpen(!mobileOpen)}
               className="relative z-[60] lg:hidden w-9 h-9 rounded-full flex items-center justify-center text-charcoal-700 dark:text-cream-200 hover:text-gold-600 transition-colors"

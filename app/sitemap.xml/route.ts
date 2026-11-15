@@ -13,7 +13,7 @@ type Entry = { path: string; images: string[] }
 
 export function GET() {
   const entries: Entry[] = [
-    { path: '/', images: [personalInfo.portrait.src, ...projects.map((p) => p.cover.src)] },
+    { path: '/', images: [personalInfo.portrait.src, ...projects.filter((p) => p.featured).slice(0, 6).map((p) => p.cover.src)] },
     { path: '/projects', images: projects.map((p) => p.cover.src) },
     ...projects.map((p) => ({ path: `/projects/${p.slug}`, images: p.images.map((i) => i.src) })),
   ]

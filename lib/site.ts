@@ -16,7 +16,7 @@ export const SITE_NAME = 'Hidaya Thaher — Interior Designer'
 export const CONTENT_UPDATED = '2026-11-15'
 
 export const DEFAULT_DESCRIPTION =
-  'Hidaya Thaher is an interior designer in Nablus, Palestine, creating residential and commercial interiors with space planning and photorealistic 3D visualization.'
+  'Hidaya Thaher is an interior designer in Nablus, Palestine, creating residential and commercial interiors with space planning and photorealistic 3D renders.'
 
 export const OG_IMAGE = {
   url: '/og/hidaya-thaher-interior-designer.jpg',

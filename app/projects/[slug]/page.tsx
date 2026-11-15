@@ -26,7 +26,7 @@ export function generateMetadata({ params }: Props): Metadata {
   const project = projects.find((p) => p.slug === params.slug)
   if (!project) return { title: 'Project Not Found', robots: { index: false } }
   // Add "Interior Design" to the title when the project name lacks it and it still fits in ~60 chars.
-  const long = `${project.title} – Interior Design`
+  const long = `${project.title} — Interior Design`
   const useLong = !/interior|design/i.test(project.title) && long.length + ' | Hidaya Thaher'.length <= 60
   return pageMetadata({
     title: useLong ? long : project.title,
@@ -67,18 +67,19 @@ export default function ProjectPage({ params }: Props) {
               fill
               className="object-cover"
               priority
-              sizes="100vw"
+              // The 70vh header crops a landscape render on portrait screens, so request a wide enough file.
+              sizes="(orientation: portrait) 125vh, 100vw"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-charcoal-950/90 via-charcoal-950/30 to-transparent" />
             <div className="absolute inset-0 flex flex-col justify-end pb-16">
-              <div className="container-luxury">
+              <div className="container-luxury w-full">
                 <Breadcrumbs
                   items={[{ name: 'Home', href: '/' }, { name: 'Projects', href: '/projects' }, { name: project.title }]}
                   className="mb-6 text-cream-300"
                 />
                 <div className="flex flex-wrap gap-2 mb-4">
                   {project.tags.map((tag) => (
-                    <span key={tag} className="px-3 py-1 text-xs bg-gold-700/90 text-white tracking-wide">
+                    <span key={tag} className="px-3 py-1 text-xs bg-gold-800 text-white tracking-wide">
                       {tag}
                     </span>
                   ))}
@@ -228,7 +229,7 @@ export default function ProjectPage({ params }: Props) {
                             alt={p.cover.alt}
                             fill
                             className="object-cover group-hover:scale-105 transition-transform duration-700"
-                            sizes="(max-width: 768px) calc(100vw - 3rem), 384px"
+                            sizes="(max-width: 768px) calc((100vw - 3rem) * 1.34), 512px"
                           />
                         </div>
                         <div className="py-3 border-b border-cream-300 dark:border-charcoal-800">

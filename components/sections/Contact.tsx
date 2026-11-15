@@ -130,7 +130,7 @@ export default function Contact() {
                     required
                     value={form.name}
                     onChange={(e) => setForm({ ...form, name: e.target.value })}
-                    className="w-full px-4 py-3 bg-cream-100 dark:bg-charcoal-900 border border-cream-300 dark:border-charcoal-700 text-charcoal-800 dark:text-cream-100 text-sm focus:border-gold-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-gold-700 dark:focus-visible:ring-gold-500 transition-colors placeholder-charcoal-300 dark:placeholder-charcoal-600"
+                    className="w-full px-4 py-3 bg-cream-100 dark:bg-charcoal-900 border border-cream-300 dark:border-charcoal-700 text-charcoal-800 dark:text-cream-100 text-sm focus:border-gold-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-gold-700 dark:focus-visible:ring-gold-500 transition-colors placeholder:text-charcoal-500 dark:placeholder:text-charcoal-400"
                     placeholder="Your name"
                   />
                 </div>
@@ -145,7 +145,7 @@ export default function Contact() {
                     required
                     value={form.email}
                     onChange={(e) => setForm({ ...form, email: e.target.value })}
-                    className="w-full px-4 py-3 bg-cream-100 dark:bg-charcoal-900 border border-cream-300 dark:border-charcoal-700 text-charcoal-800 dark:text-cream-100 text-sm focus:border-gold-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-gold-700 dark:focus-visible:ring-gold-500 transition-colors placeholder-charcoal-300 dark:placeholder-charcoal-600"
+                    className="w-full px-4 py-3 bg-cream-100 dark:bg-charcoal-900 border border-cream-300 dark:border-charcoal-700 text-charcoal-800 dark:text-cream-100 text-sm focus:border-gold-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-gold-700 dark:focus-visible:ring-gold-500 transition-colors placeholder:text-charcoal-500 dark:placeholder:text-charcoal-400"
                     placeholder="your@email.com"
                   />
                 </div>
@@ -160,7 +160,7 @@ export default function Contact() {
                   type="text"
                   value={form.subject}
                   onChange={(e) => setForm({ ...form, subject: e.target.value })}
-                  className="w-full px-4 py-3 bg-cream-100 dark:bg-charcoal-900 border border-cream-300 dark:border-charcoal-700 text-charcoal-800 dark:text-cream-100 text-sm focus:border-gold-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-gold-700 dark:focus-visible:ring-gold-500 transition-colors placeholder-charcoal-300 dark:placeholder-charcoal-600"
+                  className="w-full px-4 py-3 bg-cream-100 dark:bg-charcoal-900 border border-cream-300 dark:border-charcoal-700 text-charcoal-800 dark:text-cream-100 text-sm focus:border-gold-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-gold-700 dark:focus-visible:ring-gold-500 transition-colors placeholder:text-charcoal-500 dark:placeholder:text-charcoal-400"
                   placeholder="Project inquiry, collaboration..."
                 />
               </div>
@@ -175,7 +175,7 @@ export default function Contact() {
                   rows={6}
                   value={form.message}
                   onChange={(e) => setForm({ ...form, message: e.target.value })}
-                  className="w-full px-4 py-3 bg-cream-100 dark:bg-charcoal-900 border border-cream-300 dark:border-charcoal-700 text-charcoal-800 dark:text-cream-100 text-sm focus:border-gold-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-gold-700 dark:focus-visible:ring-gold-500 transition-colors resize-none placeholder-charcoal-300 dark:placeholder-charcoal-600"
+                  className="w-full px-4 py-3 bg-cream-100 dark:bg-charcoal-900 border border-cream-300 dark:border-charcoal-700 text-charcoal-800 dark:text-cream-100 text-sm focus:border-gold-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-gold-700 dark:focus-visible:ring-gold-500 transition-colors resize-none placeholder:text-charcoal-500 dark:placeholder:text-charcoal-400"
                   placeholder="Tell me about your project, space, and vision..."
                 />
               </div>

@@ -63,7 +63,7 @@ export default function Hero() {
 
             {/* Stats mini (same figures as the Stats section) */}
             <dl
-              className="flex gap-10 mt-14 pt-10 border-t border-cream-300 dark:border-charcoal-800 motion-safe:animate-hero-up"
+              className="flex items-start gap-10 mt-14 pt-10 border-t border-cream-300 dark:border-charcoal-800 motion-safe:animate-hero-up"
               style={{ animationDelay: '0.55s' }}
             >
               {stats.slice(0, 3).map((stat) => (
@@ -100,7 +100,7 @@ export default function Hero() {
                 initial={{ opacity: 0, x: 30 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.7, delay: 0.9 }}
-                className="absolute z-20 bottom-6 left-3 sm:-left-6 glass p-4 shadow-xl"
+                className="absolute z-20 bottom-6 left-3 sm:-left-6 glass glass-solid p-4 shadow-xl"
               >
                 <p className="text-xs tracking-[0.15em] uppercase text-gold-800 dark:text-gold-500 mb-1">Currently</p>
                 <p className="font-serif text-sm text-charcoal-800 dark:text-cream-100">Available for Projects</p>
@@ -120,7 +120,7 @@ export default function Hero() {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 1.2 }}
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-charcoal-500 hover:text-gold-600 transition-colors"
+        className="absolute bottom-8 left-1/2 lg:left-1/4 -translate-x-1/2 hidden sm:flex flex-col items-center gap-2 text-charcoal-500 dark:text-charcoal-400 hover:text-gold-600 transition-colors"
         aria-label="Scroll to projects"
       >
         <span className="text-xs tracking-[0.2em] uppercase">Scroll</span>
