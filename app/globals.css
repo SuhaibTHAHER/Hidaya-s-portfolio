@@ -123,7 +123,7 @@ body {
   content: '';
   position: absolute;
   bottom: -2px;
-  left: 0;
+  inset-inline-start: 0;
   width: 0;
   height: 1px;
   background: #D4A017;
@@ -161,7 +161,7 @@ body {
 .scroll-progress {
   position: fixed;
   top: 0;
-  left: 0;
+  inset-inline-start: 0;
   height: 3px;
   background: linear-gradient(90deg, #D4A017, #EFC84A);
   z-index: 9999;
@@ -274,4 +274,25 @@ body {
 /* Print styles */
 @media print {
   .no-print { display: none !important; }
+}
+
+/* ---------- Arabic (RTL) pages ---------- */
+/* Arabic fonts first, Latin fonts as fallback for the few Latin words (software names, email). */
+html[dir='rtl'] body,
+html[dir='rtl'] .font-sans {
+  font-family: var(--font-ar-sans), var(--font-inter), system-ui, sans-serif;
+}
+html[dir='rtl'] .font-serif {
+  font-family: var(--font-ar-serif), var(--font-playfair), Georgia, serif;
+}
+/* Letter-spacing breaks the joining of Arabic letters. */
+html[dir='rtl'] * {
+  letter-spacing: normal !important;
+}
+/* Arabic script needs more vertical room than the tight Latin display leading. */
+html[dir='rtl'] :is(h1, h2, h3) {
+  line-height: 1.45;
+}
+html[dir='rtl'] .section-label {
+  font-size: 0.85rem;
 }

@@ -3,9 +3,11 @@ import { motion } from 'framer-motion'
 import Image from 'next/image'
 import AnimateIn from '@/components/ui/AnimateIn'
 import SectionHeader from '@/components/ui/SectionHeader'
-import { personalInfo, interests } from '@/lib/data'
+import type { SiteContent } from '@/lib/content'
 
-export default function About() {
+type Props = Pick<SiteContent, 'ui' | 'personal' | 'expertise' | 'interests'> & { projectsHref: string }
+
+export default function About({ ui, personal: personalInfo, expertise, interests, projectsHref }: Props) {
   const paragraphs = personalInfo.bio.split('\n\n').filter(Boolean)
 
   return (
@@ -25,17 +27,17 @@ export default function About() {
                 />
               </div>
               {/* Decorative elements */}
-              <div aria-hidden="true" className="absolute -bottom-4 -right-4 w-32 h-32 border border-gold-500/30" />
-              <div aria-hidden="true" className="absolute -top-4 -left-4 w-20 h-20 border border-gold-500/20" />
+              <div aria-hidden="true" className="absolute -bottom-4 -end-4 w-32 h-32 border border-gold-500/30" />
+              <div aria-hidden="true" className="absolute -top-4 -start-4 w-20 h-20 border border-gold-500/20" />
 
               {/* Languages card */}
-              <div className="absolute top-6 right-3 sm:-right-6 glass glass-solid p-5 shadow-lg min-w-[160px]">
-                <p className="text-xs tracking-[0.15em] uppercase text-gold-800 dark:text-gold-500 mb-3">Languages</p>
+              <div className="absolute top-6 end-3 sm:-end-6 glass glass-solid p-5 shadow-lg min-w-[160px]">
+                <p className="text-xs tracking-[0.15em] uppercase text-gold-800 dark:text-gold-500 mb-3">{ui.about.languages}</p>
                 {personalInfo.languages.map((lang) => (
                   <div key={lang.name} className="mb-3 last:mb-0">
                     <div className="flex justify-between items-center mb-1">
                       <span className="text-xs font-medium text-charcoal-700 dark:text-cream-200">{lang.name}</span>
-                      <span className="text-xs text-charcoal-500 dark:text-charcoal-400">{lang.level === 'Native' ? 'Native' : 'Professional'}</span>
+                      <span className="text-xs text-charcoal-500 dark:text-charcoal-400">{lang.level === 'Native' ? ui.about.native : ui.about.professional}</span>
                     </div>
                     <div className="h-0.5 bg-cream-300 dark:bg-charcoal-700 rounded-full overflow-hidden">
                       <motion.div
@@ -55,8 +57,8 @@ export default function About() {
           {/* Content Side */}
           <div>
             <SectionHeader
-              label="About"
-              title="The Designer Behind the Work"
+              label={ui.about.label}
+              title={ui.about.title}
             />
 
             <div className="mt-10 space-y-5">
@@ -72,13 +74,9 @@ export default function About() {
             {/* Expertise Tags */}
             <AnimateIn delay={0.5}>
               <div className="mt-10">
-                <h3 className="text-xs tracking-[0.2em] uppercase text-gold-800 dark:text-gold-500 mb-4 font-medium">Areas of Expertise</h3>
+                <h3 className="text-xs tracking-[0.2em] uppercase text-gold-800 dark:text-gold-500 mb-4 font-medium">{ui.about.expertise}</h3>
                 <div className="flex flex-wrap gap-2">
-                  {[
-                    'Residential Design', 'Commercial Design', 'Space Planning',
-                    'Material Selection', 'Interior Styling', 'Human-Centered Design',
-                    'Visual Storytelling', 'Lighting Design',
-                  ].map((tag) => (
+                  {expertise.map((tag) => (
                     <span
                       key={tag}
                       className="px-3 py-1.5 text-xs border border-gold-500/30 text-charcoal-600 dark:text-charcoal-300 hover:border-gold-500 hover:text-gold-700 dark:hover:text-gold-400 transition-colors tracking-wide"
@@ -93,7 +91,7 @@ export default function About() {
             {/* Interests */}
             <AnimateIn delay={0.6}>
               <div className="mt-8">
-                <h3 className="text-xs tracking-[0.2em] uppercase text-gold-800 dark:text-gold-500 mb-4 font-medium">Interests</h3>
+                <h3 className="text-xs tracking-[0.2em] uppercase text-gold-800 dark:text-gold-500 mb-4 font-medium">{ui.about.interests}</h3>
                 <div className="flex flex-wrap gap-2">
                   {interests.map((interest) => (
                     <span
@@ -112,14 +110,14 @@ export default function About() {
               <div className="mt-10 flex flex-wrap gap-4">
                 {personalInfo.cvUrl && (
                   <a href={personalInfo.cvUrl} download className="btn-gold rounded-none text-xs tracking-[0.15em] uppercase">
-                    <span>Download CV</span>
+                    <span>{ui.about.downloadCv}</span>
                   </a>
                 )}
                 <a href="#contact" className="btn-outline-gold rounded-none text-xs tracking-[0.15em] uppercase">
-                  Get in Touch
+                  {ui.about.contact}
                 </a>
-                <a href="/projects" className="btn-gold rounded-none text-xs tracking-[0.15em] uppercase">
-                  <span>View Projects</span>
+                <a href={projectsHref} className="btn-gold rounded-none text-xs tracking-[0.15em] uppercase">
+                  <span>{ui.about.viewProjects}</span>
                 </a>
               </div>
             </AnimateIn>

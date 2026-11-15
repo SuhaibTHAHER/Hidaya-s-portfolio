@@ -6,14 +6,17 @@ import Link from 'next/link'
 import { ArrowUpRight, Box } from 'lucide-react'
 import AnimateIn from '@/components/ui/AnimateIn'
 import SectionHeader from '@/components/ui/SectionHeader'
-import type { Project } from '@/lib/projects'
+import type { LocalizedProject } from '@/lib/content'
+import type { UI } from '@/lib/content/ui'
 
 /** Only what a card needs, so the full project data never ships in the client bundle. */
-export type ProjectCard = Pick<Project, 'slug' | 'title' | 'subtitle' | 'category' | 'projectType' | 'medium' | 'tags'> & {
-  cover: Pick<Project['cover'], 'src' | 'alt'>
+export type ProjectCard = Pick<LocalizedProject, 'slug' | 'title' | 'subtitle' | 'category' | 'categoryLabel' | 'projectType' | 'medium' | 'tags'> & {
+  href: string
+  cover: Pick<LocalizedProject['cover'], 'src' | 'alt'>
 }
 
-export default function ProjectsGrid({ projects }: { projects: ProjectCard[] }) {
+export default function ProjectsGrid({ projects, ui, allHref }: { projects: ProjectCard[]; ui: UI; allHref: string }) {
+  const t = ui.projects
   const [activeCategory, setActiveCategory] = useState('All')
   // Only categories that actually have projects, so no filter ever shows an empty grid.
   const categories = ['All', ...Array.from(new Set(projects.map((p) => p.category)))]
@@ -26,14 +29,14 @@ export default function ProjectsGrid({ projects }: { projects: ProjectCard[] }) 
     <section id="projects" className="section-padding bg-cream-50 dark:bg-charcoal-950">
       <div className="container-luxury">
         <SectionHeader
-          label="Portfolio"
-          title="Selected Works"
-          subtitle="Interior design projects across residential, commercial, retail and hospitality spaces, presented as 3D visualizations."
+          label={t.label}
+          title={t.title}
+          subtitle={t.subtitle}
         />
 
         {/* Category Filter */}
         <AnimateIn delay={0.3}>
-          <div className="flex flex-wrap gap-2 mt-10 mb-12" role="group" aria-label="Filter projects by category">
+          <div className="flex flex-wrap gap-2 mt-10 mb-12" role="group" aria-label={t.filterLabel}>
             {categories.map((cat) => (
               <button
                 key={cat}
@@ -45,7 +48,7 @@ export default function ProjectsGrid({ projects }: { projects: ProjectCard[] }) 
                     : 'border border-charcoal-200 dark:border-charcoal-700 text-charcoal-600 dark:text-charcoal-300 hover:border-gold-500 hover:text-gold-700'
                 }`}
               >
-                {cat}
+                {cat === 'All' ? t.all : ui.categories[cat] ?? cat}
               </button>
             ))}
           </div>
@@ -63,7 +66,7 @@ export default function ProjectsGrid({ projects }: { projects: ProjectCard[] }) 
                 exit={{ opacity: 0, scale: 0.95 }}
                 transition={{ duration: 0.4, delay: i * 0.05 }}
               >
-                <Link href={`/projects/${project.slug}`} className="group block">
+                <Link href={project.href} className="group block">
                   <div className="relative overflow-hidden aspect-[4/3] bg-cream-200 dark:bg-charcoal-900">
                     <Image
                       src={project.cover.src}
@@ -86,14 +89,14 @@ export default function ProjectsGrid({ projects }: { projects: ProjectCard[] }) 
                       </div>
                       <p className="text-sm text-cream-200 line-clamp-2">{project.subtitle}</p>
                       <div className="flex items-center gap-1 mt-4 text-gold-400 text-sm font-medium">
-                        <span>View Project</span>
-                        <ArrowUpRight size={16} />
+                        <span>{t.viewProject}</span>
+                        <ArrowUpRight size={16} className="rtl:-scale-x-100" />
                       </div>
                     </div>
 
                     {/* Category badge */}
-                    <div className="absolute top-4 right-4 px-2 py-1 bg-charcoal-950/70 text-cream-200 text-xs tracking-widest">
-                      {project.category}
+                    <div className="absolute top-4 end-4 px-2 py-1 bg-charcoal-950/70 text-cream-200 text-xs tracking-widest">
+                      {project.categoryLabel}
                     </div>
                   </div>
 
@@ -106,7 +109,7 @@ export default function ProjectsGrid({ projects }: { projects: ProjectCard[] }) 
                         </h3>
                         <p className="text-xs text-charcoal-500 dark:text-charcoal-400 mt-1 tracking-wide">{project.projectType}</p>
                       </div>
-                      <ArrowUpRight size={18} aria-hidden="true" className="text-charcoal-300 group-hover:text-gold-600 transition-colors mt-1 flex-shrink-0" />
+                      <ArrowUpRight size={18} aria-hidden="true" className="text-charcoal-300 group-hover:text-gold-600 transition-colors mt-1 flex-shrink-0 rtl:-scale-x-100" />
                     </div>
                     <div className="flex flex-wrap gap-4 mt-3 text-xs text-charcoal-500 dark:text-charcoal-400">
                       <span className="flex items-center gap-1">
@@ -124,8 +127,8 @@ export default function ProjectsGrid({ projects }: { projects: ProjectCard[] }) 
         {/* View all */}
         <AnimateIn delay={0.4}>
           <div className="text-center mt-14">
-            <Link href="/projects" className="btn-outline-gold rounded-none text-xs tracking-[0.2em] uppercase inline-block">
-              View All Interior Design Projects
+            <Link href={allHref} className="btn-outline-gold rounded-none text-xs tracking-[0.2em] uppercase inline-block">
+              {t.viewAll}
             </Link>
           </div>
         </AnimateIn>

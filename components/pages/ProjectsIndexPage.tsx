@@ -2,42 +2,37 @@ import type { Metadata } from 'next'
 import Image from 'next/image'
 import Link from 'next/link'
 import { ArrowUpRight } from 'lucide-react'
-import Navbar from '@/components/layout/Navbar'
-import Footer from '@/components/layout/Footer'
-import ScrollProgress from '@/components/ui/ScrollProgress'
-import BackToTop from '@/components/ui/BackToTop'
 import Breadcrumbs from '@/components/seo/Breadcrumbs'
 import JsonLd from '@/components/seo/JsonLd'
-import { projects } from '@/lib/projects'
+import PageShell from '@/components/pages/PageShell'
+import { getProjects, getSiteContent } from '@/lib/content'
+import { getUI, fmt } from '@/lib/content/ui'
+import { type Locale, localePath } from '@/lib/i18n'
 import { pageMetadata, projectsIndexGraph } from '@/lib/site'
 
-export const metadata: Metadata = pageMetadata({
-  title: 'Interior Design Projects',
-  description:
-    'Interior design projects by Hidaya Thaher — homes, bedrooms, kitchens, offices, retail stores, a bank and a restaurant — presented as 3D visualizations.',
-  path: '/projects',
-})
+export const projectsIndexMetadata = (locale: Locale): Metadata => {
+  const ui = getUI(locale)
+  return pageMetadata({ locale, title: ui.projectsPage.metaTitle, description: ui.projectsPage.metaDescription, path: '/projects' })
+}
 
-export default function ProjectsPage() {
+export default function ProjectsIndexPage({ locale }: { locale: Locale }) {
+  const c = getSiteContent(locale)
+  const { ui } = c
+  const projects = getProjects(locale)
   return (
-    <>
-      <JsonLd data={projectsIndexGraph(projects)} />
-      <ScrollProgress />
-      <Navbar />
+    <PageShell content={c} path="/projects">
+      <JsonLd data={projectsIndexGraph(projects, locale, ui)} />
       <main id="main" className="min-h-screen bg-cream-50 dark:bg-charcoal-950">
         {/* Hero */}
         <div className="pt-32 pb-20 bg-charcoal-950 text-cream-50">
           <div className="container-luxury">
             <Breadcrumbs
-              items={[{ name: 'Home', href: '/' }, { name: 'Projects' }]}
+              items={[{ name: ui.crumbs.home, href: localePath(locale, '/') }, { name: ui.crumbs.projects }]}
               className="mb-8 text-charcoal-400"
             />
-            <span className="section-label on-dark mb-4 block">Portfolio</span>
-            <h1 className="font-serif text-5xl md:text-6xl font-medium mb-6">Interior Design Projects</h1>
-            <p className="text-charcoal-300 max-w-xl leading-relaxed">
-              {projects.length} interior design projects across residential, commercial, retail and hospitality spaces,
-              each presented through 3D visualization.
-            </p>
+            <span className="section-label on-dark mb-4 block">{ui.projectsPage.label}</span>
+            <h1 className="font-serif text-5xl md:text-6xl font-medium mb-6">{ui.projectsPage.h1}</h1>
+            <p className="text-charcoal-300 max-w-xl leading-relaxed">{fmt(ui.projectsPage.intro, { n: projects.length })}</p>
           </div>
         </div>
 
@@ -46,7 +41,7 @@ export default function ProjectsPage() {
           <ul className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8">
             {projects.map((project, i) => (
               <li key={project.slug}>
-                <Link href={`/projects/${project.slug}`} className="group block">
+                <Link href={localePath(locale, `/projects/${project.slug}`)} className="group block">
                   <div className="relative overflow-hidden aspect-[4/3] bg-cream-200 dark:bg-charcoal-900">
                     <Image
                       src={project.cover.src}
@@ -58,12 +53,12 @@ export default function ProjectsPage() {
                       loading={i === 0 ? undefined : i < 3 ? 'eager' : 'lazy'}
                     />
                     <div className="absolute inset-0 bg-charcoal-950/0 group-hover:bg-charcoal-950/50 transition-all duration-500" />
-                    <div className="absolute top-4 right-4 px-2 py-1 bg-charcoal-950/70 text-cream-200 text-xs tracking-widest">
-                      {project.category}
+                    <div className="absolute top-4 end-4 px-2 py-1 bg-charcoal-950/70 text-cream-200 text-xs tracking-widest">
+                      {project.categoryLabel}
                     </div>
                     {project.featured && (
-                      <div className="absolute top-4 left-4 px-2 py-1 bg-gold-700 text-white text-xs tracking-wider">
-                        Featured
+                      <div className="absolute top-4 start-4 px-2 py-1 bg-gold-700 text-white text-xs tracking-wider">
+                        {ui.projects.featured}
                       </div>
                     )}
                   </div>
@@ -75,7 +70,7 @@ export default function ProjectsPage() {
                         </h2>
                         <p className="text-sm text-charcoal-500 dark:text-charcoal-400 mt-1">{project.subtitle}</p>
                       </div>
-                      <ArrowUpRight size={18} aria-hidden="true" className="text-charcoal-300 group-hover:text-gold-600 transition-colors mt-1 flex-shrink-0" />
+                      <ArrowUpRight size={18} aria-hidden="true" className="text-charcoal-300 group-hover:text-gold-600 transition-colors mt-1 flex-shrink-0 rtl:-scale-x-100" />
                     </div>
                     <div className="flex flex-wrap gap-2 mt-3">
                       {project.tags.map((tag) => (
@@ -91,14 +86,12 @@ export default function ProjectsPage() {
           </ul>
 
           <div className="text-center mt-16">
-            <Link href="/#contact" className="btn-gold rounded-none text-xs tracking-[0.2em] uppercase inline-block">
-              <span>Discuss your project with Hidaya</span>
+            <Link href={`${localePath(locale, '/')}#contact`} className="btn-gold rounded-none text-xs tracking-[0.2em] uppercase inline-block">
+              <span>{ui.projectsPage.cta}</span>
             </Link>
           </div>
         </div>
       </main>
-      <Footer />
-      <BackToTop />
-    </>
+    </PageShell>
   )
 }

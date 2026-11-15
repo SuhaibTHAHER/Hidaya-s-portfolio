@@ -3,20 +3,20 @@ import { motion } from 'framer-motion'
 import { type LucideIcon, Home, Building2, Grid3X3, Box, Layers, MessageCircle, Armchair, Hammer, Lightbulb, Sparkles } from 'lucide-react'
 import AnimateIn from '@/components/ui/AnimateIn'
 import SectionHeader from '@/components/ui/SectionHeader'
-import { services } from '@/lib/data'
+import type { SiteContent } from '@/lib/content'
 
 const iconMap: Record<string, LucideIcon> = {
   Home, Building2, Grid: Grid3X3, Box, Layers, MessageCircle, Armchair, Hammer, Lightbulb, Sparkles,
 }
 
-export default function Services() {
+export default function Services({ ui, services }: Pick<SiteContent, 'ui' | 'services'>) {
   return (
     <section id="services" className="section-padding bg-cream-100 dark:bg-charcoal-900">
       <div className="container-luxury">
         <SectionHeader
-          label="Services"
-          title="What I Offer"
-          subtitle="End-to-end design services for clients who believe their environment shapes their life."
+          label={ui.services.label}
+          title={ui.services.title}
+          subtitle={ui.services.subtitle}
           center
         />
 
@@ -48,7 +48,7 @@ export default function Services() {
                     ))}
                   </ul>
                   {/* Gold bottom accent on hover */}
-                  <div className="absolute bottom-0 left-0 w-0 h-0.5 bg-gold-500 group-hover:w-full transition-all duration-500" />
+                  <div className="absolute bottom-0 start-0 w-0 h-0.5 bg-gold-500 group-hover:w-full transition-all duration-500" />
                 </motion.div>
               </AnimateIn>
             )
@@ -58,10 +58,10 @@ export default function Services() {
         <AnimateIn delay={0.5}>
           <div className="text-center mt-14">
             <p className="text-charcoal-500 dark:text-charcoal-400 mb-6">
-              Ready to transform your space?
+              {ui.services.ready}
             </p>
             <a href="#contact" className="btn-gold rounded-none text-xs tracking-[0.2em] uppercase inline-block">
-              <span>Start a Project</span>
+              <span>{ui.services.start}</span>
             </a>
           </div>
         </AnimateIn>

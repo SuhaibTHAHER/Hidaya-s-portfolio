@@ -2,22 +2,22 @@
 import { motion } from 'framer-motion'
 import AnimateIn from '@/components/ui/AnimateIn'
 import SectionHeader from '@/components/ui/SectionHeader'
-import { education } from '@/lib/data'
+import type { SiteContent } from '@/lib/content'
 
-export default function Education() {
+export default function Education({ ui, education }: Pick<SiteContent, 'ui' | 'education'>) {
   return (
     <section id="education" className="section-padding bg-cream-50 dark:bg-charcoal-950">
       <div className="container-luxury">
         <SectionHeader
-          label="Education"
-          title="Academic Foundation"
-          subtitle="A Bachelor of Interior Design from An-Najah National University, completed in three years."
+          label={ui.education.label}
+          title={ui.education.title}
+          subtitle={ui.education.subtitle}
         />
 
         <div className="mt-16 max-w-3xl mx-auto">
           <div className="relative">
             {/* Timeline vertical line */}
-            <div className="absolute left-6 top-0 bottom-0 w-px bg-gradient-to-b from-gold-500 via-gold-300 to-transparent" />
+            <div className="absolute start-6 top-0 bottom-0 w-px bg-gradient-to-b from-gold-500 via-gold-300 to-transparent" />
 
             {education.map((item, i) => (
               <AnimateIn key={item.id} delay={i * 0.2} direction="left">
@@ -35,8 +35,8 @@ export default function Education() {
                           <h3 className="font-serif text-xl text-charcoal-900 dark:text-cream-100">{item.institution}</h3>
                           <p className="text-charcoal-500 dark:text-charcoal-400 mt-1">{item.degree}</p>
                         </div>
-                        <div className="text-right flex-shrink-0">
-                          <span className="inline-block px-3 py-1 text-xs tracking-wider bg-gold-100 dark:bg-charcoal-800 text-gold-800 dark:text-gold-400 border border-gold-300 dark:border-gold-800">
+                        <div className="text-end flex-shrink-0">
+                          <span dir="ltr" className="inline-block px-3 py-1 text-xs tracking-wider bg-gold-100 dark:bg-charcoal-800 text-gold-800 dark:text-gold-400 border border-gold-300 dark:border-gold-800">
                             {item.period}
                           </span>
                           {item.distinction && (

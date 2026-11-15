@@ -2,9 +2,12 @@
 import { motion } from 'framer-motion'
 import { ArrowDown, ExternalLink } from 'lucide-react'
 import Image from 'next/image'
-import { personalInfo, stats } from '@/lib/data'
+import type { SiteContent } from '@/lib/content'
 
-export default function Hero() {
+type Props = Pick<SiteContent, 'ui' | 'personal' | 'stats' | 'locale'>
+
+export default function Hero({ ui, personal: personalInfo, stats, locale }: Props) {
+  const rtl = locale === 'ar'
   return (
     <section className="relative min-h-screen flex items-center overflow-hidden bg-cream-50 dark:bg-charcoal-950">
       {/* Background Pattern */}
@@ -21,7 +24,7 @@ export default function Hero() {
         initial={{ scaleY: 0 }}
         animate={{ scaleY: 1 }}
         transition={{ duration: 1.2, delay: 0.5, ease: [0.22, 1, 0.36, 1] }}
-        className="absolute left-2 md:left-4 top-1/4 bottom-1/4 w-px bg-gradient-to-b from-transparent via-gold-500 to-transparent origin-top"
+        className="absolute start-2 md:start-4 top-1/4 bottom-1/4 w-px bg-gradient-to-b from-transparent via-gold-500 to-transparent origin-top"
       />
 
       <div className="container-luxury w-full pt-28 pb-20">
@@ -36,8 +39,8 @@ export default function Hero() {
                 {personalInfo.name} · {personalInfo.title} · {personalInfo.location}
               </span>{' '}
               <span className="block motion-safe:animate-hero-up" style={{ animationDelay: '0.12s' }}>
-                Crafting Spaces <br />
-                <span className="italic text-gold-gradient">That Breathe</span>
+                {ui.hero.line1} <br />
+                <span className="italic rtl:not-italic text-gold-gradient">{ui.hero.line2}</span>
               </span>
             </h1>
 
@@ -45,19 +48,18 @@ export default function Hero() {
               className="text-lg text-charcoal-500 dark:text-charcoal-400 max-w-xl leading-relaxed mb-10 motion-safe:animate-hero-up"
               style={{ animationDelay: '0.25s' }}
             >
-              I design interiors that tell stories — spaces where architecture,
-              material, and light work together to create experiences worth remembering.
+              {ui.hero.intro}
             </p>
 
             <div className="flex flex-wrap gap-4 motion-safe:animate-hero-up" style={{ animationDelay: '0.4s' }}>
               <a href="#projects" className="btn-gold rounded-none group">
                 <span className="flex items-center gap-2 text-sm tracking-[0.1em] uppercase">
-                  View Portfolio
-                  <ExternalLink size={15} aria-hidden="true" />
+                  {ui.hero.ctaPortfolio}
+                  <ExternalLink size={15} aria-hidden="true" className="rtl:-scale-x-100" />
                 </span>
               </a>
               <a href="#contact" className="btn-outline-gold rounded-none">
-                <span className="text-sm tracking-[0.1em] uppercase">Let&apos;s Talk</span>
+                <span className="text-sm tracking-[0.1em] uppercase">{ui.hero.ctaTalk}</span>
               </a>
             </div>
 
@@ -70,7 +72,7 @@ export default function Hero() {
                 <div key={stat.label} className="flex flex-col-reverse">
                   <dt className="text-xs tracking-widest uppercase text-charcoal-500 dark:text-charcoal-400 mt-1">{stat.short}</dt>
                   <dd className="font-serif text-2xl font-medium text-charcoal-900 dark:text-cream-100">
-                    {stat.value}{stat.suffix}
+                    <span dir="ltr">{stat.value}{stat.suffix}</span>
                   </dd>
                 </div>
               ))}
@@ -97,16 +99,16 @@ export default function Hero() {
 
               {/* Overlay card */}
               <motion.div
-                initial={{ opacity: 0, x: 30 }}
+                initial={{ opacity: 0, x: rtl ? -30 : 30 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.7, delay: 0.9 }}
-                className="absolute z-20 bottom-6 left-3 sm:-left-6 glass glass-solid p-4 shadow-xl"
+                className="absolute z-20 bottom-6 start-3 sm:-start-6 glass glass-solid p-4 shadow-xl"
               >
-                <p className="text-xs tracking-[0.15em] uppercase text-gold-800 dark:text-gold-500 mb-1">Currently</p>
-                <p className="font-serif text-sm text-charcoal-800 dark:text-cream-100">Available for Projects</p>
+                <p className="text-xs tracking-[0.15em] uppercase text-gold-800 dark:text-gold-500 mb-1">{ui.hero.currently}</p>
+                <p className="font-serif text-sm text-charcoal-800 dark:text-cream-100">{ui.hero.available}</p>
                 <p className="flex items-center gap-2 mt-2">
                   <span aria-hidden="true" className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
-                  <span className="text-xs text-charcoal-500 dark:text-charcoal-400">Open for collaboration</span>
+                  <span className="text-xs text-charcoal-500 dark:text-charcoal-400">{ui.hero.open}</span>
                 </p>
               </motion.div>
             </div>
@@ -120,10 +122,10 @@ export default function Hero() {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 1.2 }}
-        className="absolute bottom-8 left-1/2 lg:left-1/4 -translate-x-1/2 hidden sm:flex flex-col items-center gap-2 text-charcoal-500 dark:text-charcoal-400 hover:text-gold-600 transition-colors"
-        aria-label="Scroll to projects"
+        className="absolute bottom-8 start-1/2 lg:start-1/4 -translate-x-1/2 rtl:translate-x-1/2 hidden sm:flex flex-col items-center gap-2 text-charcoal-500 dark:text-charcoal-400 hover:text-gold-600 transition-colors"
+        aria-label={ui.hero.scrollLabel}
       >
-        <span className="text-xs tracking-[0.2em] uppercase">Scroll</span>
+        <span className="text-xs tracking-[0.2em] uppercase">{ui.hero.scroll}</span>
         <motion.span aria-hidden="true" animate={{ y: [0, 6, 0] }} transition={{ repeat: Infinity, duration: 1.5 }}>
           <ArrowDown size={16} />
         </motion.span>

@@ -1,5 +1,8 @@
 export const personalInfo = {
   name: 'Hidaya Thaher',
+  /** Arabic spellings of her name (both are in use), for structured data and the Arabic pages. */
+  nameAr: 'هداية ظاهر',
+  nameAlternates: ['هداية ظاهر', 'هدايه ظاهر'],
   title: 'Interior Designer',
   tagline: 'Transforming Spaces into Timeless Experiences',
   location: 'Nablus, Palestine',
@@ -62,7 +65,6 @@ export const skills = {
     { name: 'Client Communication', level: 92 },
     { name: 'Team Collaboration', level: 90 },
     { name: 'Technical Documentation', level: 85 },
-    { name: 'Site Coordination', level: 83 },
     { name: 'Presentation Design', level: 91 },
   ],
 }
@@ -107,7 +109,7 @@ export const experience = [
     type: 'Freelance',
     description: 'Independent interior design practice offering residential and commercial interior design, space planning and photorealistic 3D visualization, for clients in Palestine and remotely.',
     achievements: [] as string[],
-    skills: ['Full Project Management', 'Remote Consultation', 'Renovation Planning', 'Furniture Selection', 'Brand Identity'],
+    skills: ['Design Project Management', 'Remote Consultation', 'Renovation Planning', 'Furniture Selection', 'Brand Identity'],
   },
 ]
 
@@ -119,8 +121,8 @@ export const education = [
     period: '2022 — 2025',
     location: 'Nablus, Palestine',
     distinction: 'Completed in 3 Years',
-    note: 'Accelerated completion through exceptional academic performance and intensive study. Graduated ahead of standard 4-year curriculum through dedication and advanced coursework.',
-    highlights: ['Studio Design Excellence', 'Space Planning & Ergonomics', 'Materials & Sustainability', 'Digital Visualization'],
+    note: 'Completed the standard four-year program in three years through intensive study.',
+    highlights: ['Design Studio Work', 'Space Planning & Ergonomics', 'Materials & Sustainability', 'Digital Visualization'],
     icon: '🎓',
   },
   {
@@ -140,9 +142,9 @@ export const services = [
   {
     id: 1,
     title: 'Residential Interior Design',
-    description: 'Complete design solutions for homes, villas, and apartments — from concept through construction drawings to final styling.',
+    description: 'Complete design solutions for homes, villas, and apartments — from concept through construction drawings to a final styling plan.',
     icon: 'Home',
-    features: ['Concept Development', 'Space Planning', 'Furniture Selection', 'Material Palette', 'Lighting Design', 'Final Styling'],
+    features: ['Concept Development', 'Space Planning', 'Furniture Selection', 'Material Palette', 'Lighting Design', 'Styling Plan'],
   },
   {
     id: 2,
@@ -170,7 +172,7 @@ export const services = [
     title: 'Material Consultation',
     description: 'Expert guidance on materials, finishes, and textures that harmonize aesthetically and perform beautifully over time.',
     icon: 'Layers',
-    features: ['Material Sourcing', 'Finish Selection', 'Texture Curation', 'Durability Assessment', 'Sample Provision'],
+    features: ['Sourcing Recommendations', 'Finish Selection', 'Texture Curation', 'Durability Assessment', 'Finish Schedules'],
   },
   {
     id: 6,
@@ -182,16 +184,16 @@ export const services = [
   {
     id: 7,
     title: 'Furniture Selection',
-    description: 'Curated furniture sourcing and specification that balances beauty, durability, and budget precision.',
+    description: 'Curated furniture selection and specification that balances beauty, durability, and budget precision.',
     icon: 'Armchair',
-    features: ['Style Curation', 'Budget Management', 'Vendor Sourcing', 'Custom Specification', 'Procurement Support'],
+    features: ['Style Curation', 'Budget Awareness', 'Vendor Recommendations', 'Custom Specification', 'Furniture Schedules'],
   },
   {
     id: 8,
     title: 'Renovation Planning',
-    description: 'Comprehensive renovation roadmaps with phased timelines, contractor briefs, and budget management.',
+    description: 'Comprehensive renovation roadmaps with phased timelines, contractor briefs, and budget planning.',
     icon: 'Hammer',
-    features: ['Scope Definition', 'Phased Planning', 'Contractor Briefs', 'Budget Tracking', 'Site Coordination'],
+    features: ['Scope Definition', 'Phased Planning', 'Contractor Briefs', 'Budget Planning'],
   },
   {
     id: 9,
@@ -205,8 +207,14 @@ export const services = [
     title: 'Interior Styling',
     description: 'Finishing touches and accessory curation that complete a space and bring the design vision to its full expression.',
     icon: 'Sparkles',
-    features: ['Art Selection', 'Accessory Curation', 'Plant Styling', 'Textile Layering', 'Photography-Ready Staging'],
+    features: ['Art Selection', 'Accessory Curation', 'Plant Styling', 'Textile Layering', 'Styling Guidance'],
   },
+]
+
+export const expertise = [
+  'Residential Design', 'Commercial Design', 'Space Planning',
+  'Material Selection', 'Interior Styling', 'Human-Centered Design',
+  'Visual Storytelling', 'Lighting Design',
 ]
 
 export const interests = [

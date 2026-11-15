@@ -4,16 +4,17 @@ import { motion } from 'framer-motion'
 import { Mail, Phone, MapPin, ExternalLink, Send, CheckCircle } from 'lucide-react'
 import AnimateIn from '@/components/ui/AnimateIn'
 import SectionHeader from '@/components/ui/SectionHeader'
-import { personalInfo } from '@/lib/data'
+import type { SiteContent } from '@/lib/content'
 
-export default function Contact() {
+export default function Contact({ ui, personal: personalInfo }: Pick<SiteContent, 'ui' | 'personal'>) {
+  const t = ui.contact
   const [form, setForm] = useState({ name: '', email: '', subject: '', message: '' })
   const [submitted, setSubmitted] = useState(false)
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
     // Create mailto link with form data
-    const mailto = `mailto:${personalInfo.email}?subject=${encodeURIComponent(form.subject || 'Portfolio Inquiry')}&body=${encodeURIComponent(`Name: ${form.name}\nEmail: ${form.email}\n\n${form.message}`)}`
+    const mailto = `mailto:${personalInfo.email}?subject=${encodeURIComponent(form.subject || t.mailSubject)}&body=${encodeURIComponent(`${t.mailName}: ${form.name}\n${t.mailEmail}: ${form.email}\n\n${form.message}`)}`
     window.open(mailto)
     setSubmitted(true)
     setTimeout(() => setSubmitted(false), 5000)
@@ -23,9 +24,9 @@ export default function Contact() {
     <section id="contact" className="section-padding overflow-x-clip bg-cream-50 dark:bg-charcoal-950">
       <div className="container-luxury">
         <SectionHeader
-          label="Contact"
-          title="Let's Create Together"
-          subtitle="Whether you have a project in mind or simply want to explore possibilities, I'd love to hear from you."
+          label={t.label}
+          title={t.title}
+          subtitle={t.subtitle}
         />
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 mt-16">
@@ -39,7 +40,7 @@ export default function Contact() {
                       <Mail size={20} aria-hidden="true" />
                     </div>
                     <div>
-                      <p className="text-xs tracking-[0.2em] uppercase text-charcoal-500 dark:text-charcoal-400 mb-1">Email</p>
+                      <p className="text-xs tracking-[0.2em] uppercase text-charcoal-500 dark:text-charcoal-400 mb-1">{t.email}</p>
                       <a
                         href={`mailto:${personalInfo.email}`}
                         className="font-medium text-charcoal-800 dark:text-cream-100 hover:text-gold-600 transition-colors"
@@ -56,12 +57,12 @@ export default function Contact() {
                       <Phone size={20} aria-hidden="true" />
                     </div>
                     <div>
-                      <p className="text-xs tracking-[0.2em] uppercase text-charcoal-500 dark:text-charcoal-400 mb-1">Phone</p>
+                      <p className="text-xs tracking-[0.2em] uppercase text-charcoal-500 dark:text-charcoal-400 mb-1">{t.phone}</p>
                       <a
                         href={`tel:${personalInfo.phone.replace(/\s/g, '')}`}
                         className="font-medium text-charcoal-800 dark:text-cream-100 hover:text-gold-600 transition-colors"
                       >
-                        {personalInfo.phone}
+                        <span dir="ltr">{personalInfo.phone}</span>
                       </a>
                     </div>
                   </div>
@@ -73,9 +74,9 @@ export default function Contact() {
                       <MapPin size={20} aria-hidden="true" />
                     </div>
                     <div>
-                      <p className="text-xs tracking-[0.2em] uppercase text-charcoal-500 dark:text-charcoal-400 mb-1">Location</p>
+                      <p className="text-xs tracking-[0.2em] uppercase text-charcoal-500 dark:text-charcoal-400 mb-1">{t.location}</p>
                       <p className="font-medium text-charcoal-800 dark:text-cream-100">{personalInfo.location}</p>
-                      <p className="text-xs text-charcoal-500 dark:text-charcoal-400 mt-0.5">Available for remote projects worldwide</p>
+                      <p className="text-xs text-charcoal-500 dark:text-charcoal-400 mt-0.5">{t.remote}</p>
                     </div>
                   </div>
                 </div>
@@ -84,17 +85,17 @@ export default function Contact() {
                 <div className="p-6 bg-charcoal-900 dark:bg-charcoal-900 border border-charcoal-800 group hover:border-gold-600 transition-colors">
                   <div className="flex items-center justify-between">
                     <div>
-                      <p className="text-xs tracking-[0.2em] uppercase text-charcoal-300 mb-1">Behance Portfolio</p>
-                      <p className="font-medium text-cream-100">View Design Work</p>
+                      <p className="text-xs tracking-[0.2em] uppercase text-charcoal-300 mb-1">{t.behance}</p>
+                      <p className="font-medium text-cream-100">{t.behanceCta}</p>
                     </div>
                     <a
                       href={personalInfo.behance}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="w-10 h-10 bg-gold-600 flex items-center justify-center text-white hover:bg-gold-500 transition-colors"
-                      aria-label="Visit Behance profile"
+                      aria-label={t.behanceLabel}
                     >
-                      <ExternalLink size={16} aria-hidden="true" />
+                      <ExternalLink size={16} aria-hidden="true" className="rtl:-scale-x-100" />
                     </a>
                   </div>
                 </div>
@@ -103,13 +104,13 @@ export default function Contact() {
 
             {/* Availability note */}
             <AnimateIn delay={0.4}>
-              <div className="mt-8 p-5 border-l-2 border-gold-500 bg-gold-50 dark:bg-charcoal-900">
+              <div className="mt-8 p-5 border-s-2 border-gold-500 bg-gold-50 dark:bg-charcoal-900">
                 <div className="flex items-center gap-2 mb-2">
                   <span aria-hidden="true" className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
-                  <span className="text-xs tracking-[0.15em] uppercase text-emerald-700 dark:text-emerald-400 font-medium">Available</span>
+                  <span className="text-xs tracking-[0.15em] uppercase text-emerald-700 dark:text-emerald-400 font-medium">{t.available}</span>
                 </div>
                 <p className="text-sm text-charcoal-600 dark:text-charcoal-300">
-                  Currently accepting new residential and commercial projects. Typical response within 24 hours.
+                  {t.availability}
                 </p>
               </div>
             </AnimateIn>
@@ -121,7 +122,7 @@ export default function Contact() {
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                 <div>
                   <label htmlFor="name" className="block text-xs tracking-[0.15em] uppercase text-charcoal-500 dark:text-charcoal-400 mb-2">
-                    Full Name *
+                    {t.nameLabel}
                   </label>
                   <input
                     id="name"
@@ -131,12 +132,12 @@ export default function Contact() {
                     value={form.name}
                     onChange={(e) => setForm({ ...form, name: e.target.value })}
                     className="w-full px-4 py-3 bg-cream-100 dark:bg-charcoal-900 border border-cream-300 dark:border-charcoal-700 text-charcoal-800 dark:text-cream-100 text-sm focus:border-gold-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-gold-700 dark:focus-visible:ring-gold-500 transition-colors placeholder:text-charcoal-500 dark:placeholder:text-charcoal-400"
-                    placeholder="Your name"
+                    placeholder={t.namePh}
                   />
                 </div>
                 <div>
                   <label htmlFor="email" className="block text-xs tracking-[0.15em] uppercase text-charcoal-500 dark:text-charcoal-400 mb-2">
-                    Email *
+                    {t.emailLabel}
                   </label>
                   <input
                     id="email"
@@ -146,14 +147,15 @@ export default function Contact() {
                     value={form.email}
                     onChange={(e) => setForm({ ...form, email: e.target.value })}
                     className="w-full px-4 py-3 bg-cream-100 dark:bg-charcoal-900 border border-cream-300 dark:border-charcoal-700 text-charcoal-800 dark:text-cream-100 text-sm focus:border-gold-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-gold-700 dark:focus-visible:ring-gold-500 transition-colors placeholder:text-charcoal-500 dark:placeholder:text-charcoal-400"
-                    placeholder="your@email.com"
+                    placeholder={t.emailPh}
+                    dir="ltr"
                   />
                 </div>
               </div>
 
               <div>
                 <label htmlFor="subject" className="block text-xs tracking-[0.15em] uppercase text-charcoal-500 dark:text-charcoal-400 mb-2">
-                  Subject
+                  {t.subjectLabel}
                 </label>
                 <input
                   id="subject"
@@ -161,13 +163,13 @@ export default function Contact() {
                   value={form.subject}
                   onChange={(e) => setForm({ ...form, subject: e.target.value })}
                   className="w-full px-4 py-3 bg-cream-100 dark:bg-charcoal-900 border border-cream-300 dark:border-charcoal-700 text-charcoal-800 dark:text-cream-100 text-sm focus:border-gold-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-gold-700 dark:focus-visible:ring-gold-500 transition-colors placeholder:text-charcoal-500 dark:placeholder:text-charcoal-400"
-                  placeholder="Project inquiry, collaboration..."
+                  placeholder={t.subjectPh}
                 />
               </div>
 
               <div>
                 <label htmlFor="message" className="block text-xs tracking-[0.15em] uppercase text-charcoal-500 dark:text-charcoal-400 mb-2">
-                  Message *
+                  {t.messageLabel}
                 </label>
                 <textarea
                   id="message"
@@ -176,7 +178,7 @@ export default function Contact() {
                   value={form.message}
                   onChange={(e) => setForm({ ...form, message: e.target.value })}
                   className="w-full px-4 py-3 bg-cream-100 dark:bg-charcoal-900 border border-cream-300 dark:border-charcoal-700 text-charcoal-800 dark:text-cream-100 text-sm focus:border-gold-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-gold-700 dark:focus-visible:ring-gold-500 transition-colors resize-none placeholder:text-charcoal-500 dark:placeholder:text-charcoal-400"
-                  placeholder="Tell me about your project, space, and vision..."
+                  placeholder={t.messagePh}
                 />
               </div>
 
@@ -184,11 +186,11 @@ export default function Contact() {
                 type="submit"
                 className="w-full btn-gold rounded-none flex items-center justify-center gap-2 text-sm tracking-[0.15em] uppercase"
               >
-                <span>{submitted ? 'Email app opened' : 'Send Message'}</span>
-                {submitted ? <CheckCircle size={16} /> : <Send size={16} />}
+                <span>{submitted ? t.sent : t.send}</span>
+                {submitted ? <CheckCircle size={16} aria-hidden="true" /> : <Send size={16} aria-hidden="true" className="rtl:-scale-x-100" />}
               </button>
               <p role="status" className="sr-only">
-                {submitted ? 'Your email app has been opened with your message.' : ''}
+                {submitted ? t.status : ''}
               </p>
             </form>
           </AnimateIn>

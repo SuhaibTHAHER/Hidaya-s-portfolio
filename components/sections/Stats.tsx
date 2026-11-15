@@ -2,9 +2,9 @@
 import CountUp from 'react-countup'
 import { useInView } from 'react-intersection-observer'
 import AnimateIn from '@/components/ui/AnimateIn'
-import { stats } from '@/lib/data'
+import type { SiteContent } from '@/lib/content'
 
-export default function Stats() {
+export default function Stats({ stats }: Pick<SiteContent, 'stats'>) {
   const [ref, inView] = useInView({ triggerOnce: true, threshold: 0.3 })
 
   return (
@@ -16,7 +16,7 @@ export default function Stats() {
               <div className="text-center group">
                 {/* Real figure in the HTML for crawlers and screen readers; the count-up is visual only. */}
                 <p className="sr-only">{stat.value}{stat.suffix} {stat.label}</p>
-                <div aria-hidden="true" className="font-serif text-5xl md:text-6xl font-medium text-cream-50 mb-2">
+                <div aria-hidden="true" dir="ltr" className="font-serif text-5xl md:text-6xl font-medium text-cream-50 mb-2">
                   {inView ? (
                     <CountUp end={stat.value} duration={2.5} delay={i * 0.2} />
                   ) : (

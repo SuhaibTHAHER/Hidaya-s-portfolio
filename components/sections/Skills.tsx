@@ -3,7 +3,7 @@ import { motion } from 'framer-motion'
 import { useInView } from 'react-intersection-observer'
 import AnimateIn from '@/components/ui/AnimateIn'
 import SectionHeader from '@/components/ui/SectionHeader'
-import { skills } from '@/lib/data'
+import type { SiteContent } from '@/lib/content'
 
 interface SkillBarProps {
   name: string
@@ -18,7 +18,7 @@ function SkillBar({ name, level, delay }: SkillBarProps) {
     <div ref={ref} className="group">
       <div className="flex justify-between items-center mb-2">
         <span className="text-sm font-medium text-charcoal-700 dark:text-cream-200">{name}</span>
-        <span className="text-xs text-gold-800 dark:text-gold-500 font-medium">{level}%</span>
+        <span dir="ltr" className="text-xs text-gold-800 dark:text-gold-500 font-medium">{level}%</span>
       </div>
       <div className="h-0.5 bg-cream-300 dark:bg-charcoal-700 overflow-hidden">
         <motion.div
@@ -43,14 +43,14 @@ const softwareIcons: Record<string, string> = {
   'Adobe InDesign': '📄',
 }
 
-export default function Skills() {
+export default function Skills({ ui, skills }: Pick<SiteContent, 'ui' | 'skills'>) {
   return (
     <section id="skills" className="section-padding bg-cream-100 dark:bg-charcoal-900">
       <div className="container-luxury">
         <SectionHeader
-          label="Skills"
-          title="Craft Meets Technology"
-          subtitle="A comprehensive skill set built across design thinking, digital tools, and project leadership."
+          label={ui.skills.label}
+          title={ui.skills.title}
+          subtitle={ui.skills.subtitle}
         />
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 mt-16">
@@ -60,8 +60,8 @@ export default function Skills() {
               <div className="flex items-center gap-3 mb-8">
                 <span aria-hidden="true" className="text-2xl">🏠</span>
                 <div>
-                  <h3 className="font-serif text-lg text-charcoal-800 dark:text-cream-100">Interior Design</h3>
-                  <p className="text-xs text-charcoal-500 dark:text-charcoal-400 mt-0.5">Core Competencies</p>
+                  <h3 className="font-serif text-lg text-charcoal-800 dark:text-cream-100">{ui.skills.design}</h3>
+                  <p className="text-xs text-charcoal-500 dark:text-charcoal-400 mt-0.5">{ui.skills.designSub}</p>
                 </div>
               </div>
               <div className="space-y-5">
@@ -78,8 +78,8 @@ export default function Skills() {
               <div className="flex items-center gap-3 mb-8">
                 <span aria-hidden="true" className="text-2xl">💻</span>
                 <div>
-                  <h3 className="font-serif text-lg text-charcoal-800 dark:text-cream-100">Software</h3>
-                  <p className="text-xs text-charcoal-500 dark:text-charcoal-400 mt-0.5">Digital Toolset</p>
+                  <h3 className="font-serif text-lg text-charcoal-800 dark:text-cream-100">{ui.skills.software}</h3>
+                  <p className="text-xs text-charcoal-500 dark:text-charcoal-400 mt-0.5">{ui.skills.softwareSub}</p>
                 </div>
               </div>
               <div className="space-y-5">
@@ -96,8 +96,8 @@ export default function Skills() {
               <div className="flex items-center gap-3 mb-8">
                 <span aria-hidden="true" className="text-2xl">💼</span>
                 <div>
-                  <h3 className="font-serif text-lg text-charcoal-800 dark:text-cream-100">Business</h3>
-                  <p className="text-xs text-charcoal-500 dark:text-charcoal-400 mt-0.5">Professional Skills</p>
+                  <h3 className="font-serif text-lg text-charcoal-800 dark:text-cream-100">{ui.skills.business}</h3>
+                  <p className="text-xs text-charcoal-500 dark:text-charcoal-400 mt-0.5">{ui.skills.businessSub}</p>
                 </div>
               </div>
               <div className="space-y-5">
@@ -108,7 +108,7 @@ export default function Skills() {
 
               {/* Software icons grid */}
               <div className="mt-10 pt-8 border-t border-cream-300 dark:border-charcoal-700">
-                <p className="text-xs tracking-[0.2em] uppercase text-gold-800 dark:text-gold-500 mb-5">Design Software</p>
+                <p className="text-xs tracking-[0.2em] uppercase text-gold-800 dark:text-gold-500 mb-5">{ui.skills.designSoftware}</p>
                 <div className="grid grid-cols-4 gap-3">
                   {skills.software.map((skill) => (
                     <div

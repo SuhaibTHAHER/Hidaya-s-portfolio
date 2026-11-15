@@ -1,51 +1,27 @@
 import type { Metadata, Viewport } from 'next'
 import { Playfair_Display, Inter } from 'next/font/google'
 import { Analytics } from '@vercel/analytics/next'
-import './globals.css'
+import '../globals.css'
 import { ThemeProvider } from '@/components/providers/ThemeProvider'
+import { DirProvider } from '@/components/providers/DirProvider'
 import JsonLd from '@/components/seo/JsonLd'
-import { SITE_URL, SITE_NAME, DEFAULT_DESCRIPTION, OG_IMAGE, siteGraph } from '@/lib/site'
+import { SITE_URL, SITE_NAMES, DESCRIPTIONS, OG_IMAGES, HOME_TITLES, siteGraph } from '@/lib/site'
 
 // Variable fonts: one file per family covers every weight used on the site.
-const playfair = Playfair_Display({
-  subsets: ['latin'],
-  style: ['normal', 'italic'],
-  variable: '--font-playfair',
-  display: 'swap',
-})
-
-const inter = Inter({
-  subsets: ['latin'],
-  variable: '--font-inter',
-  display: 'swap',
-})
+const playfair = Playfair_Display({ subsets: ['latin'], style: ['normal', 'italic'], variable: '--font-playfair', display: 'swap' })
+const inter = Inter({ subsets: ['latin'], variable: '--font-inter', display: 'swap' })
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
-  title: {
-    default: 'Hidaya Thaher — Interior Designer in Nablus, Palestine',
-    template: '%s | Hidaya Thaher',
-  },
-  description: DEFAULT_DESCRIPTION,
-  applicationName: 'Hidaya Thaher — Interior Designer',
+  title: { default: HOME_TITLES.en, template: '%s | Hidaya Thaher' },
+  description: DESCRIPTIONS.en,
+  applicationName: SITE_NAMES.en,
   authors: [{ name: 'Hidaya Thaher', url: SITE_URL }],
   creator: 'Hidaya Thaher',
   publisher: 'Hidaya Thaher',
-  // Canonical and og:url are set per page (never inherited) so no page can canonicalize to another.
-  openGraph: {
-    type: 'website',
-    locale: 'en_US',
-    siteName: SITE_NAME,
-    title: 'Hidaya Thaher — Interior Designer in Nablus, Palestine',
-    description: DEFAULT_DESCRIPTION,
-    images: [OG_IMAGE],
-  },
-  twitter: {
-    card: 'summary_large_image',
-    title: 'Hidaya Thaher — Interior Designer in Nablus, Palestine',
-    description: DEFAULT_DESCRIPTION,
-    images: [OG_IMAGE.url],
-  },
+  // Canonical, hreflang and og:url are set per page (never inherited) so no page can canonicalize to another.
+  openGraph: { type: 'website', locale: 'en_US', siteName: SITE_NAMES.en, title: HOME_TITLES.en, description: DESCRIPTIONS.en, images: [OG_IMAGES.en] },
+  twitter: { card: 'summary_large_image', title: HOME_TITLES.en, description: DESCRIPTIONS.en, images: [OG_IMAGES.en.url] },
   robots: {
     index: true,
     follow: true,
@@ -63,13 +39,13 @@ export const viewport: Viewport = {
   ],
 }
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default function EnglishRootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" dir="ltr" suppressHydrationWarning className={`${playfair.variable} ${inter.variable}`}>
       <body className="bg-cream-50 dark:bg-charcoal-950 text-charcoal-800 dark:text-cream-100 transition-colors duration-300">
         <JsonLd data={siteGraph()} />
         <ThemeProvider attribute="class" defaultTheme="light" enableSystem={false}>
-          {children}
+          <DirProvider dir="ltr">{children}</DirProvider>
         </ThemeProvider>
         {process.env.VERCEL && <Analytics />}
       </body>

@@ -4,18 +4,18 @@ import { motion } from 'framer-motion'
 import { ChevronDown, MapPin, Calendar, Award } from 'lucide-react'
 import AnimateIn from '@/components/ui/AnimateIn'
 import SectionHeader from '@/components/ui/SectionHeader'
-import { experience } from '@/lib/data'
+import type { SiteContent } from '@/lib/content'
 
-export default function Experience() {
+export default function Experience({ ui, experience }: Pick<SiteContent, 'ui' | 'experience'>) {
   const [activeId, setActiveId] = useState<number>(experience[experience.length - 1].id)
 
   return (
     <section id="experience" className="section-padding bg-cream-100 dark:bg-charcoal-900">
       <div className="container-luxury">
         <SectionHeader
-          label="Experience"
-          title="Professional Journey"
-          subtitle="From a design studio and a custom doors company in Nablus to independent practice."
+          label={ui.experience.label}
+          title={ui.experience.title}
+          subtitle={ui.experience.subtitle}
         />
 
         <div className="mt-16 space-y-4">
@@ -25,7 +25,7 @@ export default function Experience() {
                 {/* Header */}
                 <button
                   onClick={() => setActiveId(activeId === job.id ? -1 : job.id)}
-                  className="w-full flex items-start justify-between gap-4 p-6 md:p-8 text-left"
+                  className="w-full flex items-start justify-between gap-4 p-6 md:p-8 text-start"
                   aria-expanded={activeId === job.id}
                   aria-controls={`job-${job.id}`}
                 >
@@ -84,12 +84,12 @@ export default function Experience() {
                         <div>
                           <h4 className="text-xs tracking-[0.2em] uppercase text-gold-800 dark:text-gold-500 mb-4 flex items-center gap-2">
                             <Award size={13} aria-hidden="true" />
-                            Key Achievements
+                            {ui.experience.achievements}
                           </h4>
                           <ul className="space-y-3">
                             {job.achievements.map((achievement, idx) => (
                               <li key={idx} className="flex gap-3 text-sm text-charcoal-600 dark:text-charcoal-300">
-                                <span aria-hidden="true" className="text-gold-600 mt-0.5 flex-shrink-0">▸</span>
+                                <span aria-hidden="true" className="text-gold-600 mt-0.5 flex-shrink-0 rtl:-scale-x-100 inline-block">▸</span>
                                 <span>{achievement}</span>
                               </li>
                             ))}
@@ -99,7 +99,7 @@ export default function Experience() {
 
                         {/* Skills Used */}
                         <div>
-                          <h4 className="text-xs tracking-[0.2em] uppercase text-gold-800 dark:text-gold-500 mb-4">Skills Applied</h4>
+                          <h4 className="text-xs tracking-[0.2em] uppercase text-gold-800 dark:text-gold-500 mb-4">{ui.experience.skillsApplied}</h4>
                           <div className="flex flex-wrap gap-2">
                             {job.skills.map((skill) => (
                               <span

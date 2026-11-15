@@ -1,6 +1,8 @@
 import type { Metadata } from 'next'
 import { personalInfo, services, education } from '@/lib/data'
-import type { Project } from '@/lib/projects'
+import type { LocalizedProject } from '@/lib/content'
+import type { UI } from '@/lib/content/ui'
+import { type Locale, localePath, languageAlternates, ogLocale, otherLocale } from '@/lib/i18n'
 
 /**
  * Canonical origin of the site: the custom domain connected to the Vercel project.
@@ -10,20 +12,33 @@ import type { Project } from '@/lib/projects'
  */
 export const SITE_URL = (process.env.NEXT_PUBLIC_SITE_URL || 'https://hidayathaher.com').replace(/\/+$/, '')
 
-export const SITE_NAME = 'Hidaya Thaher — Interior Designer'
+export const SITE_NAMES: Record<Locale, string> = {
+  en: 'Hidaya Thaher — Interior Designer',
+  ar: 'هداية ظاهر — مصممة داخلية',
+}
+export const SITE_NAME = SITE_NAMES.en
 
 /** Date the site content was last meaningfully updated (used for sitemap lastmod and dateModified). */
 export const CONTENT_UPDATED = '2026-11-15'
 
-export const DEFAULT_DESCRIPTION =
-  'Hidaya Thaher is an interior designer in Nablus, Palestine, creating residential and commercial interiors with space planning and photorealistic 3D renders.'
-
-export const OG_IMAGE = {
-  url: '/og/hidaya-thaher-interior-designer.jpg',
-  width: 1200,
-  height: 630,
-  alt: 'Hidaya Thaher, interior designer in Nablus, Palestine',
+export const DESCRIPTIONS: Record<Locale, string> = {
+  en: 'Hidaya Thaher is an interior designer in Nablus, Palestine, creating residential and commercial interiors with space planning and photorealistic 3D renders.',
+  ar: 'هداية ظاهر مصممة داخلية في نابلس، فلسطين، تصمّم مساحات سكنية وتجارية بتخطيط مدروس للمساحة وتصاميم ثلاثية الأبعاد واقعية.',
 }
+export const DEFAULT_DESCRIPTION = DESCRIPTIONS.en
+
+export const HOME_TITLES: Record<Locale, string> = {
+  en: 'Hidaya Thaher — Interior Designer in Nablus, Palestine',
+  ar: 'هداية ظاهر — مصممة داخلية في نابلس، فلسطين',
+}
+
+const TITLE_SUFFIX: Record<Locale, string> = { en: ' | Hidaya Thaher', ar: ' | هداية ظاهر' }
+
+export const OG_IMAGES: Record<Locale, PageImage> = {
+  en: { url: '/og/hidaya-thaher-interior-designer.jpg', width: 1200, height: 630, alt: 'Hidaya Thaher, interior designer in Nablus, Palestine' },
+  ar: { url: '/og/hidaya-thaher-interior-designer-ar.jpg', width: 1200, height: 630, alt: 'هداية ظاهر، مصممة داخلية في نابلس، فلسطين' },
+}
+export const OG_IMAGE = OG_IMAGES.en
 
 /** Absolute URL; the home page is written without a trailing slash, matching its canonical. */
 export const absoluteUrl = (path = '/') =>
@@ -33,7 +48,7 @@ export const ids = {
   person: `${SITE_URL}/#person`,
   portrait: `${SITE_URL}/#portrait`,
   website: `${SITE_URL}/#website`,
-  homePage: `${SITE_URL}/#webpage`,
+  homePage: (locale: Locale) => `${absoluteUrl(localePath(locale, '/'))}#webpage`,
 }
 
 /** Truncate at a word boundary without cutting words in half. */
@@ -48,16 +63,20 @@ type PageImage = { url: string; width: number; height: number; alt: string }
 
 /**
  * Complete per-page metadata. Next.js replaces (does not merge) a parent's openGraph/twitter
- * objects, so every page builds the full set here: canonical, og:url, title, description, image.
+ * objects, so every page builds the full set here: canonical, hreflang alternates, og:url,
+ * og:locale, title, description and image. `path` is the language-neutral path ('/projects');
+ * the canonical becomes '/projects' (en) or '/ar/projects' (ar).
  */
 export function pageMetadata({
+  locale = 'en',
   title,
   description,
   path,
-  image = OG_IMAGE,
+  image,
   absoluteTitle = false,
   type = 'website',
 }: {
+  locale?: Locale
   title: string
   description: string
   path: string
@@ -65,35 +84,45 @@ export function pageMetadata({
   absoluteTitle?: boolean
   type?: 'website' | 'article'
 }): Metadata {
-  const fullTitle = absoluteTitle ? title : `${title} | Hidaya Thaher`
+  const img = image ?? OG_IMAGES[locale]
+  const canonical = localePath(locale, path)
+  const fullTitle = absoluteTitle ? title : `${title}${TITLE_SUFFIX[locale]}`
   return {
-    title: absoluteTitle ? { absolute: title } : title,
+    title: { absolute: fullTitle },
     description,
-    alternates: { canonical: path },
+    alternates: { canonical, languages: languageAlternates(path) },
     openGraph: {
       type,
-      locale: 'en_US',
-      siteName: SITE_NAME,
-      url: path,
+      locale: ogLocale[locale],
+      alternateLocale: [ogLocale[otherLocale(locale)]],
+      siteName: SITE_NAMES[locale],
+      url: canonical,
       title: fullTitle,
       description,
-      images: [image],
+      images: [img],
     },
     twitter: {
       card: 'summary_large_image',
       title: fullTitle,
       description,
-      images: [{ url: image.url, alt: image.alt }],
+      images: [{ url: img.url, alt: img.alt }],
     },
   }
 }
 
+const areaServed = [
+  { '@type': 'City', name: 'Nablus' },
+  { '@type': 'Country', name: 'Palestine' },
+]
+
+/** One Person entity for both languages (same @id everywhere), with her Arabic name as alternateName. */
 const personNode = () => ({
   '@type': 'Person',
   '@id': ids.person,
   name: personalInfo.name,
+  alternateName: personalInfo.nameAlternates,
   jobTitle: personalInfo.title,
-  description: DEFAULT_DESCRIPTION,
+  description: DESCRIPTIONS.en,
   url: SITE_URL,
   image: {
     '@type': 'ImageObject',
@@ -106,14 +135,12 @@ const personNode = () => ({
   },
   email: `mailto:${personalInfo.email}`,
   telephone: personalInfo.phone.replace(/\s/g, ''),
-  address: {
-    '@type': 'PostalAddress',
-    addressLocality: 'Nablus',
-    addressCountry: 'PS',
-  },
+  address: { '@type': 'PostalAddress', addressLocality: 'Nablus', addressCountry: 'PS' },
+  workLocation: { '@type': 'Place', address: { '@type': 'PostalAddress', addressLocality: 'Nablus', addressCountry: 'PS' } },
   alumniOf: {
     '@type': 'CollegeOrUniversity',
     name: education[0].institution,
+    alternateName: 'جامعة النجاح الوطنية',
     address: { '@type': 'PostalAddress', addressLocality: 'Nablus', addressCountry: 'PS' },
   },
   hasCredential: {
@@ -124,20 +151,13 @@ const personNode = () => ({
   },
   knowsLanguage: ['ar', 'en'],
   knowsAbout: [
-    'Interior design',
-    'Space planning',
-    'Residential interior design',
-    'Commercial interior design',
-    '3D visualization',
-    'Furniture design',
-    'Custom door design',
-    'AutoCAD',
-    '3ds Max',
-    'V-Ray',
+    'Interior design', 'Space planning', 'Residential interior design', 'Commercial interior design',
+    '3D visualization', 'Furniture design', 'Custom door design', 'AutoCAD', '3ds Max', 'V-Ray',
+    'التصميم الداخلي', 'الديكور', 'التصميم ثلاثي الأبعاد',
   ],
   makesOffer: services.map((s) => ({
     '@type': 'Offer',
-    itemOffered: { '@type': 'Service', name: s.title, description: s.description },
+    itemOffered: { '@type': 'Service', name: s.title, description: s.description, areaServed },
   })),
 })
 
@@ -146,29 +166,29 @@ const websiteNode = () => ({
   '@id': ids.website,
   url: SITE_URL,
   name: personalInfo.name,
-  alternateName: SITE_NAME,
-  description: DEFAULT_DESCRIPTION,
-  inLanguage: 'en',
+  alternateName: [SITE_NAMES.en, SITE_NAMES.ar, personalInfo.nameAr],
+  description: DESCRIPTIONS.en,
+  inLanguage: ['en', 'ar'],
   publisher: { '@id': ids.person },
   author: { '@id': ids.person },
 })
 
-/** Site-wide graph: the WebSite and the Person behind it. */
+/** Site-wide graph: the WebSite and the Person behind it (identical on every page, both languages). */
 export function siteGraph() {
   return { '@context': 'https://schema.org', '@graph': [websiteNode(), personNode()] }
 }
 
-export function homePageGraph() {
+export function homePageGraph(locale: Locale = 'en') {
   return {
     '@context': 'https://schema.org',
     '@graph': [
       {
         '@type': 'ProfilePage',
-        '@id': ids.homePage,
-        url: SITE_URL,
-        name: SITE_NAME,
-        description: DEFAULT_DESCRIPTION,
-        inLanguage: 'en',
+        '@id': ids.homePage(locale),
+        url: absoluteUrl(localePath(locale, '/')),
+        name: HOME_TITLES[locale],
+        description: DESCRIPTIONS[locale],
+        inLanguage: locale,
         isPartOf: { '@id': ids.website },
         mainEntity: { '@id': ids.person },
         about: { '@id': ids.person },
@@ -189,8 +209,8 @@ const breadcrumb = (items: { name: string; path: string }[]) => ({
   })),
 })
 
-export function projectsIndexGraph(projects: Project[]) {
-  const url = absoluteUrl('/projects')
+export function projectsIndexGraph(projects: LocalizedProject[], locale: Locale = 'en', ui?: UI) {
+  const url = absoluteUrl(localePath(locale, '/projects'))
   return {
     '@context': 'https://schema.org',
     '@graph': [
@@ -198,8 +218,8 @@ export function projectsIndexGraph(projects: Project[]) {
         '@type': 'CollectionPage',
         '@id': `${url}#webpage`,
         url,
-        name: 'Interior Design Projects by Hidaya Thaher',
-        inLanguage: 'en',
+        name: ui ? `${ui.projectsPage.h1}${TITLE_SUFFIX[locale].replace(' | ', ' — ')}` : 'Interior Design Projects by Hidaya Thaher',
+        inLanguage: locale,
         isPartOf: { '@id': ids.website },
         about: { '@id': ids.person },
         mainEntity: {
@@ -208,21 +228,23 @@ export function projectsIndexGraph(projects: Project[]) {
           itemListElement: projects.map((p, i) => ({
             '@type': 'ListItem',
             position: i + 1,
-            url: absoluteUrl(`/projects/${p.slug}`),
+            url: absoluteUrl(localePath(locale, `/projects/${p.slug}`)),
             name: p.title,
           })),
         },
       },
       breadcrumb([
-        { name: 'Home', path: '/' },
-        { name: 'Projects', path: '/projects' },
+        { name: ui?.crumbs.home ?? 'Home', path: localePath(locale, '/') },
+        { name: ui?.crumbs.projects ?? 'Projects', path: localePath(locale, '/projects') },
       ]),
     ],
   }
 }
 
-export function projectGraph(project: Project) {
-  const url = absoluteUrl(`/projects/${project.slug}`)
+export function projectGraph(project: LocalizedProject, locale: Locale = 'en', ui?: UI) {
+  const url = absoluteUrl(localePath(locale, `/projects/${project.slug}`))
+  // Image nodes carry language-specific descriptions, so each language gets its own @id.
+  const imgId = (src: string) => `${absoluteUrl(src)}#image${locale === 'en' ? '' : `-${locale}`}`
   return {
     '@context': 'https://schema.org',
     '@graph': [
@@ -231,29 +253,29 @@ export function projectGraph(project: Project) {
         '@id': `${url}#webpage`,
         url,
         name: project.title,
-        inLanguage: 'en',
+        inLanguage: locale,
         isPartOf: { '@id': ids.website },
         mainEntity: { '@id': `${url}#work` },
-        primaryImageOfPage: { '@id': `${absoluteUrl(project.cover.src)}#image` },
+        primaryImageOfPage: { '@id': imgId(project.cover.src) },
         dateModified: CONTENT_UPDATED,
       },
       {
         '@type': 'CreativeWork',
         '@id': `${url}#work`,
         name: project.title,
-        alternateName: project.titleAr,
+        alternateName: project.otherTitle,
         description: project.overview,
-        genre: 'Interior design',
+        genre: locale === 'ar' ? 'تصميم داخلي' : 'Interior design',
         about: project.projectType,
-        keywords: project.tags.join(', '),
-        inLanguage: 'en',
+        keywords: project.tags.join(locale === 'ar' ? '، ' : ', '),
+        inLanguage: locale,
         url,
         creator: { '@id': ids.person },
         author: { '@id': ids.person },
         isPartOf: { '@id': ids.website },
         image: project.images.map((img) => ({
           '@type': 'ImageObject',
-          '@id': `${absoluteUrl(img.src)}#image`,
+          '@id': imgId(img.src),
           contentUrl: absoluteUrl(img.src),
           url: absoluteUrl(img.src),
           width: img.width,
@@ -262,13 +284,13 @@ export function projectGraph(project: Project) {
           ...(img.src === project.cover.src ? {} : { caption: img.caption }),
           description: img.alt,
           creator: { '@id': ids.person },
-          creditText: personalInfo.name,
+          creditText: locale === 'ar' ? personalInfo.nameAr : personalInfo.name,
         })),
       },
       breadcrumb([
-        { name: 'Home', path: '/' },
-        { name: 'Projects', path: '/projects' },
-        { name: project.title, path: `/projects/${project.slug}` },
+        { name: ui?.crumbs.home ?? 'Home', path: localePath(locale, '/') },
+        { name: ui?.crumbs.projects ?? 'Projects', path: localePath(locale, '/projects') },
+        { name: project.title, path: localePath(locale, `/projects/${project.slug}`) },
       ]),
     ],
   }
