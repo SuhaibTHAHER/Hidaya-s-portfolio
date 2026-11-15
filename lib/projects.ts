@@ -29,6 +29,8 @@ export type Project = {
 
 // Real projects from Hidaya Thaher's portfolio (3D visualizations). Text describes only what the
 // renderings show: no clients, dates, locations or results are claimed.
+// Real projects from Hidaya Thaher's portfolio (3D visualizations). Text describes only what the
+// renderings show: no clients, dates, locations or results are claimed.
 export const projects: Project[] = [
   {
     "slug": "restaurant-interior",
@@ -154,9 +156,9 @@ export const projects: Project[] = [
     ]
   },
   {
-    "slug": "faber-castell-exhibition",
-    "title": "Faber-Castell Showroom — Design Concept",
-    "titleAr": "معرض فابر كاستل",
+    "slug": "art-supply-showroom",
+    "title": "Art-Supply Showroom — Design Concept",
+    "titleAr": "معرض أدوات فنية",
     "subtitle": "Art-supply showroom with category bays, a children's area and a workshop zone",
     "category": "Retail",
     "projectType": "Art-supply showroom",
@@ -197,13 +199,13 @@ export const projects: Project[] = [
       }
     ],
     "palette": [
-      "#1E3A26",
-      "#F5F5F3",
-      "#C8A97E",
-      "#DADBDD",
-      "#3AACAF",
-      "#8A9150",
-      "#B3203A"
+      "Deep green #1E3A26",
+      "Off-white #F5F5F3",
+      "Light oak #C8A97E",
+      "Pale grey #DADBDD",
+      "Teal #3AACAF",
+      "Olive green #8A9150",
+      "Crimson #B3203A"
     ],
     "tags": [
       "Retail",
@@ -212,7 +214,7 @@ export const projects: Project[] = [
     ],
     "featured": true,
     "cover": {
-      "src": "/images/projects/faber-castell-exhibition/reception-desk-with-green-cube-wall.jpg",
+      "src": "/images/projects/art-supply-showroom/reception-desk-with-green-cube-wall.jpg",
       "alt": "3D rendering of a showroom reception counter in light wood, set against a cube wall graded from green to teal",
       "caption": "Reception counter and green-to-teal cube wall",
       "width": 1250,
@@ -220,56 +222,56 @@ export const projects: Project[] = [
     },
     "images": [
       {
-        "src": "/images/projects/faber-castell-exhibition/reception-desk-with-green-cube-wall.jpg",
+        "src": "/images/projects/art-supply-showroom/reception-desk-with-green-cube-wall.jpg",
         "alt": "3D rendering of a showroom reception counter in light wood, set against a cube wall graded from green to teal",
         "caption": "Reception counter and green-to-teal cube wall",
         "width": 1250,
         "height": 940
       },
       {
-        "src": "/images/projects/faber-castell-exhibition/green-storefront-with-ribbon-sculpture.jpg",
-        "alt": "3D rendering of an art-supply showroom storefront in deep green, with a ribbon sculpture and a giant pencil column",
+        "src": "/images/projects/art-supply-showroom/green-storefront-with-ribbon-sculpture.jpg",
+        "alt": "Visualization of an art-supply showroom storefront in deep green, with a ribbon sculpture and a giant pencil column",
         "caption": "Storefront with ribbon sculpture and pencil column",
         "width": 1296,
         "height": 816
       },
       {
-        "src": "/images/projects/faber-castell-exhibition/main-aisle-with-arched-display-niches.jpg",
-        "alt": "3D rendering of a showroom aisle with arched backlit niches, wood display plinths and a slatted wood ceiling",
+        "src": "/images/projects/art-supply-showroom/main-aisle-with-arched-display-niches.jpg",
+        "alt": "3D rendering of a showroom aisle with arched backlit niches, wood display plinths and slatted wood ceiling bands",
         "caption": "Main aisle with arched display niches",
         "width": 1500,
         "height": 1500
       },
       {
-        "src": "/images/projects/faber-castell-exhibition/color-gradient-tile-feature-wall.jpg",
+        "src": "/images/projects/art-supply-showroom/color-gradient-tile-feature-wall.jpg",
         "alt": "3D rendering of a showroom feature wall of color tiles graded from teal to red inside a lit arched frame",
         "caption": "Color-gradient tile feature wall",
         "width": 1148,
         "height": 864
       },
       {
-        "src": "/images/projects/faber-castell-exhibition/oil-colors-display-bay.jpg",
+        "src": "/images/projects/art-supply-showroom/oil-colors-display-bay.jpg",
         "alt": "3D rendering of an oil colors display bay with green panels, backlit wood shelves and glass display cases",
         "caption": "Oil colors bay with backlit shelving",
         "width": 1184,
         "height": 864
       },
       {
-        "src": "/images/projects/faber-castell-exhibition/childrens-area-with-sculpted-wall.jpg",
+        "src": "/images/projects/art-supply-showroom/childrens-area-with-sculpted-wall.jpg",
         "alt": "3D rendering of a children's area seen through a green arch, with a layered relief wall and a low painting table",
         "caption": "Children's area framed by a green arch",
         "width": 1500,
         "height": 1500
       },
       {
-        "src": "/images/projects/faber-castell-exhibition/art-workshop-zone-with-hanging-cubes.jpg",
+        "src": "/images/projects/art-supply-showroom/art-workshop-zone-with-hanging-cubes.jpg",
         "alt": "3D rendering of a workshop zone with an oval wooden table, easels, a color cubby wall and suspended cubes",
         "caption": "Workshop zone with easels and hanging cubes",
         "width": 1500,
         "height": 1500
       },
       {
-        "src": "/images/projects/faber-castell-exhibition/timeline-wall-with-display-cases.jpg",
+        "src": "/images/projects/art-supply-showroom/timeline-wall-with-display-cases.jpg",
         "alt": "3D rendering of a timeline wall of tall white panels above glass display cases on light-wood plinths",
         "caption": "Timeline wall with glass display cases",
         "width": 1225,
@@ -759,18 +761,18 @@ export const projects: Project[] = [
     "category": "Residential",
     "projectType": "Master bedroom suite",
     "medium": "3D Visualization",
-    "overview": "A master bedroom suite visualized as one open plan: a bed area, a sitting area with a TV wall, a vanity wall and a walk-in closet. White walls with classical plaster moldings, herringbone wood-look flooring and leaf-motif chandeliers in cove-lit ceiling trays set a soft, classic-contemporary tone. Olive-green upholstery, gold accents and wood-look panels add warmth, while the closet pairs glass-fronted wardrobes with vertical LED strips.",
+    "overview": "A master bedroom suite visualized as one open plan: a bed area, a sitting area with a TV wall, a vanity wall and a walk-in closet. White walls with classical plaster moldings, chevron wood-look flooring and leaf-motif chandeliers in cove-lit ceiling trays set a soft, classic-contemporary tone. Olive-green upholstery, gold accents and wood-look panels add warmth, while the closet pairs glass-fronted wardrobes with vertical LED strips.",
     "highlights": [
       "Leaf-motif ring chandeliers set into recessed, cove-lit ceiling trays",
       "TV wall combining a marble-look center panel, wood-look side panels and a floating shelf",
       "Partition wall separating the bed area from the sitting area",
       "Floating vanity with a backlit oval mirror between lit display niches",
       "Walk-in closet with glass-fronted wardrobes and vertical LED strips",
-      "Herringbone wood-look flooring throughout the suite"
+      "Chevron wood-look flooring throughout the suite"
     ],
     "materials": [
       {
-        "name": "Herringbone wood-look flooring",
+        "name": "Chevron wood-look flooring",
         "use": "Floors throughout the suite"
       },
       {
@@ -918,12 +920,12 @@ export const projects: Project[] = [
       }
     ],
     "palette": [
-      "#2D2926",
-      "#34302D",
-      "#A3202A",
-      "#7A7673",
-      "#B8B4B0",
-      "#B58B55"
+      "Charcoal #2D2926",
+      "Dark charcoal #34302D",
+      "Deep red #A3202A",
+      "Stone grey #7A7673",
+      "Pale stone grey #B8B4B0",
+      "Bronze #B58B55"
     ],
     "tags": [
       "Retail",
@@ -1004,13 +1006,13 @@ export const projects: Project[] = [
     "category": "Commercial",
     "projectType": "Office interior",
     "medium": "3D Visualization",
-    "overview": "An office interior visualized as a sequence of connected zones: a reception lounge, an open area with a shared work table, a private office and a photography studio corner. A warm palette of cream walls, beige floor tiles and terracotta accents runs throughout, with classic moulded wall panels set against modern furniture. Linear pendants, black cylinder downlights and wall sconces layer the lighting.",
+    "overview": "An office interior visualized as a sequence of connected zones: a reception lounge, an open area with a shared work table, a private office and a photography studio corner. A warm palette of cream walls, beige floor tiles and terracotta accents runs throughout, with classic molded wall panels set against modern furniture. Linear pendants, black cylinder downlights and wall sconces layer the lighting.",
     "highlights": [
       "Reception feature wall in a stone-like plaster finish with backlit lettering and a concealed cove light along its top edge",
       "Terracotta-painted gallery niche lined with black-and-white framed prints and a pair of dark lounge chairs",
-      "Classic moulded wall panels with a terracotta lower band, lit by cylindrical up-and-down wall sconces",
+      "Classic molded wall panels with a terracotta lower band, lit by cylindrical up-and-down wall sconces",
       "Private office with a dark wood desk and a full-height dark wood shelving wall with LED-lit shelves",
-      "Floor-to-ceiling black-framed windows following a curved facade",
+      "Wide black-framed ribbon windows following a curved facade",
       "Photography studio corner with a white curved backdrop and studio lighting"
     ],
     "materials": [
@@ -1019,7 +1021,7 @@ export const projects: Project[] = [
         "use": "Reception feature wall"
       },
       {
-        "name": "Terracotta paint over moulded panels",
+        "name": "Terracotta paint over molded panels",
         "use": "Wainscot band and gallery niche"
       },
       {
@@ -1083,14 +1085,14 @@ export const projects: Project[] = [
       },
       {
         "src": "/images/projects/work-office/shared-work-table-beside-reception-lounge.jpg",
-        "alt": "3D rendering of an office work area with a wood-top table, black high-back chairs and floor-to-ceiling windows",
+        "alt": "3D rendering of an office work area with a wood-top table, black high-back chairs and wide black-framed windows",
         "caption": "Shared work table by the windows",
         "width": 1489,
         "height": 837
       },
       {
         "src": "/images/projects/work-office/curved-paneled-wall-with-sconces.jpg",
-        "alt": "3D rendering of a curved office wall with moulded panels, a terracotta lower band, wall sconces and a tall mirror",
+        "alt": "3D rendering of a curved office wall with molded panels, a terracotta lower band, wall sconces and a tall mirror",
         "caption": "Curved paneled wall with sconces",
         "width": 1489,
         "height": 837
@@ -1122,13 +1124,13 @@ export const projects: Project[] = [
     "slug": "parametric-reception",
     "title": "Parametric Reception",
     "titleAr": "باراميترك ريسيبشن",
-    "subtitle": "Reception with a red fin-built desk, ribbed white wall and suspended ceiling sculpture",
+    "subtitle": "Reception with a red stacked-fin desk, ribbed white wall and suspended ceiling sculpture",
     "category": "Commercial",
     "projectType": "Reception / lobby",
     "medium": "3D Visualization",
-    "overview": "A reception space built around parametric, fin-based forms, shown in 3D renderings. A red desk of stacked contoured fins sits in front of a white wall of undulating vertical ribs, beneath a large suspended ceiling piece of red vertical blades. Blush walls with rounded corners, a multicolored terrazzo-look floor, linear wall lighting and a pair of pink upholstered armchairs complete the room.",
+    "overview": "A reception space designed around parametric, fin-based forms, shown in 3D renderings. A red desk of stacked contoured fins sits in front of a white wall of undulating vertical ribs, beneath a large suspended ceiling piece of red vertical blades. Blush walls with rounded corners, a multicolored terrazzo-look floor, linear wall lighting and a pair of pink upholstered armchairs complete the room.",
     "highlights": [
-      "Reception desk built from stacked red contoured fins forming a wave-like front",
+      "Reception desk formed from stacked red contoured fins with a wave-like front",
       "Feature wall of white vertical ribs with an undulating, sculpted surface",
       "Suspended ceiling installation of red vertical blades arranged in curving tiers",
       "Blush walls with rounded corners framing the room",
@@ -1171,7 +1173,7 @@ export const projects: Project[] = [
     "featured": false,
     "cover": {
       "src": "/images/projects/parametric-reception/red-fin-desk-under-suspended-ceiling-sculpture.jpg",
-      "alt": "3D rendering of a reception with a red fin-built desk, white ribbed wall and red suspended ceiling sculpture",
+      "alt": "3D rendering of a reception with a red stacked-fin desk, white ribbed wall and red suspended ceiling sculpture",
       "caption": "Front view of the reception",
       "width": 1537,
       "height": 865
@@ -1179,7 +1181,7 @@ export const projects: Project[] = [
     "images": [
       {
         "src": "/images/projects/parametric-reception/red-fin-desk-under-suspended-ceiling-sculpture.jpg",
-        "alt": "3D rendering of a reception with a red fin-built desk, white ribbed wall and red suspended ceiling sculpture",
+        "alt": "3D rendering of a reception with a red stacked-fin desk, white ribbed wall and red suspended ceiling sculpture",
         "caption": "Front view of the reception",
         "width": 1537,
         "height": 865
@@ -1208,7 +1210,7 @@ export const projects: Project[] = [
     "category": "Residential",
     "projectType": "Living room lounge",
     "medium": "3D Visualization",
-    "overview": "A lounge seating area arranged around a low sofa, accent armchairs and glass-topped coffee tables. The rear wall combines dark vertical slat panels, flush warm-wood cladding and a black open shelving unit with integrated lighting, beside a large framed artwork and a cluster of small pendants. The scheme is shown in daylight and evening light, with sheer and dark curtains at tall windows.",
+    "overview": "A lounge seating area design, shown in 3D renderings, arranged around a low sofa, accent armchairs and glass-topped coffee tables. The rear wall combines dark vertical slat panels, flush warm-wood cladding and a black open shelving unit with integrated lighting, beside a large framed artwork and a cluster of small pendants. The scheme is rendered in daylight and evening light, with sheer and dark curtains at tall windows.",
     "highlights": [
       "Rear wall layered with dark vertical slat panels, flush warm-wood cladding and a black open shelving unit with integrated LED lighting",
       "Stepped ceiling with a dark perimeter band framing the seating area",
@@ -1316,7 +1318,7 @@ export const projects: Project[] = [
       "Central hexagon-panel feature wall with glowing geometric light tiles, set against white brick-look cladding",
       "Linear light lines running across the dark ceiling and inlaid into the floor",
       "Mirrored study stations with white desks, upper cabinets and gaming chairs either side of an arched-door wardrobe",
-      "Gaming corner with a racing simulator rig beneath colourful neon game-symbol signs",
+      "Gaming corner with a racing simulator rig beneath colorful neon game-symbol signs",
       "Lounge corner with two leather beanbags and backlit dark open shelving"
     ],
     "materials": [
@@ -1390,7 +1392,7 @@ export const projects: Project[] = [
       },
       {
         "src": "/images/projects/kids-bedroom/neon-signs-and-racing-seat.jpg",
-        "alt": "3D rendering of a kids' bedroom gaming corner with colourful neon game-symbol signs above a red racing simulator seat",
+        "alt": "3D rendering of a kids' bedroom gaming corner with colorful neon game-symbol signs above a red racing simulator seat",
         "caption": "Neon game-symbol signs above the racing seat",
         "width": 1600,
         "height": 1600
@@ -1600,7 +1602,7 @@ export const projects: Project[] = [
         "height": 643
       },
       {
-        "src": "/images/projects/private-room/red-armchair-with-brass-frame.jpg",
+        "src": "/images/projects/private-room/red-armchair-with-gold-wire-frame.jpg",
         "alt": "3D rendering close-up of a red armchair on a gold wire frame beside a black tulip side table and jungle artwork",
         "caption": "Armchair and side table detail",
         "width": 843,
