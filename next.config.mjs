@@ -25,11 +25,20 @@ const nextConfig = {
     minimumCacheTTL: 60 * 60 * 24 * 365,
   },
   async redirects() {
-    return retiredProjectSlugs.map((slug) => ({
-      source: `/projects/${slug}`,
-      destination: '/projects',
-      permanent: true,
-    }))
+    return [
+      // One canonical host: the default Vercel domain serves an identical copy of the site.
+      {
+        source: '/:path*',
+        has: [{ type: 'host', value: 'hidaya-portfolio.vercel.app' }],
+        destination: 'https://hidayathaher.com/:path*',
+        permanent: true,
+      },
+      ...retiredProjectSlugs.map((slug) => ({
+        source: `/projects/${slug}`,
+        destination: '/projects',
+        permanent: true,
+      })),
+    ]
   },
 }
 export default nextConfig

@@ -3,12 +3,12 @@ import { personalInfo, services, education } from '@/lib/data'
 import type { Project } from '@/lib/projects'
 
 /**
- * Canonical origin of the site. The production deployment currently lives on
- * hidaya-portfolio.vercel.app. When a custom domain is connected in Vercel,
- * set NEXT_PUBLIC_SITE_URL (e.g. https://example.com) and every canonical,
- * sitemap, robots and structured-data URL follows automatically.
+ * Canonical origin of the site: the custom domain connected to the Vercel project.
+ * Every canonical, sitemap, robots and structured-data URL is built from it.
+ * (hidaya-portfolio.vercel.app permanently redirects here; see next.config.mjs.)
+ * Override with NEXT_PUBLIC_SITE_URL only if the production domain changes.
  */
-export const SITE_URL = (process.env.NEXT_PUBLIC_SITE_URL || 'https://hidaya-portfolio.vercel.app').replace(/\/+$/, '')
+export const SITE_URL = (process.env.NEXT_PUBLIC_SITE_URL || 'https://hidayathaher.com').replace(/\/+$/, '')
 
 export const SITE_NAME = 'Hidaya Thaher — Interior Designer'
 
