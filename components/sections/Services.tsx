@@ -1,5 +1,6 @@
 'use client'
 import { motion } from 'framer-motion'
+import Link from 'next/link'
 import { type LucideIcon, Home, Building2, Grid3X3, Box, Layers, MessageCircle, Armchair, Hammer, Lightbulb, Sparkles } from 'lucide-react'
 import AnimateIn from '@/components/ui/AnimateIn'
 import SectionHeader from '@/components/ui/SectionHeader'
@@ -9,7 +10,7 @@ const iconMap: Record<string, LucideIcon> = {
   Home, Building2, Grid: Grid3X3, Box, Layers, MessageCircle, Armchair, Hammer, Lightbulb, Sparkles,
 }
 
-export default function Services({ ui, services }: Pick<SiteContent, 'ui' | 'services'>) {
+export default function Services({ ui, services, base }: Pick<SiteContent, 'ui' | 'services'> & { base: string }) {
   return (
     <section id="services" className="section-padding bg-cream-100 dark:bg-charcoal-900">
       <div className="container-luxury">
@@ -34,7 +35,13 @@ export default function Services({ ui, services }: Pick<SiteContent, 'ui' | 'ser
                     <Icon size={18} aria-hidden="true" />
                   </div>
                   <h3 className="font-serif text-base text-charcoal-800 dark:text-cream-100 mb-3 leading-snug">
-                    {service.title}
+                    {service.page ? (
+                      <Link href={`${base}/services/${service.page}`} className="hover:text-gold-700 dark:hover:text-gold-400 underline-offset-4 hover:underline">
+                        {service.title}
+                      </Link>
+                    ) : (
+                      service.title
+                    )}
                   </h3>
                   <p className="text-xs text-charcoal-500 dark:text-charcoal-400 leading-relaxed">
                     {service.description}
@@ -60,9 +67,14 @@ export default function Services({ ui, services }: Pick<SiteContent, 'ui' | 'ser
             <p className="text-charcoal-500 dark:text-charcoal-400 mb-6">
               {ui.services.ready}
             </p>
-            <a href="#contact" className="btn-gold rounded-none text-xs tracking-[0.2em] uppercase inline-block">
-              <span>{ui.services.start}</span>
-            </a>
+            <div className="flex flex-wrap justify-center gap-4">
+              <a href="#contact" className="btn-gold rounded-none text-xs tracking-[0.2em] uppercase inline-block">
+                <span>{ui.services.start}</span>
+              </a>
+              <Link href={`${base}/process`} className="btn-outline-gold rounded-none text-xs tracking-[0.2em] uppercase inline-block">
+                {ui.servicePages.process}
+              </Link>
+            </div>
           </div>
         </AnimateIn>
       </div>

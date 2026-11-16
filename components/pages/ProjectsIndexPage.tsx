@@ -33,6 +33,15 @@ export default function ProjectsIndexPage({ locale }: { locale: Locale }) {
             <span className="section-label on-dark mb-4 block">{ui.projectsPage.label}</span>
             <h1 className="font-serif text-5xl md:text-6xl font-medium mb-6">{ui.projectsPage.h1}</h1>
             <p className="text-charcoal-300 max-w-xl leading-relaxed">{fmt(ui.projectsPage.intro, { n: projects.length })}</p>
+            <ul className="flex flex-wrap gap-3 mt-8" aria-label={ui.servicePages.allServicesHint}>
+              {(['residential-interior-design', 'commercial-interior-design', '3d-visualization'] as const).map((s) => (
+                <li key={s}>
+                  <Link href={localePath(locale, `/services/${s}`)} className="inline-block px-4 py-2 text-xs border border-gold-500/50 text-cream-200 hover:border-gold-400 hover:text-gold-400 transition-colors">
+                    {ui.servicePages.names[s]}
+                  </Link>
+                </li>
+              ))}
+            </ul>
           </div>
         </div>
 

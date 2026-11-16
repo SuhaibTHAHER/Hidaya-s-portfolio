@@ -98,6 +98,19 @@ const en = {
   },
   categories: { Residential: 'Residential', Commercial: 'Commercial', Hospitality: 'Hospitality', Retail: 'Retail' } as Record<string, string>,
   medium: '3D Visualization',
+  servicePages: {
+    label: 'Services',
+    names: {
+      'residential-interior-design': 'Residential Interior Design',
+      'commercial-interior-design': 'Commercial Interior Design',
+      '3d-visualization': '3D Interior Visualization',
+    } as Record<string, string>,
+    process: 'How I Work',
+    otherServices: 'Other services',
+    exploreService: 'See more {service}',
+    relatedProjects: 'Projects in this service',
+    allServicesHint: 'Service pages',
+  },
 }
 
 export type UI = typeof en
@@ -203,6 +216,19 @@ const ar: UI = {
   },
   categories: { Residential: 'سكني', Commercial: 'تجاري', Hospitality: 'مطاعم وضيافة', Retail: 'محلات تجارية' },
   medium: 'تصوّر ثلاثي الأبعاد',
+  servicePages: {
+    label: 'الخدمات',
+    names: {
+      'residential-interior-design': 'التصميم الداخلي للمنازل',
+      'commercial-interior-design': 'التصميم الداخلي التجاري',
+      '3d-visualization': 'التصميم الداخلي ثلاثي الأبعاد',
+    },
+    process: 'مراحل العمل',
+    otherServices: 'خدمات أخرى',
+    exploreService: 'المزيد عن {service}',
+    relatedProjects: 'مشاريع ضمن هذه الخدمة',
+    allServicesHint: 'صفحات الخدمات',
+  },
 }
 
 const dictionaries: Record<Locale, UI> = { en, ar }

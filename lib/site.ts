@@ -295,3 +295,78 @@ export function projectGraph(project: LocalizedProject, locale: Locale = 'en', u
     ],
   }
 }
+
+type FAQ = { q: string; a: string }
+const faqNode = (url: string, faq: FAQ[], locale: Locale) => ({
+  '@type': 'FAQPage',
+  '@id': `${url}#faq`,
+  inLanguage: locale,
+  mainEntity: faq.map((f) => ({ '@type': 'Question', name: f.q, acceptedAnswer: { '@type': 'Answer', text: f.a } })),
+})
+
+/** Service page: the Service itself (provided by the Person), its visible FAQ and breadcrumbs. */
+export function serviceGraph(
+  { path, name, description, faq, projects }: { path: string; name: string; description: string; faq: FAQ[]; projects: { slug: string; title: string }[] },
+  locale: Locale,
+  ui: UI,
+) {
+  const url = absoluteUrl(localePath(locale, path))
+  return {
+    '@context': 'https://schema.org',
+    '@graph': [
+      {
+        '@type': 'WebPage',
+        '@id': `${url}#webpage`,
+        url,
+        name,
+        description,
+        inLanguage: locale,
+        isPartOf: { '@id': ids.website },
+        mainEntity: { '@id': `${url}#service` },
+        dateModified: CONTENT_UPDATED,
+      },
+      {
+        '@type': 'Service',
+        '@id': `${url}#service`,
+        name,
+        serviceType: name,
+        description,
+        url,
+        provider: { '@id': ids.person },
+        areaServed,
+        availableLanguage: ['ar', 'en'],
+        subjectOf: projects.map((p) => ({ '@id': `${absoluteUrl(localePath(locale, `/projects/${p.slug}`))}#work` })),
+      },
+      ...(faq.length ? [faqNode(url, faq, locale)] : []),
+      breadcrumb([
+        { name: ui.crumbs.home, path: localePath(locale, '/') },
+        { name, path: localePath(locale, path) },
+      ]),
+    ],
+  }
+}
+
+export function processGraph({ name, description, faq }: { name: string; description: string; faq: FAQ[] }, locale: Locale, ui: UI) {
+  const url = absoluteUrl(localePath(locale, '/process'))
+  return {
+    '@context': 'https://schema.org',
+    '@graph': [
+      {
+        '@type': 'WebPage',
+        '@id': `${url}#webpage`,
+        url,
+        name,
+        description,
+        inLanguage: locale,
+        isPartOf: { '@id': ids.website },
+        about: { '@id': ids.person },
+        dateModified: CONTENT_UPDATED,
+      },
+      ...(faq.length ? [faqNode(url, faq, locale)] : []),
+      breadcrumb([
+        { name: ui.crumbs.home, path: localePath(locale, '/') },
+        { name, path: localePath(locale, '/process') },
+      ]),
+    ],
+  }
+}

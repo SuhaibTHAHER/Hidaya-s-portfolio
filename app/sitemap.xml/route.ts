@@ -2,6 +2,7 @@ import { projects } from '@/lib/projects'
 import { personalInfo } from '@/lib/data'
 import { CONTENT_UPDATED, absoluteUrl } from '@/lib/site'
 import { locales, localePath } from '@/lib/i18n'
+import { serviceSlugs, serviceProjects } from '@/lib/content/pages'
 
 // Hand-written so that every page can carry (1) its image entries (Google image sitemap
 // extension) and (2) its hreflang alternates (xhtml:link) — MetadataRoute.Sitemap in Next 14
@@ -19,6 +20,11 @@ export function GET() {
     { path: '/', images: [personalInfo.portrait.src, ...projects.map((p) => p.cover.src)] },
     { path: '/projects', images: projects.map((p) => p.cover.src) },
     ...projects.map((p) => ({ path: `/projects/${p.slug}`, images: p.images.map((i) => i.src) })),
+    ...serviceSlugs.map((s) => ({
+      path: `/services/${s}`,
+      images: serviceProjects[s].map((slug) => projects.find((p) => p.slug === slug)!.cover.src),
+    })),
+    { path: '/process', images: [] },
   ]
 
   const urls = pages.flatMap(({ path, images }) =>
@@ -30,7 +36,7 @@ export function GET() {
       const imgs = Array.from(new Set(images))
         .map((src) => `    <image:image><image:loc>${esc(absoluteUrl(src))}</image:loc></image:image>`)
         .join('\n')
-      return `  <url>\n    <loc>${esc(absoluteUrl(localePath(locale, path)))}</loc>\n    <lastmod>${CONTENT_UPDATED}</lastmod>\n${alternates}\n${imgs}\n  </url>`
+      return `  <url>\n    <loc>${esc(absoluteUrl(localePath(locale, path)))}</loc>\n    <lastmod>${CONTENT_UPDATED}</lastmod>\n${alternates}${imgs ? `\n${imgs}` : ''}\n  </url>`
     }),
   )
 

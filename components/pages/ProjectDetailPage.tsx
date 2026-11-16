@@ -10,6 +10,7 @@ import { getProjects, getSiteContent } from '@/lib/content'
 import { getUI, fmt } from '@/lib/content/ui'
 import { type Locale, localePath } from '@/lib/i18n'
 import { pageMetadata, projectGraph } from '@/lib/site'
+import { serviceForCategory } from '@/lib/content/pages'
 
 export const projectSlugs = () => getProjects('en').map((p) => ({ slug: p.slug }))
 
@@ -199,9 +200,17 @@ export default function ProjectDetailPage({ locale, slug }: { locale: Locale; sl
               <section className="mb-4 p-10 bg-charcoal-900 text-center">
                 <h2 className="font-serif text-2xl text-cream-100 mb-3">{t.ctaTitle}</h2>
                 <p className="text-charcoal-300 mb-6 max-w-lg mx-auto">{t.ctaText}</p>
-                <Link href={`${href('/')}#contact`} className="btn-gold rounded-none text-xs tracking-[0.2em] uppercase inline-block">
-                  <span>{t.ctaButton}</span>
-                </Link>
+                <div className="flex flex-wrap justify-center gap-4">
+                  <Link href={`${href('/')}#contact`} className="btn-gold rounded-none text-xs tracking-[0.2em] uppercase inline-block">
+                    <span>{t.ctaButton}</span>
+                  </Link>
+                  <Link
+                    href={href(`/services/${serviceForCategory(project.category)}`)}
+                    className="btn-outline-gold rounded-none text-xs tracking-[0.2em] uppercase inline-block"
+                  >
+                    {fmt(ui.servicePages.exploreService, { service: ui.servicePages.names[serviceForCategory(project.category)] })}
+                  </Link>
+                </div>
               </section>
             </div>
 

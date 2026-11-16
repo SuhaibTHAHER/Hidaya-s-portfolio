@@ -27,7 +27,7 @@ export default function HomePage({ locale }: { locale: Locale }) {
         <Stats stats={c.stats} />
         <About ui={c.ui} personal={c.personal} expertise={c.expertise} interests={c.interests} projectsHref={c.href('/projects')} />
         <Projects locale={locale} />
-        <Services ui={c.ui} services={c.services} />
+        <Services ui={c.ui} services={c.services} base={locale === 'ar' ? '/ar' : ''} />
         <Skills ui={c.ui} skills={c.skills} />
         <Education ui={c.ui} education={c.education} />
         <Experience ui={c.ui} experience={c.experience} />

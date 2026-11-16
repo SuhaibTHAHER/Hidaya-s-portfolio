@@ -3,6 +3,7 @@ import { personalInfo, services, experience, education } from '@/lib/data'
 import { projectsAr } from '@/lib/projects.ar'
 import { DESCRIPTIONS, absoluteUrl } from '@/lib/site'
 import { localePath } from '@/lib/i18n'
+import { serviceSlugs, servicePages, processPage } from '@/lib/content/pages'
 
 // Optional plain-text summary for AI assistants (llmstxt.org). Generated from the same
 // data as the pages, so it can never drift from what the site actually says.
@@ -29,6 +30,10 @@ export function GET() {
     '## Services',
     ...services.map((s) => `- ${s.title}: ${s.description}`),
     '',
+    '## Service pages',
+    ...serviceSlugs.map((s) => `- [${servicePages[s].en.h1}](${absoluteUrl(`/services/${s}`)}): ${servicePages[s].en.metaDescription}`),
+    `- [${processPage.en.h1}](${absoluteUrl('/process')}): ${processPage.en.metaDescription}`,
+    '',
     '## Projects',
     'All projects below are interior design projects presented as 3D visualizations.',
     ...projects.map((p) => `- [${p.title}](${absoluteUrl(`/projects/${p.slug}`)}): ${p.subtitle}`),
@@ -42,6 +47,8 @@ export function GET() {
     '',
     `- [الصفحة الرئيسية](${absoluteUrl(localePath('ar', '/'))})`,
     `- [جميع المشاريع](${absoluteUrl(localePath('ar', '/projects'))})`,
+    ...serviceSlugs.map((s) => `- [${servicePages[s].ar.h1}](${absoluteUrl(localePath('ar', `/services/${s}`))}): ${servicePages[s].ar.metaDescription}`),
+    `- [${processPage.ar.h1}](${absoluteUrl(localePath('ar', '/process'))}): ${processPage.ar.metaDescription}`,
     ...projects
       .filter((p) => projectsAr[p.slug])
       .map((p) => `- [${projectsAr[p.slug].title}](${absoluteUrl(localePath('ar', `/projects/${p.slug}`))}): ${projectsAr[p.slug].subtitle}`),

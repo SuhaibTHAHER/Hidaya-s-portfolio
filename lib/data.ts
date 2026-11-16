@@ -138,10 +138,11 @@ export const education = [
   },
 ]
 
-export const services = [
+export const services: { id: number; title: string; page?: string; description: string; icon: string; features: string[] }[] = [
   {
     id: 1,
     title: 'Residential Interior Design',
+    page: 'residential-interior-design',
     description: 'Complete design solutions for homes, villas, and apartments — from concept through construction drawings to a final styling plan.',
     icon: 'Home',
     features: ['Concept Development', 'Space Planning', 'Furniture Selection', 'Material Palette', 'Lighting Design', 'Styling Plan'],
@@ -149,6 +150,7 @@ export const services = [
   {
     id: 2,
     title: 'Commercial Interior Design',
+    page: 'commercial-interior-design',
     description: 'Strategic design for offices, retail spaces, and hospitality venues that balances brand identity with functional excellence.',
     icon: 'Building2',
     features: ['Brand-Aligned Design', 'Workflow Optimization', 'Wayfinding', 'Acoustic Planning', 'Fixture Specification'],
@@ -163,6 +165,7 @@ export const services = [
   {
     id: 4,
     title: '3D Visualization',
+    page: '3d-visualization',
     description: 'Photorealistic renders and walkthroughs that let you experience your space before a single element is purchased.',
     icon: 'Box',
     features: ['Photorealistic Renders', 'Virtual Walkthroughs', 'Material Simulations', 'Lighting Studies', 'Multiple Viewpoints'],

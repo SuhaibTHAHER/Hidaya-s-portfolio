@@ -9,7 +9,10 @@ export default function Footer({ content }: { content: SiteContent }) {
   const footerLinks = [
     { label: ui.nav.about, href: `${home}#about` },
     { label: ui.footer.allProjects, href: href('/projects') },
-    { label: ui.nav.services, href: `${home}#services` },
+    { label: ui.servicePages.names['residential-interior-design'], href: href('/services/residential-interior-design') },
+    { label: ui.servicePages.names['commercial-interior-design'], href: href('/services/commercial-interior-design') },
+    { label: ui.servicePages.names['3d-visualization'], href: href('/services/3d-visualization') },
+    { label: ui.servicePages.process, href: href('/process') },
     { label: ui.nav.experience, href: `${home}#experience` },
     { label: ui.nav.contact, href: `${home}#contact` },
   ]
