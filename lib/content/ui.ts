@@ -199,7 +199,7 @@ const ar: UI = {
   },
   projectPage: {
     titleSuffix: 'تصميم داخلي',
-    metaDescription: '{subtitle}. تصميم داخلي بتقنية ثلاثية الأبعاد من هداية ظاهر، مصممة داخلية في نابلس.',
+    metaDescription: '{subtitle}. تصميم ثلاثي الأبعاد من هداية ظاهر، مصممة داخلية في نابلس.',
     category: 'الفئة', type: 'نوع المشروع', presentation: 'طريقة العرض', views: 'المشاهد',
     renderings: '{n} صور ثلاثية الأبعاد',
     overview: 'نظرة عامة', design: 'التصميم', highlights: 'أبرز عناصر التصميم',
