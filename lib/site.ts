@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import { personalInfo, services, education } from '@/lib/data'
+import { personalInfo as personalInfoAr, services as servicesAr } from '@/lib/data.ar'
 import type { LocalizedProject } from '@/lib/content'
 import type { UI } from '@/lib/content/ui'
 import { type Locale, localePath, languageAlternates, ogLocale, otherLocale } from '@/lib/i18n'
@@ -116,13 +117,13 @@ const areaServed = [
 ]
 
 /** One Person entity for both languages (same @id everywhere), with her Arabic name as alternateName. */
-const personNode = () => ({
+const personNode = (locale: Locale = 'en') => ({
   '@type': 'Person',
   '@id': ids.person,
   name: personalInfo.name,
   alternateName: personalInfo.nameAlternates,
-  jobTitle: personalInfo.title,
-  description: DESCRIPTIONS.en,
+  jobTitle: locale === 'ar' ? personalInfoAr.title : personalInfo.title,
+  description: DESCRIPTIONS[locale],
   url: SITE_URL,
   image: {
     '@type': 'ImageObject',
@@ -131,7 +132,7 @@ const personNode = () => ({
     url: absoluteUrl(personalInfo.portrait.src),
     width: personalInfo.portrait.width,
     height: personalInfo.portrait.height,
-    caption: personalInfo.portrait.alt,
+    caption: locale === 'ar' ? personalInfoAr.portrait.alt : personalInfo.portrait.alt,
   },
   email: `mailto:${personalInfo.email}`,
   telephone: personalInfo.phone.replace(/\s/g, ''),
@@ -155,27 +156,27 @@ const personNode = () => ({
     '3D visualization', 'Furniture design', 'Custom door design', 'AutoCAD', '3ds Max', 'V-Ray',
     'التصميم الداخلي', 'الديكور', 'التصميم ثلاثي الأبعاد',
   ],
-  makesOffer: services.map((s) => ({
+  makesOffer: (locale === 'ar' ? servicesAr : services).map((s) => ({
     '@type': 'Offer',
     itemOffered: { '@type': 'Service', name: s.title, description: s.description, areaServed },
   })),
 })
 
-const websiteNode = () => ({
+const websiteNode = (locale: Locale = 'en') => ({
   '@type': 'WebSite',
   '@id': ids.website,
   url: SITE_URL,
   name: personalInfo.name,
   alternateName: [SITE_NAMES.en, SITE_NAMES.ar, personalInfo.nameAr],
-  description: DESCRIPTIONS.en,
+  description: DESCRIPTIONS[locale],
   inLanguage: ['en', 'ar'],
   publisher: { '@id': ids.person },
   author: { '@id': ids.person },
 })
 
-/** Site-wide graph: the WebSite and the Person behind it (identical on every page, both languages). */
-export function siteGraph() {
-  return { '@context': 'https://schema.org', '@graph': [websiteNode(), personNode()] }
+/** Site-wide graph: the WebSite and the Person behind it. Same @ids in both languages; text in the page's language. */
+export function siteGraph(locale: Locale = 'en') {
+  return { '@context': 'https://schema.org', '@graph': [websiteNode(locale), personNode(locale)] }
 }
 
 export function homePageGraph(locale: Locale = 'en') {
@@ -334,8 +335,14 @@ export function serviceGraph(
         url,
         provider: { '@id': ids.person },
         areaServed,
-        availableLanguage: ['ar', 'en'],
-        subjectOf: projects.map((p) => ({ '@id': `${absoluteUrl(localePath(locale, `/projects/${p.slug}`))}#work` })),
+        availableChannel: { '@type': 'ServiceChannel', availableLanguage: ['ar', 'en'] },
+        // Minimal inline nodes (same @id as the full CreativeWork on each project page), so every reference resolves.
+        subjectOf: projects.map((p) => ({
+          '@type': 'CreativeWork',
+          '@id': `${absoluteUrl(localePath(locale, `/projects/${p.slug}`))}#work`,
+          name: p.title,
+          url: absoluteUrl(localePath(locale, `/projects/${p.slug}`)),
+        })),
       },
       ...(faq.length ? [faqNode(url, faq, locale)] : []),
       breadcrumb([

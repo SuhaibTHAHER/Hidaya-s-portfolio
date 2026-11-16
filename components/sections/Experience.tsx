@@ -36,9 +36,11 @@ export default function Experience({ ui, experience }: Pick<SiteContent, 'ui' | 
                     <div>
                       <div className="flex flex-wrap items-center gap-3 mb-2">
                         <h3 className="font-serif text-xl text-charcoal-900 dark:text-cream-100">{job.role}</h3>
-                        <span className="px-2 py-0.5 text-xs border border-gold-400/40 text-gold-800 dark:text-gold-400">
-                          {job.type}
-                        </span>
+                        {job.type && (
+                          <span className="px-2 py-0.5 text-xs border border-gold-400/40 text-gold-800 dark:text-gold-400">
+                            {job.type}
+                          </span>
+                        )}
                       </div>
                       <div className="flex flex-wrap gap-4 text-sm text-charcoal-500 dark:text-charcoal-400">
                         <span className="font-medium text-charcoal-700 dark:text-cream-200">{job.company}</span>

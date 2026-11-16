@@ -28,7 +28,7 @@ export default function ProjectsIndexPage({ locale }: { locale: Locale }) {
           <div className="container-luxury">
             <Breadcrumbs
               items={[{ name: ui.crumbs.home, href: localePath(locale, '/') }, { name: ui.crumbs.projects }]}
-              className="mb-8 text-charcoal-400"
+              label={ui.crumbs.label} className="mb-8 text-charcoal-400"
             />
             <span className="section-label on-dark mb-4 block">{ui.projectsPage.label}</span>
             <h1 className="font-serif text-5xl md:text-6xl font-medium mb-6">{ui.projectsPage.h1}</h1>

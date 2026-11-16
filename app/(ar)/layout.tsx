@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from 'next'
-import { Playfair_Display, Inter, Amiri, Noto_Sans_Arabic } from 'next/font/google'
+import { Playfair_Display, Inter, Markazi_Text, Tajawal } from 'next/font/google'
 import { Analytics } from '@vercel/analytics/next'
 import '../globals.css'
 import { ThemeProvider } from '@/components/providers/ThemeProvider'
@@ -7,10 +7,12 @@ import { DirProvider } from '@/components/providers/DirProvider'
 import JsonLd from '@/components/seo/JsonLd'
 import { SITE_URL, SITE_NAMES, DESCRIPTIONS, OG_IMAGES, HOME_TITLES, siteGraph } from '@/lib/site'
 
-// Arabic pages: Amiri (classical Naskh) pairs with the Playfair headings, Noto Sans Arabic for text.
-// Latin fallbacks are loaded without preload, only for the few Latin words on Arabic pages.
-const amiri = Amiri({ subsets: ['arabic', 'latin'], weight: ['400', '700'], variable: '--font-ar-serif', display: 'swap' })
-const notoArabic = Noto_Sans_Arabic({ subsets: ['arabic'], variable: '--font-ar-sans', display: 'swap' })
+// Arabic pages: Markazi Text (Naskh serif, pairs with the Playfair headings) and Tajawal for text.
+// Chosen for weight: ~70 KB together. The previous pair (Amiri + Noto Sans Arabic, ~370 KB) shared the slow-network
+// bandwidth with the hero image and pushed mobile LCP from ~3 s to ~5 s.
+// Latin fonts are loaded without preload, only for the few Latin words on Arabic pages.
+const markazi = Markazi_Text({ subsets: ['arabic'], variable: '--font-ar-serif', display: 'swap' })
+const tajawal = Tajawal({ subsets: ['arabic'], weight: ['400', '500', '700'], variable: '--font-ar-sans', display: 'swap' })
 const playfair = Playfair_Display({ subsets: ['latin'], variable: '--font-playfair', display: 'swap', preload: false })
 const inter = Inter({ subsets: ['latin'], variable: '--font-inter', display: 'swap', preload: false })
 
@@ -47,10 +49,10 @@ export default function ArabicRootLayout({ children }: { children: React.ReactNo
       lang="ar"
       dir="rtl"
       suppressHydrationWarning
-      className={`${amiri.variable} ${notoArabic.variable} ${playfair.variable} ${inter.variable}`}
+      className={`${markazi.variable} ${tajawal.variable} ${playfair.variable} ${inter.variable}`}
     >
       <body className="bg-cream-50 dark:bg-charcoal-950 text-charcoal-800 dark:text-cream-100 transition-colors duration-300">
-        <JsonLd data={siteGraph()} />
+        <JsonLd data={siteGraph('ar')} />
         <ThemeProvider attribute="class" defaultTheme="light" enableSystem={false}>
           <DirProvider dir="rtl">{children}</DirProvider>
         </ThemeProvider>

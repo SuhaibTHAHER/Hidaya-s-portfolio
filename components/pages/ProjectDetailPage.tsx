@@ -68,7 +68,7 @@ export default function ProjectDetailPage({ locale, slug }: { locale: Locale; sl
               <div className="container-luxury w-full">
                 <Breadcrumbs
                   items={[{ name: ui.crumbs.home, href: href('/') }, { name: ui.crumbs.projects, href: href('/projects') }, { name: project.title }]}
-                  className="mb-6 text-cream-300"
+                  label={ui.crumbs.label} className="mb-6 text-cream-300"
                 />
                 <div className="flex flex-wrap gap-2 mb-4">
                   {project.tags.map((tag) => (
@@ -78,12 +78,10 @@ export default function ProjectDetailPage({ locale, slug }: { locale: Locale; sl
                   ))}
                 </div>
                 <h1 className="font-serif text-4xl md:text-5xl lg:text-6xl text-cream-50 mb-3">{project.title}</h1>
-                <p
-                  lang={project.otherLang}
-                  dir={project.otherLang === 'ar' ? 'rtl' : 'ltr'}
-                  className="text-cream-200 text-xl mb-3 text-start"
-                >
-                  {project.otherTitle}
+                <p className="text-cream-200 text-xl mb-3">
+                  <span lang={project.otherLang} dir={project.otherLang === 'ar' ? 'rtl' : 'ltr'}>
+                    {project.otherTitle}
+                  </span>
                 </p>
                 <p className="text-cream-300 text-lg">{project.subtitle}</p>
               </div>

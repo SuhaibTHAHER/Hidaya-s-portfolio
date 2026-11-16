@@ -43,7 +43,7 @@ export default function EnglishRootLayout({ children }: { children: React.ReactN
   return (
     <html lang="en" dir="ltr" suppressHydrationWarning className={`${playfair.variable} ${inter.variable}`}>
       <body className="bg-cream-50 dark:bg-charcoal-950 text-charcoal-800 dark:text-cream-100 transition-colors duration-300">
-        <JsonLd data={siteGraph()} />
+        <JsonLd data={siteGraph('en')} />
         <ThemeProvider attribute="class" defaultTheme="light" enableSystem={false}>
           <DirProvider dir="ltr">{children}</DirProvider>
         </ThemeProvider>

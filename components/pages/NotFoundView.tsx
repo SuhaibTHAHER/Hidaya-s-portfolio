@@ -8,7 +8,7 @@ export const notFoundMetadata = (locale: Locale): Metadata => {
   return {
     title: { absolute: `${ui.notFound.title} | ${ui.name}` },
     description: ui.notFound.description,
-    robots: { index: false, follow: true },
+    robots: { index: false, follow: true, googleBot: { index: false, follow: true } },
   }
 }
 

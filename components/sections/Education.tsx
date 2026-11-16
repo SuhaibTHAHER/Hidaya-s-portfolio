@@ -36,7 +36,7 @@ export default function Education({ ui, education }: Pick<SiteContent, 'ui' | 'e
                           <p className="text-charcoal-500 dark:text-charcoal-400 mt-1">{item.degree}</p>
                         </div>
                         <div className="text-end flex-shrink-0">
-                          <span dir="ltr" className="inline-block px-3 py-1 text-xs tracking-wider bg-gold-100 dark:bg-charcoal-800 text-gold-800 dark:text-gold-400 border border-gold-300 dark:border-gold-800">
+                          <span className="inline-block px-3 py-1 text-xs tracking-wider bg-gold-100 dark:bg-charcoal-800 text-gold-800 dark:text-gold-400 border border-gold-300 dark:border-gold-800">
                             {item.period}
                           </span>
                           {item.distinction && (

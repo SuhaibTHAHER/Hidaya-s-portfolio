@@ -33,7 +33,7 @@ const en = {
   },
   services: {
     label: 'Services', title: 'What I Offer',
-    subtitle: 'End-to-end design services for clients who believe their environment shapes their life.',
+    subtitle: 'Interior design and 3D visualization services for clients who believe their environment shapes their life.',
     ready: 'Ready to transform your space?', start: 'Start a Project',
   },
   skills: {
@@ -56,21 +56,21 @@ const en = {
   contact: {
     label: 'Contact', title: "Let's Create Together",
     subtitle: "Whether you have a project in mind or simply want to explore possibilities, I'd love to hear from you.",
-    email: 'Email', phone: 'Phone', location: 'Location', remote: 'Available for remote projects worldwide',
+    email: 'Email', phone: 'Phone', location: 'Location', remote: 'Available for remote projects',
     behance: 'Behance Portfolio', behanceCta: 'View Design Work', behanceLabel: 'Visit Behance profile',
-    available: 'Available', availability: 'Currently accepting new residential and commercial projects. Typical response within 24 hours.',
-    nameLabel: 'Full Name *', namePh: 'Your name', emailLabel: 'Email *', emailPh: 'your@email.com',
+    available: 'Available', availability: 'Currently accepting new residential and commercial projects.',
+    nameLabel: 'Full Name *', namePh: 'Your name', emailLabel: 'Email *', emailPh: 'name@example.com',
     subjectLabel: 'Subject', subjectPh: 'Project inquiry, collaboration...',
     messageLabel: 'Message *', messagePh: 'Tell me about your project, space, and vision...',
     send: 'Send Message', sent: 'Email app opened', status: 'Your email app has been opened with your message.',
     mailSubject: 'Portfolio Inquiry', mailName: 'Name', mailEmail: 'Email',
   },
   footer: {
-    tagline: 'Transforming spaces into timeless experiences through thoughtful, human-centered design.',
+    tagline: 'Designing spaces that become timeless experiences, through thoughtful, human-centered design.',
     contact: 'Contact', navigation: 'Navigation', allProjects: 'All Projects',
-    rights: 'All rights reserved.', madeWith: 'Designed & Built with', love: 'love', inPalestine: 'in Palestine',
+    rights: 'All rights reserved.', madeWith: 'Made with', love: 'love', inPalestine: 'in Palestine',
   },
-  crumbs: { home: 'Home', projects: 'Projects' },
+  crumbs: { home: 'Home', projects: 'Projects', label: 'Breadcrumb' },
   projectsPage: {
     metaTitle: 'Interior Design Projects',
     metaDescription:
@@ -133,15 +133,15 @@ const ar: UI = {
   hero: {
     line1: 'أصمّم مساحاتٍ', line2: 'تتنفّس',
     intro: 'أصمّم مساحات داخلية تحكي قصصًا، تتكامل فيها العمارة والمواد والضوء لتصنع تجربة تبقى في الذاكرة.',
-    ctaPortfolio: 'شاهد المشاريع', ctaTalk: 'لنتحدّث',
+    ctaPortfolio: 'تصفّحوا المشاريع', ctaTalk: 'لنتحدّث',
     currently: 'حاليًا', available: 'متاحة لمشاريع جديدة', open: 'منفتحة على التعاون',
-    scroll: 'للأسفل', scrollLabel: 'الانتقال إلى المشاريع',
+    scroll: 'للأسفل', scrollLabel: 'للأسفل: الانتقال إلى المشاريع',
   },
   about: {
     label: 'نبذة عني', title: 'المصممة وراء الأعمال',
     languages: 'اللغات', native: 'اللغة الأم', professional: 'مستوى مهني',
     expertise: 'مجالات الخبرة', interests: 'الاهتمامات',
-    downloadCv: 'تحميل السيرة الذاتية', contact: 'تواصل معي', viewProjects: 'شاهد المشاريع',
+    downloadCv: 'تحميل السيرة الذاتية', contact: 'تواصل معي', viewProjects: 'تصفّحوا المشاريع',
   },
   projects: {
     label: 'معرض الأعمال', title: 'أعمال مختارة',
@@ -151,8 +151,8 @@ const ar: UI = {
   },
   services: {
     label: 'الخدمات', title: 'ما أقدّمه',
-    subtitle: 'خدمات تصميم داخلي متكاملة، من الفكرة وتخطيط المساحة حتى التصوّر ثلاثي الأبعاد.',
-    ready: 'جاهز لتصميم مساحتك؟', start: 'ابدأ مشروعك',
+    subtitle: 'خدمات تصميم داخلي وتصوّر ثلاثي الأبعاد، من الفكرة وتخطيط المساحة حتى المخططات والمواصفات.',
+    ready: 'هل تخطّطون لتصميم مساحتكم؟', start: 'لنبدأ مشروعكم',
   },
   skills: {
     label: 'المهارات', title: 'حِرفة تلتقي بالتقنية',
@@ -173,28 +173,28 @@ const ar: UI = {
   },
   contact: {
     label: 'تواصل', title: 'لنصمّم معًا',
-    subtitle: 'سواء كان لديك مشروع واضح أو فكرة تودّ استكشافها، يسعدني أن أسمع منك.',
+    subtitle: 'سواء كان لديكم مشروع واضح أو فكرة تودّون استكشافها، يسعدني أن أسمع منكم.',
     email: 'البريد الإلكتروني', phone: 'الهاتف', location: 'الموقع', remote: 'متاحة أيضًا للمشاريع عن بُعد',
     behance: 'ملف Behance', behanceCta: 'شاهد أعمال التصميم', behanceLabel: 'زيارة ملف Behance',
-    available: 'متاحة', availability: 'أستقبل حاليًا مشاريع سكنية وتجارية جديدة، وأردّ عادةً خلال 24 ساعة.',
-    nameLabel: 'الاسم الكامل *', namePh: 'اسمك', emailLabel: 'البريد الإلكتروني *', emailPh: 'your@email.com',
+    available: 'متاحة', availability: 'أستقبل حاليًا مشاريع سكنية وتجارية جديدة.',
+    nameLabel: 'الاسم الكامل *', namePh: 'اسمكم', emailLabel: 'البريد الإلكتروني *', emailPh: 'name@example.com',
     subjectLabel: 'الموضوع', subjectPh: 'استفسار عن مشروع، تعاون...',
-    messageLabel: 'الرسالة *', messagePh: 'حدّثني عن مشروعك ومساحتك وما تتخيّله لها...',
+    messageLabel: 'الرسالة *', messagePh: 'حدّثوني عن مشروعكم ومساحتكم وما تتخيّلونه لها...',
     send: 'إرسال الرسالة', sent: 'تم فتح تطبيق البريد', status: 'تم فتح تطبيق البريد الإلكتروني مع رسالتك.',
     mailSubject: 'استفسار عبر الموقع', mailName: 'الاسم', mailEmail: 'البريد',
   },
   footer: {
-    tagline: 'أحوّل المساحات إلى تجارب تدوم، بتصميم مدروس يضع الإنسان في المركز.',
+    tagline: 'أصمّم مساحات تتحوّل إلى تجارب تدوم، بتصميم مدروس يضع الإنسان في المركز.',
     contact: 'تواصل', navigation: 'روابط', allProjects: 'جميع المشاريع',
-    rights: 'جميع الحقوق محفوظة.', madeWith: 'صُمّم وبُني بـ', love: 'حب', inPalestine: 'في فلسطين',
+    rights: 'جميع الحقوق محفوظة.', madeWith: 'صُنع بـ', love: 'حب', inPalestine: 'في فلسطين',
   },
-  crumbs: { home: 'الرئيسية', projects: 'المشاريع' },
+  crumbs: { home: 'الرئيسية', projects: 'المشاريع', label: 'مسار التنقل' },
   projectsPage: {
     metaTitle: 'مشاريع تصميم داخلي',
     metaDescription:
       'مشاريع تصميم داخلي من تصميم هداية ظاهر في نابلس: غرف نوم ومطابخ وصالات ومكاتب ومحلات تجارية وبنك ومطعم، معروضة بتصاميم ثلاثية الأبعاد.',
     label: 'معرض الأعمال', h1: 'مشاريع التصميم الداخلي',
-    intro: '{n} مشروع تصميم داخلي لمساحات سكنية وتجارية ومحلات ومطاعم، يُعرض كلٌّ منها بتصوّر ثلاثي الأبعاد.',
+    intro: '{n} مشروعًا للتصميم الداخلي في مساحات سكنية وتجارية ومحلات ومطاعم، يُعرض كلٌّ منها بتصوّر ثلاثي الأبعاد.',
     cta: 'ناقش مشروعك مع هداية',
   },
   projectPage: {

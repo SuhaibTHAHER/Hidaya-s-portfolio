@@ -45,7 +45,7 @@ export default function ServicePage({ locale, slug }: { locale: Locale; slug: st
         {/* Hero */}
         <div className="pt-32 pb-20 bg-charcoal-950 text-cream-50">
           <div className="container-luxury">
-            <Breadcrumbs items={[{ name: ui.crumbs.home, href: href('/') }, { name: page.h1 }]} className="mb-8 text-charcoal-400" />
+            <Breadcrumbs items={[{ name: ui.crumbs.home, href: href('/') }, { name: page.h1 }]} label={ui.crumbs.label} className="mb-8 text-charcoal-400" />
             <span className="section-label on-dark mb-4 block">{ui.servicePages.label}</span>
             <h1 className="font-serif text-4xl md:text-6xl font-medium mb-6 max-w-4xl">{page.h1}</h1>
             <div className="space-y-4 max-w-2xl">

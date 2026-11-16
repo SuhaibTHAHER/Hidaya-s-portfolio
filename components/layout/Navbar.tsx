@@ -72,7 +72,6 @@ export default function Navbar({ ui, locale, alternateHref, cvUrl }: Props) {
       hrefLang={otherLang}
       lang={otherLang}
       onClick={onClick}
-      aria-label={ui.nav.switchLanguageLabel}
       className={className}
     >
       <Languages size={15} aria-hidden="true" />
@@ -114,7 +113,7 @@ export default function Navbar({ ui, locale, alternateHref, cvUrl }: Props) {
 
           {/* Actions */}
           <div className="flex items-center gap-3">
-            {languageLink('hidden sm:flex items-center gap-1.5 text-sm font-medium text-charcoal-600 dark:text-cream-300 hover:text-gold-700 dark:hover:text-gold-400 transition-colors px-2 py-1')}
+            {languageLink('flex items-center gap-1.5 text-sm font-medium text-charcoal-600 dark:text-cream-300 hover:text-gold-700 dark:hover:text-gold-400 transition-colors px-2 py-1')}
 
             {/* Theme Toggle */}
             {mounted && (

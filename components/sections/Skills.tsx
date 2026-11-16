@@ -18,7 +18,6 @@ function SkillBar({ name, level, delay }: SkillBarProps) {
     <div ref={ref} className="group">
       <div className="flex justify-between items-center mb-2">
         <span className="text-sm font-medium text-charcoal-700 dark:text-cream-200">{name}</span>
-        <span dir="ltr" className="text-xs text-gold-800 dark:text-gold-500 font-medium">{level}%</span>
       </div>
       <div className="h-0.5 bg-cream-300 dark:bg-charcoal-700 overflow-hidden">
         <motion.div

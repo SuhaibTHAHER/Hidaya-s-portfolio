@@ -3,9 +3,9 @@ import Link from 'next/link'
 type Crumb = { name: string; href?: string }
 
 /** Visible breadcrumb trail; the matching BreadcrumbList JSON-LD lives in lib/site.ts. */
-export default function Breadcrumbs({ items, className = '' }: { items: Crumb[]; className?: string }) {
+export default function Breadcrumbs({ items, className = '', label = 'Breadcrumb' }: { items: Crumb[]; className?: string; label?: string }) {
   return (
-    <nav aria-label="Breadcrumb" className={`text-xs tracking-wide ${className}`}>
+    <nav aria-label={label} className={`text-xs tracking-wide ${className}`}>
       <ol className="flex flex-wrap items-center gap-2">
         {items.map((item, i) => (
           <li key={item.name} className="flex items-center gap-2">
