@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { Mail, Phone, MapPin } from 'lucide-react'
+import { Mail, Phone, MapPin, Heart } from 'lucide-react'
 import type { SiteContent } from '@/lib/content'
 
 export default function Footer({ content }: { content: SiteContent }) {
@@ -76,7 +76,7 @@ export default function Footer({ content }: { content: SiteContent }) {
           </p>
           <p className="flex items-center gap-1 text-xs text-charcoal-400">
             <span>{ui.footer.madeWith}</span>
-            <span role="img" aria-label={ui.footer.love} className="text-gold-500">♥</span>
+            <Heart role="img" aria-label={ui.footer.love} size={13} className="text-gold-500 fill-gold-500" />
             <span>{ui.footer.inPalestine}</span>
           </p>
         </div>

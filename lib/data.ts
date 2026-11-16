@@ -118,7 +118,7 @@ export const education = [
     distinction: 'Completed in 3 Years',
     note: 'Completed the Bachelor of Interior Design in three years.',
     highlights: ['Design Studio Work', 'Space Planning & Ergonomics', 'Materials & Sustainability', 'Digital Visualization'],
-    icon: '🎓',
+    icon: 'GraduationCap',
   },
   {
     id: 2,
@@ -129,7 +129,7 @@ export const education = [
     distinction: '',
     note: 'Foundation education with strong focus on science, mathematics, and arts — disciplines that continue to inform spatial thinking and design methodology.',
     highlights: [],
-    icon: '🏫',
+    icon: 'School',
   },
 ]
 

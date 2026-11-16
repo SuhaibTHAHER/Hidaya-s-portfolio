@@ -1,8 +1,11 @@
 'use client'
 import { motion } from 'framer-motion'
+import { GraduationCap, School, Zap, MapPin, type LucideIcon } from 'lucide-react'
 import AnimateIn from '@/components/ui/AnimateIn'
 import SectionHeader from '@/components/ui/SectionHeader'
 import type { SiteContent } from '@/lib/content'
+
+const educationIcons: Record<string, LucideIcon> = { GraduationCap, School }
 
 export default function Education({ ui, education }: Pick<SiteContent, 'ui' | 'education'>) {
   return (
@@ -23,8 +26,8 @@ export default function Education({ ui, education }: Pick<SiteContent, 'ui' | 'e
               <AnimateIn key={item.id} delay={i * 0.2} direction="left">
                 <div className="relative flex gap-8 mb-12 last:mb-0">
                   {/* Timeline dot */}
-                  <div aria-hidden="true" className="relative z-10 flex-shrink-0 w-12 h-12 rounded-full bg-cream-50 dark:bg-charcoal-950 border-2 border-gold-500 flex items-center justify-center text-xl shadow-sm">
-                    {item.icon}
+                  <div aria-hidden="true" className="relative z-10 flex-shrink-0 w-12 h-12 rounded-full bg-cream-50 dark:bg-charcoal-950 border-2 border-gold-500 flex items-center justify-center text-gold-700 dark:text-gold-500 shadow-sm">
+                    {(() => { const Icon = educationIcons[item.icon] ?? GraduationCap; return <Icon size={22} /> })()}
                   </div>
 
                   {/* Content */}
@@ -42,7 +45,7 @@ export default function Education({ ui, education }: Pick<SiteContent, 'ui' | 'e
                           {item.distinction && (
                             <div className="mt-2">
                               <span className="inline-flex items-center gap-1 px-3 py-1 text-xs tracking-wide bg-emerald-50 dark:bg-emerald-900/20 text-emerald-700 dark:text-emerald-400 border border-emerald-200 dark:border-emerald-800">
-                                <span aria-hidden="true">⚡</span> {item.distinction}
+                                <Zap aria-hidden="true" size={13} /> {item.distinction}
                               </span>
                             </div>
                           )}
@@ -67,7 +70,7 @@ export default function Education({ ui, education }: Pick<SiteContent, 'ui' | 'e
                       )}
 
                       <div className="flex items-center gap-2 mt-4 text-xs text-charcoal-500 dark:text-charcoal-400">
-                        <span aria-hidden="true">📍</span>
+                        <MapPin aria-hidden="true" size={13} className="text-gold-600" />
                         <span>{item.location}</span>
                       </div>
                     </div>

@@ -1,6 +1,7 @@
 'use client'
 import { motion } from 'framer-motion'
 import { useInView } from 'react-intersection-observer'
+import { PencilRuler, Monitor, Briefcase, Ruler, Box, Sparkles, Image as ImageIcon, PenTool, Wrench, type LucideIcon } from 'lucide-react'
 import AnimateIn from '@/components/ui/AnimateIn'
 import SectionHeader from '@/components/ui/SectionHeader'
 import type { SiteContent } from '@/lib/content'
@@ -31,15 +32,12 @@ function SkillBar({ name, level, delay }: SkillBarProps) {
   )
 }
 
-const softwareIcons: Record<string, string> = {
-  'AutoCAD': '📐',
-  'SketchUp': '🏗️',
-  '3ds Max': '🎨',
-  'V-Ray': '✨',
-  'Lumion': '🌄',
-  'Adobe Photoshop': '🖼️',
-  'Adobe Illustrator': '✒️',
-  'Adobe InDesign': '📄',
+const softwareIcons: Record<string, LucideIcon> = {
+  'AutoCAD': Ruler,
+  '3ds Max': Box,
+  'V-Ray': Sparkles,
+  'Adobe Photoshop': ImageIcon,
+  'Adobe Illustrator': PenTool,
 }
 
 export default function Skills({ ui, skills }: Pick<SiteContent, 'ui' | 'skills'>) {
@@ -57,7 +55,7 @@ export default function Skills({ ui, skills }: Pick<SiteContent, 'ui' | 'skills'
           <AnimateIn delay={0.1}>
             <div className="glass p-8 rounded-none">
               <div className="flex items-center gap-3 mb-8">
-                <span aria-hidden="true" className="text-2xl">🏠</span>
+                <PencilRuler aria-hidden="true" size={26} className="text-gold-700 dark:text-gold-500" />
                 <div>
                   <h3 className="font-serif text-lg text-charcoal-800 dark:text-cream-100">{ui.skills.design}</h3>
                   <p className="text-xs text-charcoal-500 dark:text-charcoal-400 mt-0.5">{ui.skills.designSub}</p>
@@ -75,7 +73,7 @@ export default function Skills({ ui, skills }: Pick<SiteContent, 'ui' | 'skills'
           <AnimateIn delay={0.2}>
             <div className="glass p-8 rounded-none">
               <div className="flex items-center gap-3 mb-8">
-                <span aria-hidden="true" className="text-2xl">💻</span>
+                <Monitor aria-hidden="true" size={26} className="text-gold-700 dark:text-gold-500" />
                 <div>
                   <h3 className="font-serif text-lg text-charcoal-800 dark:text-cream-100">{ui.skills.software}</h3>
                   <p className="text-xs text-charcoal-500 dark:text-charcoal-400 mt-0.5">{ui.skills.softwareSub}</p>
@@ -93,7 +91,7 @@ export default function Skills({ ui, skills }: Pick<SiteContent, 'ui' | 'skills'
           <AnimateIn delay={0.3}>
             <div className="glass p-8 rounded-none">
               <div className="flex items-center gap-3 mb-8">
-                <span aria-hidden="true" className="text-2xl">💼</span>
+                <Briefcase aria-hidden="true" size={26} className="text-gold-700 dark:text-gold-500" />
                 <div>
                   <h3 className="font-serif text-lg text-charcoal-800 dark:text-cream-100">{ui.skills.business}</h3>
                   <p className="text-xs text-charcoal-500 dark:text-charcoal-400 mt-0.5">{ui.skills.businessSub}</p>
@@ -108,19 +106,20 @@ export default function Skills({ ui, skills }: Pick<SiteContent, 'ui' | 'skills'
               {/* Software icons grid */}
               <div className="mt-10 pt-8 border-t border-cream-300 dark:border-charcoal-700">
                 <p className="text-xs tracking-[0.2em] uppercase text-gold-800 dark:text-gold-500 mb-5">{ui.skills.designSoftware}</p>
-                <div className="grid grid-cols-4 gap-3">
-                  {skills.software.map((skill) => (
-                    <div
-                      key={skill.name}
-                      title={skill.name}
-                      role="img"
-                      aria-label={skill.name}
-                      className="aspect-square flex items-center justify-center text-xl bg-cream-100 dark:bg-charcoal-800 hover:bg-gold-100 dark:hover:bg-charcoal-700 transition-colors cursor-default"
-                    >
-                      {softwareIcons[skill.name] || '🔧'}
-                    </div>
-                  ))}
-                </div>
+                <ul className="grid grid-cols-3 gap-3">
+                  {skills.software.map((skill) => {
+                    const Icon = softwareIcons[skill.name] || Wrench
+                    return (
+                      <li
+                        key={skill.name}
+                        className="flex flex-col items-center justify-center gap-2 px-1 py-4 text-center bg-cream-100 dark:bg-charcoal-800 hover:bg-gold-100 dark:hover:bg-charcoal-700 transition-colors cursor-default"
+                      >
+                        <Icon aria-hidden="true" size={22} className="text-gold-700 dark:text-gold-500" />
+                        <span className="text-[11px] leading-tight text-charcoal-700 dark:text-charcoal-200">{skill.name}</span>
+                      </li>
+                    )
+                  })}
+                </ul>
               </div>
             </div>
           </AnimateIn>

@@ -1,7 +1,7 @@
 'use client'
 import { useState } from 'react'
 import { motion } from 'framer-motion'
-import { ChevronDown, MapPin, Calendar, Award } from 'lucide-react'
+import { ChevronDown, ChevronRight, MapPin, Calendar, Award } from 'lucide-react'
 import AnimateIn from '@/components/ui/AnimateIn'
 import SectionHeader from '@/components/ui/SectionHeader'
 import type { SiteContent } from '@/lib/content'
@@ -91,7 +91,7 @@ export default function Experience({ ui, experience }: Pick<SiteContent, 'ui' | 
                           <ul className="space-y-3">
                             {job.achievements.map((achievement, idx) => (
                               <li key={idx} className="flex gap-3 text-sm text-charcoal-600 dark:text-charcoal-300">
-                                <span aria-hidden="true" className="text-gold-600 mt-0.5 flex-shrink-0 rtl:-scale-x-100 inline-block">▸</span>
+                                <ChevronRight aria-hidden="true" size={16} className="text-gold-600 mt-0.5 flex-shrink-0 rtl:-scale-x-100" />
                                 <span>{achievement}</span>
                               </li>
                             ))}
