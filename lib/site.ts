@@ -49,6 +49,7 @@ export const ids = {
   person: `${SITE_URL}/#person`,
   portrait: `${SITE_URL}/#portrait`,
   website: `${SITE_URL}/#website`,
+  business: `${SITE_URL}/#business`,
   homePage: (locale: Locale) => `${absoluteUrl(localePath(locale, '/'))}#webpage`,
 }
 
@@ -162,6 +163,26 @@ const personNode = (locale: Locale = 'en') => ({
   })),
 })
 
+/**
+ * The practice as a service business (a service-area business: no street address, hours or geo
+ * coordinates are published because none were provided). Run by the Person above.
+ */
+const businessNode = (locale: Locale = 'en') => ({
+  '@type': 'ProfessionalService',
+  '@id': ids.business,
+  name: personalInfo.name,
+  alternateName: personalInfo.nameAlternates,
+  description: DESCRIPTIONS[locale],
+  url: SITE_URL,
+  image: { '@id': ids.portrait },
+  email: personalInfo.email,
+  telephone: personalInfo.phone.replace(/\s/g, ''),
+  address: { '@type': 'PostalAddress', addressLocality: 'Nablus', addressCountry: 'PS' },
+  areaServed,
+  knowsLanguage: ['ar', 'en'],
+  founder: { '@id': ids.person },
+})
+
 const websiteNode = (locale: Locale = 'en') => ({
   '@type': 'WebSite',
   '@id': ids.website,
@@ -176,7 +197,7 @@ const websiteNode = (locale: Locale = 'en') => ({
 
 /** Site-wide graph: the WebSite and the Person behind it. Same @ids in both languages; text in the page's language. */
 export function siteGraph(locale: Locale = 'en') {
-  return { '@context': 'https://schema.org', '@graph': [websiteNode(locale), personNode(locale)] }
+  return { '@context': 'https://schema.org', '@graph': [websiteNode(locale), personNode(locale), businessNode(locale)] }
 }
 
 export function homePageGraph(locale: Locale = 'en') {
