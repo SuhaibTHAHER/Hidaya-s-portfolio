@@ -33,6 +33,9 @@ const nextConfig = {
         destination: 'https://hidayathaher.com/:path*',
         permanent: true,
       },
+      // Project removed at the owner's request: send its old URLs to the project index of the same language.
+      { source: '/projects/apartment-interior', destination: '/projects', permanent: true },
+      { source: '/ar/projects/apartment-interior', destination: '/ar/projects', permanent: true },
       ...retiredProjectSlugs.map((slug) => ({
         source: `/projects/${slug}`,
         destination: '/projects',

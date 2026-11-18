@@ -42,7 +42,7 @@ export type ServiceSlug = (typeof serviceSlugs)[number]
 
 /** Which real projects support each service page. */
 export const serviceProjects: Record<ServiceSlug, string[]> = {
-  'residential-interior-design': ['apartment-interior', 'kitchen-and-dining-nook', 'master-bedroom', 'bedroom-design', 'bathroom-design', 'kids-bedroom', 'boys-bedroom', 'lounge-seating-area', 'private-room'],
+  'residential-interior-design': ['kitchen-and-dining-nook', 'master-bedroom', 'bedroom-design', 'bathroom-design', 'kids-bedroom', 'boys-bedroom', 'lounge-seating-area', 'private-room'],
   'commercial-interior-design': ['restaurant-interior', 'cafe-interior', 'bakery-interior', 'clothing-store', 'bank-branch', 'art-supply-showroom', 'camera-store', 'work-office', 'parametric-reception'],
   '3d-visualization': ['restaurant-interior', 'kitchen-and-dining-nook', 'bank-branch', 'master-bedroom', 'parametric-reception', 'clothing-store'],
 }
