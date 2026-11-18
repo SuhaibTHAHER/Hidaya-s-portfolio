@@ -42,8 +42,8 @@ export type ServiceSlug = (typeof serviceSlugs)[number]
 
 /** Which real projects support each service page. */
 export const serviceProjects: Record<ServiceSlug, string[]> = {
-  'residential-interior-design': ['kitchen-and-dining-nook', 'master-bedroom', 'bedroom-design', 'kids-bedroom', 'boys-bedroom', 'lounge-seating-area', 'private-room'],
-  'commercial-interior-design': ['restaurant-interior', 'clothing-store', 'bank-branch', 'art-supply-showroom', 'camera-store', 'work-office', 'parametric-reception'],
+  'residential-interior-design': ['apartment-interior', 'kitchen-and-dining-nook', 'master-bedroom', 'bedroom-design', 'bathroom-design', 'kids-bedroom', 'boys-bedroom', 'lounge-seating-area', 'private-room'],
+  'commercial-interior-design': ['restaurant-interior', 'cafe-interior', 'bakery-interior', 'clothing-store', 'bank-branch', 'art-supply-showroom', 'camera-store', 'work-office', 'parametric-reception'],
   '3d-visualization': ['restaurant-interior', 'kitchen-and-dining-nook', 'bank-branch', 'master-bedroom', 'parametric-reception', 'clothing-store'],
 }
 
@@ -232,7 +232,7 @@ export const servicePages: Record<ServiceSlug, Record<Locale, ServicePageContent
           "heading": "Hospitality: restaurants, cafés and lounges",
           "paragraphs": [
             "A restaurant is judged on atmosphere before the first dish arrives. I plan seating, circulation, bar and service zones so the room works, then build the mood through colour, material and light.",
-            "My classical restaurant and lounge concept brings together a dining hall, a bar and a glass-roofed lounge in cream, gold and burgundy. The same approach applies to cafés."
+            "My classical restaurant and lounge concept brings together a dining hall, a bar and a glass-roofed lounge in cream, gold and burgundy. My café and coffee-retail interior and my bakery with seating apply the same approach to smaller food and beverage spaces."
           ],
           "bullets": []
         },
@@ -279,7 +279,7 @@ export const servicePages: Record<ServiceSlug, Record<Locale, ServicePageContent
         },
         {
           "q": "Do you design cafés?",
-          "a": "Yes, a café follows the same logic as a restaurant: seating, circulation, a service counter and a mood built through material and light. My portfolio shows a restaurant and lounge concept rather than a café, so I would develop a café from your brief."
+          "a": "Yes. My portfolio includes a café and coffee-retail interior and a bakery with seating, both shown as 3D renders. A café follows the same logic as a restaurant: seating, circulation, a service counter and a mood built through material and light."
         }
       ],
       "ctaTitle": "Planning a shop, restaurant or office?",
@@ -311,7 +311,7 @@ export const servicePages: Record<ServiceSlug, Record<Locale, ServicePageContent
           "heading": "تصميم المطاعم والمقاهي",
           "paragraphs": [
             "أجواء المطعم هي أول ما يحكم عليه الزبون، قبل أن يصل الطبق الأول. أخطّط الجلسات والحركة ومنطقة البار والخدمة ليعمل المكان بسلاسة، ثم أبني الأجواء بالألوان والخامات والإضاءة.",
-            "تصميمي لمطعم كلاسيكي مع جلسة بسقف زجاجي يجمع صالة طعام وبارًا وجلسة بسقف زجاجي بدرجات الكريمي والذهبي والعنابي. والأسلوب نفسه ينطبق على المقاهي."
+            "تصميمي لمطعم كلاسيكي مع جلسة بسقف زجاجي يجمع صالة طعام وبارًا وجلسة بسقف زجاجي بدرجات الكريمي والذهبي والعنابي. وأعتمد الأسلوب نفسه في تصميم المقهى وركن بيع القهوة، وفي تصميم المخبز بمنطقة الجلوس ضمن أعمالي."
           ],
           "bullets": []
         },
@@ -358,7 +358,7 @@ export const servicePages: Record<ServiceSlug, Record<Locale, ServicePageContent
         },
         {
           "q": "هل تصممين المقاهي؟",
-          "a": "نعم، يتبع المقهى منطق المطعم نفسه: الجلسات والحركة وكاونتر الخدمة وأجواء تُبنى بالخامات والإضاءة. وفي أعمالي مطعم كلاسيكي مع جلسة بسقف زجاجي وليس مقهى، لذلك أبني تصور المقهى انطلاقًا من احتياجاتكم."
+          "a": "نعم، في أعمالي تصميم لمقهى وركن لبيع القهوة وتصميم لمخبز بمنطقة جلوس، وكلاهما بتصوّر ثلاثي الأبعاد. ويتبع المقهى منطق المطعم نفسه: الجلسات والحركة وكاونتر الخدمة وأجواء تُبنى بالخامات والإضاءة."
         }
       ],
       "ctaTitle": "هل لديكم محل أو مطعم أو مكتب تريدون تصميمه؟",

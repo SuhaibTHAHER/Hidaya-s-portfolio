@@ -1614,5 +1614,527 @@ export const projects: Project[] = [
         "height": 643
       }
     ]
+  },
+  {
+    "slug": "cafe-interior",
+    "title": "Café and Coffee Retail Interior",
+    "titleAr": "مقهى",
+    "subtitle": "Marble-look counter, timber-look shelving and a lit grid ceiling in a compact café",
+    "category": "Hospitality",
+    "projectType": "Café interior design",
+    "medium": "3D Visualization",
+    "overview": "A compact café and coffee-retail interior shown in 3D renderings, from the street-facing storefront to the service counter and display floor. A marble-look counter and a lit grid ceiling with white pendant lights anchor the service area, while timber-look shelving and stone-look display islands hold coffee products and machines. Black metal frames and track spotlights keep the look crisp against the pale, warm surfaces.",
+    "highlights": [
+      "Marble-look counter with burgundy veining as the focal point",
+      "Lit grid ceiling with white pendant lights over the service area",
+      "Timber-look wall shelving with warm backlit niches for coffee products",
+      "Two stone-look display islands for coffee machines in the middle of the floor",
+      "Hanging box signs with black metal frames, plus track spotlights",
+      "Street-facing storefront with two lit window displays and a planter"
+    ],
+    "materials": [
+      {
+        "name": "Marble-look stone",
+        "use": "Counter top and front, and the back wall behind the bar, with burgundy veining"
+      },
+      {
+        "name": "Timber-look wood",
+        "use": "Wall shelving and the lower wall panelling"
+      },
+      {
+        "name": "Dark grey wood-look flooring",
+        "use": "Floor throughout the interior"
+      },
+      {
+        "name": "Pale ribbed panelling",
+        "use": "Vertical-ribbed wall and counter-front panels around the service area"
+      },
+      {
+        "name": "Stone-look plaster",
+        "use": "Display islands, columns and the hanging box signs"
+      },
+      {
+        "name": "Black metal and brass-look trim",
+        "use": "Frames, track lights, and the thin shelf frames beside the counter"
+      }
+    ],
+    "palette": [
+      "Warm cream #E6DCCB",
+      "Marble burgundy #6E3A4A",
+      "Walnut brown #6B4A32",
+      "Charcoal grey #3A3A3C",
+      "Matte black #151515",
+      "Brass #B8913F"
+    ],
+    "tags": [
+      "Café",
+      "Coffee Shop",
+      "Hospitality Design"
+    ],
+    "featured": false,
+    "cover": {
+      "src": "/images/projects/cafe-interior/cafe-storefront-facade-evening.jpg",
+      "alt": "3D rendering of a white café storefront at dusk with two lit window displays, a glass door and a planter",
+      "caption": "Storefront facade at dusk",
+      "width": 934,
+      "height": 865
+    },
+    "images": [
+      {
+        "src": "/images/projects/cafe-interior/cafe-storefront-facade-evening.jpg",
+        "alt": "3D rendering of a white café storefront at dusk with two lit window displays, a glass door and a planter",
+        "caption": "Storefront facade at dusk",
+        "width": 934,
+        "height": 865
+      },
+      {
+        "src": "/images/projects/cafe-interior/cafe-entrance-window-displays.jpg",
+        "alt": "3D rendering of a café entrance with lit window displays, a topiary plant and a planter with a glowing edge",
+        "caption": "Entrance and window displays",
+        "width": 934,
+        "height": 865
+      },
+      {
+        "src": "/images/projects/cafe-interior/cafe-counter-marble-pendant-lights.jpg",
+        "alt": "3D rendering of a café counter with a marble-look front, white pendant lights and a lit grid ceiling above",
+        "caption": "Marble-look counter and pendant lights",
+        "width": 934,
+        "height": 865
+      },
+      {
+        "src": "/images/projects/cafe-interior/cafe-retail-island-machine-display.jpg",
+        "alt": "3D rendering of a coffee retail floor with white display islands holding coffee machines and timber-look wall shelving",
+        "caption": "Display islands and wall shelving",
+        "width": 934,
+        "height": 865
+      },
+      {
+        "src": "/images/projects/cafe-interior/coffee-shelving-espresso-machine-niche.jpg",
+        "alt": "3D rendering of a coffee bar corner with an espresso machine, a lit display niche and timber-look wall shelves",
+        "caption": "Espresso machine and lit display niches",
+        "width": 934,
+        "height": 865
+      },
+      {
+        "src": "/images/projects/cafe-interior/pour-over-shelf-column-detail.jpg",
+        "alt": "3D rendering of a close-up of a pour-over coffee dripper on a small wooden shelf attached to a stone-look column",
+        "caption": "Pour-over shelf on a stone-look column",
+        "width": 934,
+        "height": 865
+      }
+    ]
+  },
+  {
+    "slug": "bakery-interior",
+    "title": "Bakery Interior with Arched Slatted Shelving",
+    "titleAr": "مخبز",
+    "subtitle": "Bakery and seating area with arched shelving, an oven counter and warm wood-look finishes",
+    "category": "Hospitality",
+    "projectType": "Bakery with seating",
+    "medium": "3D Visualization",
+    "overview": "This is a bakery interior with café-style seating, shown in 3D renderings. Arched slatted shelving units frame the entrance and divide the floor, leading to a long display counter and an open oven wall behind it. Textured beige walls, wood-look flooring and soft concealed lighting give the space a warm, handmade feel.",
+    "highlights": [
+      "Arched slatted shelving units that display bread and divide the space",
+      "Curved wood-look ceiling feature running above the counter",
+      "Open oven wall with a dark green patterned tile backdrop",
+      "Wall of tiered bread shelves with drawers beneath",
+      "Rounded niche shelves behind the cashier counter",
+      "Concrete-look pendant lights and soft linear lighting"
+    ],
+    "materials": [
+      {
+        "name": "Slatted wood-look panels",
+        "use": "Arched shelving units, ceiling feature and vertical wall paneling"
+      },
+      {
+        "name": "Wood-look flooring",
+        "use": "Main floor of the seating and display areas"
+      },
+      {
+        "name": "Textured plaster-look finish",
+        "use": "Walls and columns"
+      },
+      {
+        "name": "Travertine-look cladding",
+        "use": "Counter fronts"
+      },
+      {
+        "name": "Terrazzo-look flooring",
+        "use": "Light speckled floor areas along the counters"
+      },
+      {
+        "name": "Dark green patterned tiles",
+        "use": "Backdrop behind the oven, counter and arched logo panel"
+      }
+    ],
+    "palette": [
+      "Oak Brown #8A6A4B",
+      "Sand Beige #C9B79F",
+      "Warm Cream #F2E8D8",
+      "Teal Green #3F7466",
+      "Crust Amber #D8883A"
+    ],
+    "tags": [
+      "Bakery",
+      "Café Seating",
+      "Arched Shelving"
+    ],
+    "featured": false,
+    "cover": {
+      "src": "/images/projects/bakery-interior/arched-slatted-shelving-entrance.jpg",
+      "alt": "3D rendering of two arched slatted shelving units with bread, framing a vertical sign at the bakery entrance",
+      "caption": "Arched slatted shelving at the entrance",
+      "width": 1280,
+      "height": 803
+    },
+    "images": [
+      {
+        "src": "/images/projects/bakery-interior/arched-slatted-shelving-entrance.jpg",
+        "alt": "3D rendering of two arched slatted shelving units with bread, framing a vertical sign at the bakery entrance",
+        "caption": "Arched slatted shelving at the entrance",
+        "width": 1280,
+        "height": 803
+      },
+      {
+        "src": "/images/projects/bakery-interior/bakery-seating-area-and-counter.jpg",
+        "alt": "3D rendering of bakery seating with round wooden tables and green chairs, facing a cashier counter and a niche wall",
+        "caption": "Seating area facing the cashier counter",
+        "width": 1280,
+        "height": 803
+      },
+      {
+        "src": "/images/projects/bakery-interior/seating-beside-textured-wall-and-arches.jpg",
+        "alt": "3D rendering of café tables and green chairs beside a textured wall, with arched bread shelves in the background",
+        "caption": "Tables beside the textured feature wall",
+        "width": 1280,
+        "height": 803
+      },
+      {
+        "src": "/images/projects/bakery-interior/oven-wall-and-bread-counter.jpg",
+        "alt": "3D rendering of a bread counter with an open oven and dark green tile wall, beside arched slatted shelving",
+        "caption": "Bread counter and open oven wall",
+        "width": 1280,
+        "height": 803
+      },
+      {
+        "src": "/images/projects/bakery-interior/wall-of-bread-display-shelves.jpg",
+        "alt": "3D rendering of a wall of tiered bread shelves with drawers below, beside a slatted arched unit and terrazzo-look floor",
+        "caption": "Tiered bread display shelves",
+        "width": 1280,
+        "height": 803
+      },
+      {
+        "src": "/images/projects/bakery-interior/cashier-counter-with-niche-wall.jpg",
+        "alt": "3D rendering of a cashier counter with a travertine-look front, three pendant lights and a rounded niche wall",
+        "caption": "Cashier counter and niche wall",
+        "width": 1280,
+        "height": 803
+      }
+    ]
+  },
+  {
+    "slug": "apartment-interior",
+    "title": "Warm Neutral Apartment with Wood Details",
+    "titleAr": "شقة",
+    "subtitle": "Living, dining, kitchen, bedrooms and bathroom in soft beige and walnut tones",
+    "category": "Residential",
+    "projectType": "Residential Apartment Interior Design",
+    "medium": "3D Visualization",
+    "overview": "This apartment is a residential interior design shown in 3D renderings. It combines a living area and dining area, a kitchen with an island, bedrooms and a bathroom in soft beige, cream and walnut-look tones. Warm LED lighting, crystal-style chandeliers and slatted wood-look panels give the rooms a calm, layered feel.",
+    "highlights": [
+      "Living room with a cream sofa, abstract artwork and a backlit feature wall framed by wood-look slat panels",
+      "Dining area with an oval table, upholstered chairs and a built-in coffee nook with a stone-look backsplash",
+      "Kitchen with cream cabinets, a wood-look island, pendant lights and a large window",
+      "Bedroom with a wood-look headboard wall, plus a glass-door wardrobe with LED-lit shelves and a dressing table",
+      "Twin bedroom with sage-green arched niches and built-in wardrobes",
+      "Bathroom with textured wall tiles and a backlit arched mirror"
+    ],
+    "materials": [
+      {
+        "name": "Wood-look panels",
+        "use": "Wall slats, cabinets, headboard wall and tables"
+      },
+      {
+        "name": "Marble-look tiles and stone",
+        "use": "Floors, tabletops and kitchen backsplash"
+      },
+      {
+        "name": "Soft fabric upholstery",
+        "use": "Sofas, dining chairs and beds"
+      },
+      {
+        "name": "Glass with metal frames",
+        "use": "Wardrobe doors and shower enclosure"
+      },
+      {
+        "name": "Textured glossy tiles",
+        "use": "Bathroom walls"
+      }
+    ],
+    "palette": [
+      "Cream #F1E8DA",
+      "Beige #D8C3A5",
+      "Walnut Brown #8A5A3B",
+      "Sage Green #A9B8A0",
+      "Charcoal #3A3A3C",
+      "Warm Gold #C8A45C"
+    ],
+    "tags": [
+      "Apartment",
+      "Warm Neutrals",
+      "Wood-Look Details"
+    ],
+    "featured": false,
+    "cover": {
+      "src": "/images/projects/apartment-interior/open-plan-living-dining-overview.jpg",
+      "alt": "3D rendering of a living and dining area with a cream sofa, oval dining table and crystal-style chandelier",
+      "caption": "Living and dining area",
+      "width": 1280,
+      "height": 720
+    },
+    "images": [
+      {
+        "src": "/images/projects/apartment-interior/open-plan-living-dining-overview.jpg",
+        "alt": "3D rendering of a living and dining area with a cream sofa, oval dining table and crystal-style chandelier",
+        "caption": "Living and dining area",
+        "width": 1280,
+        "height": 720
+      },
+      {
+        "src": "/images/projects/apartment-interior/living-room-sofa-feature-wall.jpg",
+        "alt": "3D rendering of a living room with a cream sofa, abstract artwork and a backlit wall between wood-look slat panels",
+        "caption": "Living room feature wall",
+        "width": 1280,
+        "height": 720
+      },
+      {
+        "src": "/images/projects/apartment-interior/dining-area-coffee-nook-cabinet.jpg",
+        "alt": "3D rendering of a dining area with a wood-look coffee nook, stone-look backsplash and a crystal-style chandelier",
+        "caption": "Dining area coffee nook",
+        "width": 1280,
+        "height": 720
+      },
+      {
+        "src": "/images/projects/apartment-interior/kitchen-island-pendant-lights.jpg",
+        "alt": "3D rendering of a kitchen with cream cabinets, a wood-look island, pendant lights and a large window with greenery",
+        "caption": "Kitchen with island",
+        "width": 1280,
+        "height": 720
+      },
+      {
+        "src": "/images/projects/apartment-interior/master-bedroom-wood-headboard-wall.jpg",
+        "alt": "3D rendering of a bedroom with a wood-look headboard wall, a backlit panel and a low upholstered bed",
+        "caption": "Bedroom with wood-look wall",
+        "width": 1280,
+        "height": 720
+      },
+      {
+        "src": "/images/projects/apartment-interior/glass-door-wardrobe-dressing-table.jpg",
+        "alt": "3D rendering of a glass-door wardrobe with LED-lit shelves, a wood-look side panel and a dressing table",
+        "caption": "Glass-door wardrobe and dressing table",
+        "width": 1280,
+        "height": 734
+      },
+      {
+        "src": "/images/projects/apartment-interior/kids-twin-bedroom-arched-shelving.jpg",
+        "alt": "3D rendering of a twin bedroom with sage-green arched niches, a built-in wardrobe and a soft rug",
+        "caption": "Twin bedroom with arched niches",
+        "width": 1280,
+        "height": 720
+      },
+      {
+        "src": "/images/projects/apartment-interior/bathroom-backlit-mirror-textured-tiles.jpg",
+        "alt": "3D rendering of a bathroom with textured wall tiles, a backlit arched mirror, a floating vanity and a glass shower",
+        "caption": "Bathroom with textured tiles",
+        "width": 1280,
+        "height": 885
+      }
+    ]
+  },
+  {
+    "slug": "bathroom-design",
+    "title": "Marble Bathroom with Freestanding Tub",
+    "titleAr": "حمام",
+    "subtitle": "A 3D-rendered bathroom in marble-look stone, dark wood-look vanity and warm backlit niches",
+    "category": "Residential",
+    "projectType": "Residential bathroom interior design",
+    "medium": "3D Visualization",
+    "overview": "This is a residential bathroom interior design shown in 3D renderings. A walk-in glass shower with lit niches, a double vanity with backlit mirrors and a freestanding bathtub share one space finished in marble-look surfaces. Black fixtures and soft warm lighting add contrast to the pale stone and dark wood-look cabinetry.",
+    "highlights": [
+      "Walk-in glass shower with a black-framed enclosure and two tall lit niches for toiletries",
+      "Floating double vanity with two integrated basins and open shelves for folded towels",
+      "Backlit vertical mirrors above the vanity that glow softly along their edges",
+      "Freestanding white bathtub set in front of a marble-look feature wall with a lit niche",
+      "Matte black taps, shower set and door handles tie the fixtures together",
+      "Recessed spotlights and warm concealed lighting create a calm, spa-like mood"
+    ],
+    "materials": [
+      {
+        "name": "Marble-look stone",
+        "use": "Walls and veined grey floor"
+      },
+      {
+        "name": "Dark wood-look veneer",
+        "use": "Floating vanity cabinet and door"
+      },
+      {
+        "name": "Clear glass with black frame",
+        "use": "Shower and bathtub enclosures"
+      },
+      {
+        "name": "Matte black metal",
+        "use": "Taps, shower set and handles"
+      },
+      {
+        "name": "Glossy white solid surface",
+        "use": "Freestanding bathtub"
+      }
+    ],
+    "palette": [
+      "Warm white #F2EEE8",
+      "Marble grey #A8A29A",
+      "Dark walnut #4A3B34",
+      "Matte black #1C1C1C",
+      "Warm glow #E8C98F"
+    ],
+    "tags": [
+      "Bathroom",
+      "Marble",
+      "Modern"
+    ],
+    "featured": false,
+    "cover": {
+      "src": "/images/projects/bathroom-design/bathroom-overview-shower-vanity-bathtub.jpg",
+      "alt": "3D rendering of a marble-look bathroom with a glass shower, floating double vanity and a freestanding bathtub",
+      "caption": "Shower, vanity and bathtub in one view",
+      "width": 1280,
+      "height": 720
+    },
+    "images": [
+      {
+        "src": "/images/projects/bathroom-design/bathroom-overview-shower-vanity-bathtub.jpg",
+        "alt": "3D rendering of a marble-look bathroom with a glass shower, floating double vanity and a freestanding bathtub",
+        "caption": "Shower, vanity and bathtub in one view",
+        "width": 1280,
+        "height": 720
+      },
+      {
+        "src": "/images/projects/bathroom-design/freestanding-bathtub-glass-enclosure-marble-niche.jpg",
+        "alt": "3D rendering of a freestanding bathtub behind a glass enclosure, with a lit niche in a marble-look wall and a backlit mirror",
+        "caption": "Freestanding tub and lit marble-look niche",
+        "width": 1280,
+        "height": 720
+      },
+      {
+        "src": "/images/projects/bathroom-design/bathroom-high-angle-marble-floor-double-vanity.jpg",
+        "alt": "3D rendering of a high-angle view of a bathroom with a veined marble-look floor, lit shower niches and a double vanity",
+        "caption": "High-angle view of floor, shower and vanity",
+        "width": 1280,
+        "height": 720
+      }
+    ]
+  },
+  {
+    "slug": "upcycled-pieces",
+    "title": "Upcycled Drum Seating for a Coffee Truck",
+    "titleAr": "جلسة من براميل معاد تدويرها",
+    "subtitle": "Drum-based table and storage benches in a weathered blue finish, beside a coffee truck",
+    "category": "Hospitality",
+    "projectType": "Upcycled Outdoor Furniture Design",
+    "medium": "3D Visualization",
+    "overview": "This is a furniture design that reuses worn metal drums as an outdoor seating set: a drum table and two half-drum benches. Each bench has a padded lid that lifts to reveal storage inside the drum. The set is shown in a 3D rendering beside a vintage-style coffee truck on grey paving, among autumn trees.",
+    "highlights": [
+      "Whole drum used as the table base, with a wood-look top",
+      "Half drums turned into benches on slim steel frames",
+      "Hinged padded lids that open onto storage inside each bench",
+      "Weathered blue paint left visible to keep the used-metal character",
+      "Set arranged in front of a coffee truck on interlocking paving"
+    ],
+    "materials": [
+      {
+        "name": "Worn metal drums",
+        "use": "Table base and bench bodies"
+      },
+      {
+        "name": "Wood-look panel",
+        "use": "Tabletop and bench lids"
+      },
+      {
+        "name": "Cream upholstery",
+        "use": "Bench cushions"
+      },
+      {
+        "name": "Dark steel frame",
+        "use": "Legs of the benches"
+      },
+      {
+        "name": "Interlocking concrete paving",
+        "use": "Ground surface of the setting"
+      }
+    ],
+    "palette": [
+      "Weathered Blue #7FA3BF",
+      "Cream #E9E2D3",
+      "Dark Walnut #4A3A33",
+      "Steel Grey #5C6166",
+      "Paving Grey #8D939B"
+    ],
+    "tags": [
+      "Upcycling",
+      "Outdoor Furniture",
+      "Storage Bench"
+    ],
+    "featured": false,
+    "cover": {
+      "src": "/images/projects/upcycled-pieces/barrel-seating-set-coffee-truck-front.jpg",
+      "alt": "3D rendering of a drum table and two half-drum benches facing a vintage coffee truck in a wooded setting",
+      "caption": "Drum seating set facing the truck",
+      "width": 1280,
+      "height": 984
+    },
+    "images": [
+      {
+        "src": "/images/projects/upcycled-pieces/barrel-seating-set-coffee-truck-front.jpg",
+        "alt": "3D rendering of a drum table and two half-drum benches facing a vintage coffee truck in a wooded setting",
+        "caption": "Drum seating set facing the truck",
+        "width": 1280,
+        "height": 984
+      },
+      {
+        "src": "/images/projects/upcycled-pieces/barrel-bench-and-table-three-quarter.jpg",
+        "alt": "3D rendering of half-drum benches and a drum table on grey paving, with a coffee truck and surfboard behind",
+        "caption": "Benches, table and truck in the setting",
+        "width": 1280,
+        "height": 984
+      },
+      {
+        "src": "/images/projects/upcycled-pieces/barrel-table-and-open-storage-bench.jpg",
+        "alt": "3D rendering of a drum table and a half-drum bench with its padded lid lifted, seen close up",
+        "caption": "Table and open storage bench, close view",
+        "width": 1280,
+        "height": 984
+      },
+      {
+        "src": "/images/projects/upcycled-pieces/barrel-seating-set-top-view.jpg",
+        "alt": "3D rendering from above of a drum table with a wood-look top between two cushioned half-drum benches",
+        "caption": "Top view of the table and benches",
+        "width": 1280,
+        "height": 984
+      },
+      {
+        "src": "/images/projects/upcycled-pieces/barrel-bench-open-storage-lid.jpg",
+        "alt": "3D rendering of a half-drum bench with its padded lid open, showing the dark storage space inside",
+        "caption": "Bench opened to show storage",
+        "width": 1280,
+        "height": 984
+      },
+      {
+        "src": "/images/projects/upcycled-pieces/barrel-bench-closed-cushion.jpg",
+        "alt": "3D rendering of a closed half-drum bench with a cream cushion on a steel frame, set on grey paving",
+        "caption": "Bench closed with cushion seat",
+        "width": 1280,
+        "height": 984
+      }
+    ]
   }
 ]
