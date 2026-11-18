@@ -2037,7 +2037,7 @@ export const projects: Project[] = [
   {
     "slug": "upcycled-pieces",
     "title": "Upcycled Drum Seating for a Coffee Truck",
-    "titleAr": "جلسة من براميل معاد تدويرها",
+    "titleAr": "إعادة تدوير قطع مستهلكة",
     "subtitle": "Drum-based table and storage benches in a weathered blue finish, beside a coffee truck",
     "category": "Hospitality",
     "projectType": "Upcycled Outdoor Furniture Design",
